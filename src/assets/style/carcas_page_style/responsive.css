@@ -3,27 +3,24 @@
         padding: 10px;
         display: flex;
         flex-direction: column;
-        
     }
     .logo{
         width: 100%;
         height: 130px;
-        
     }
     .client_data{
+        margin-top: 10px;
         font-size: 1em;
         font-family: Roboto-Medium;
         padding: 0;
+        text-align: center;
     }
     .employee {
         font-size: 1em;
-        text-align: left;
-        color: rgba(0, 0, 0, 0.53);
+        text-align: center;
     }
     .nav{
-   
         display: flex;
-        
         font-size: 2em;
         font-family: Roboto-Medium;
     }
@@ -65,11 +62,12 @@
     }
     input[type='submit']{
         width: 200px;
-        height: 40px;
         margin-top: 20px;
         margin-left: 25%;
         border-radius: 7px;
-        background-color: rgba(0, 0, 0, 0.38);
+    }
+    .plus_text {
+        padding-left: 10px;
     }
 }
 @media (min-width: 768px) {
@@ -109,7 +107,6 @@
 
     body {
         min-height: 1693px;
-        background-color: #e5e5e5;
         font-family: Roboto-Regular;
     }
 
@@ -127,7 +124,6 @@
         letter-spacing: normal;
         text-align: center;
         padding-top: 20px;
-        color: rgba(0, 0, 0, 0.53);
     }
     .header{
         padding: 10px;
@@ -144,7 +140,6 @@
     .employee{
         font-size: 1em;
         text-align: right;
-        color: rgba(0, 0, 0, 0.53);
     }
     .exit{
         margin-left: auto;
@@ -190,17 +185,16 @@
     input{
         height: 30px; 
         border: 0;
-        background-color: rgba(0, 0, 0, 0.226);
         font-weight: bold;
     }
     input[type='button'],input[type='reset']{
         border-radius:7px;
-        background-color: rgba(0, 0, 0, 0.38);
+        /*background-color: rgba(0, 0, 0, 0.38);*/
     }
     select{
         height: 30px; 
         border: 0;
-        background-color: rgba(0, 0, 0, 0.226);
+        /*background-color: rgba(0, 0, 0, 0.226);*/
     }
     .table{
         display: grid;
@@ -218,8 +212,8 @@
     .circle{
         width: 30px;
         height: 30px;
-        background-color:  rgba(0, 0, 0, 0.38);
-        border-radius: 20px;
+        /*background-color:  rgba(0, 0, 0, 0.38);*/
+        /*border-radius: 20px;*/
         text-align: center;
         font-size: 25px;
     }
@@ -233,16 +227,13 @@
         cursor: pointer;
         width: 30px;
         height: 30px;
-        margin-left: 31%;
+        margin-left: 30.5%;
         font-size: 25px;
     }
     input[type='submit']{
         width: 200px;
-        height: 40px;
         margin-top: 20px;
         margin-left: 30%;
-        border-radius: 7px;
-        background-color: rgba(0, 0, 0, 0.38);
     }
     @font-face {
         font-family: Roboto-Regular;

@@ -3,12 +3,13 @@
 </script>
 
 <template>
+<!--  Компонент этажа-->
   <div class="floor">
     <div class="table">Высота этажа <input type="text" placeholder=""> </div>
     <div class="table">Периметр внешних стен <input type="text" placeholder=""></div>
     <div class="table">Площадь основания <input type="text" placeholder=""></div>
     <div class="table">
-      Толщина внешних стен
+      <span>Толщина внешних стен</span>
       <select>
         <option value="100">100</option>
         <option value="100">150</option>
@@ -18,7 +19,7 @@
     </div>
     <div class="table">Длина внутренних стен <input type="text" placeholder=""></div>
     <div class="table">
-      Толщина внутренних стен
+      <span>Толщина внутренних стен</span>
       <select>
         <option value="100">100</option>
         <option value="100">150</option>
@@ -31,7 +32,7 @@
 
     <h3>Обшивки внешних стен</h3>
     <div class="table">
-      ОСБ
+      <span>ОСБ</span>
       <select>
         <option value="9">ОСБ 9мм</option>
         <option value="10">ОСБ 10мм</option>
@@ -40,7 +41,7 @@
       </select>
     </div>
     <div class="table">
-      Парогидроизоляция
+      <span>Парогидроизоляция</span>
       <select>
         <option value="1">Ондутис</option>
         <option value="2">Пароизоляция Axton (b)</option>
@@ -49,7 +50,7 @@
       </select>
     </div>
     <div class="table">
-      Ветрозащита
+      <span>Ветрозащита</span>
       <select>
         <option value="1">Ветро-влагозащитная мембрана Brane A</option>
         <option value="2">Паропроницаемая ветро-влагозащита A Optima</option>
@@ -57,7 +58,7 @@
       </select>
     </div>
     <div class="table">
-      Утеплитель
+      <span>Утеплитель</span>
       <select>
         <option value="1">Кнауф ТеплоКнауф 100 мм</option>
         <option value="2">Технониколь 100 мм</option>
@@ -80,7 +81,7 @@
       <div>
         <br>
         <div class="table">
-          ОСБ
+          <span>ОСБ</span>
           <select>
             <option value="9">ОСБ 9мм</option>
             <option value="10">ОСБ 10мм</option>
@@ -102,8 +103,7 @@
       </label>
       <div class="proemi">
         <br>
-
-        Оконные проемы
+        <span class="formItemHeader">Оконные проемы</span>
         <br><br>
 
         <div class="table2" v-for="(itemWindow, indexWindow) in floorData.itemsWindow" :key="indexWindow">
@@ -121,7 +121,7 @@
 
 
         <br>
-        <div>Дверные проемы внешние</div>
+        <div><span class="formItemHeader">Дверные проемы внешние</span></div>
         <br>
         <div class="table2" v-for="(itemDoorsOut, indexDoorOut) in floorData.itemsDoorsOut" :key="indexDoorOut">
           <div>Высота</div>
@@ -136,7 +136,7 @@
           <div class="plus1">+</div>
         </div>
         <br>
-        <div>Дверные проемы внутренние</div>
+        <div><span class="formItemHeader">Дверные проемы внутренние</span></div>
         <br>
         <div class="table2" v-for="(itemDoorsInner, indexDoorInner) in floorData.itemsDoorsInner" :key="indexDoorInner">
           <div>Высота</div>
