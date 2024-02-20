@@ -1,6 +1,6 @@
 <script setup>
-import Logo from './icons/Logo.vue';
 import Floor from "@/components/Floor.vue";
+import Logo from "@/components/icons/Logo.vue";
 </script>
 
 <template>
@@ -9,16 +9,19 @@ import Floor from "@/components/Floor.vue";
   <Logo/>
   </div>
   <div class="client_data">
+    <p>Клиент<br></p>
     <p>
-      Клиент: <br>
-      Тестовый Тест Тестович <br>
+      <b>Тестовый Тест Тестович</b> <br>
       г.Ульяновск, ул. Тестовая, д.35-45 <br>
       тел. 8-900-000-00-00
     </p>
   </div>
   <div class="employee">
     <p>
-      Имя Фамилия <br>
+      Сотрудник<br>
+    </p>
+    <p>
+      <b>Имя Фамилия</b><br>
       должность
     </p>
   </div>
@@ -35,13 +38,13 @@ import Floor from "@/components/Floor.vue";
 <main>
   <form action="">
     <div class="adress">
-      <input type="text" placeholder="Добавить адрес объекта строительства">
+      <input type="text" placeholder="Введите адрес объекта строительства">
       <input type="button" value="Сохранить">
 
       <input type="reset" value="Очистить расчет">
     </div>
     <h3>Исходные данные</h3>
-    <div class="table">Количество этажей <input type="text" placeholder="" v-model="floorsCount" @change="duplicateFloors"> </div>
+    <div class="table floorsInput">Количество этажей <input type="number" placeholder="Введите число этажей" v-model="floorsCount" @change="duplicateFloors"> </div>
     <div v-for="(floor, index) in floors" :key="index">
       <h3>Этаж: {{ index + 1 }}</h3>
       <Floor :floor="index" @duplicateInputs="duplicateInputs"></Floor>
@@ -94,12 +97,6 @@ export default {
 @import '../assets/style/carcas_page_style/style.css';
 @import '../assets/style/carcas_page_style/slide.css';
 @import '../assets/style/carcas_page_style/responsive.css';
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i);
 </style>
-
-<!--<style>-->
-<!--  @import url(http://fonts.googleapis.com/css?family=Open+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i);-->
-<!--</style>-->
-
-<!--<style>-->
-<!--  @import url(http://fonts.googleapis.com/css?family=Open+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i);-->
-<!--</style>-->
