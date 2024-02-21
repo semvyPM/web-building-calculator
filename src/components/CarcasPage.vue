@@ -1,32 +1,12 @@
 <script setup>
+import Logo from './icons/Logo.vue';
 import Floor from "@/components/Floor.vue";
-import Logo from "@/components/icons/Logo.vue";
+import LogoTest from "@/components/icons/Logo.vue";
+import Header from "@/components/Header.vue";
 </script>
 
 <template>
-<div class="header">
-  <div class="logo">
-  <Logo/>
-  </div>
-  <div class="client_data">
-    <p>Клиент<br></p>
-    <p>
-      <b>Тестовый Тест Тестович</b> <br>
-      г.Ульяновск, ул. Тестовая, д.35-45 <br>
-      тел. 8-900-000-00-00
-    </p>
-  </div>
-  <div class="employee">
-    <p>
-      Сотрудник<br>
-    </p>
-    <p>
-      <b>Имя Фамилия</b><br>
-      должность
-    </p>
-  </div>
-  <div class="exit"></div>
-</div>
+<Header/>
 <div class="nav">
   <div class="back"></div>
   <div class="carcass">
@@ -45,9 +25,9 @@ import Logo from "@/components/icons/Logo.vue";
     </div>
     <h3>Исходные данные</h3>
     <div class="table floorsInput">Количество этажей <input type="number" placeholder="Введите число этажей" v-model="floorsCount" @change="duplicateFloors"> </div>
-    <div v-for="(floor, index) in floors" :key="index">
+    <div v-for="(currentFloor, index) in floors" :key="index">
       <h3>Этаж: {{ index + 1 }}</h3>
-      <Floor :floor="index" @duplicateInputs="duplicateInputs"></Floor>
+      <Floor :currentFloor="index"></Floor>
     </div>
 
 
@@ -83,12 +63,7 @@ export default {
           this.floors = this.floors.slice(0, newCount); // Обрезаем массив до нового количества этажей
         }
       }
-    },
-    duplicateInputs(floorIndex) {
-      // Дублирование блока инпутов для конкретного этажа
-      this.floors.splice(floorIndex + 1, 0, {});
     }
-
   }
 }
 </script>
