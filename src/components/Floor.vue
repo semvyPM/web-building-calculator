@@ -5,9 +5,9 @@
 <template>
 <!--  Компонент этажа-->
   <div class="floor">
-    <div class="table">Высота этажа <input type="text" placeholder=""> </div>
-    <div class="table">Периметр внешних стен <input type="text" placeholder=""></div>
-    <div class="table">Площадь основания <input type="text" placeholder=""></div>
+    <div class="table">Высота этажа <input type="number" class="outBlock"  placeholder=""> </div>
+    <div class="table">Периметр внешних стен <input type="number" class="outBlock" placeholder=""></div>
+    <div class="table">Площадь основания <input type="number" class="outBlock" placeholder=""></div>
     <div class="table">
       <span>Толщина внешних стен</span>
       <select>
@@ -17,7 +17,7 @@
         <option value="100">250</option>
       </select>
     </div>
-    <div class="table">Длина внутренних стен <input type="text" placeholder=""></div>
+    <div class="table">Длина внутренних стен <input type="number" class="outBlock" placeholder=""></div>
     <div class="table">
       <span>Толщина внутренних стен</span>
       <select>
@@ -71,18 +71,15 @@
     </div>
     <br>
     <div>
-      <input class="hide" id="hd-1" type="checkbox" >
-      <label for="hd-1">
-        <div class="plus">
+        <div class="plus" @click="openWallsInputs">
           <div class="circle">+</div>
           <div class="plus_text">Добавить расчет обшивки внутренних стен</div>
         </div>
-      </label>
-      <div>
+      <div v-if="floorData.showTable">
         <br>
         <div class="table">
           <span>ОСБ</span>
-          <select>
+          <select >
             <option value="9">ОСБ 9мм</option>
             <option value="10">ОСБ 10мм</option>
             <option value="15">ОСБ 15мм</option>
@@ -94,14 +91,11 @@
     </div>
     <br>
     <div>
-      <input class="hide" id="hd-2" type="checkbox" >
-      <label for="hd-2">
-        <div class="plus">
+        <div class="plus" @click="openWindowInputs">
           <div class="circle" >+</div>
           <div class="plus_text">Учесть двери и окна</div>
         </div>
-      </label>
-      <div class="proemi">
+      <div class="proemi" v-if="floorData.windowsTableShow">
         <br>
         <span class="formItemHeader">Оконные проемы</span>
         <br><br>
@@ -110,9 +104,9 @@
           <div>Высота</div>
           <div>Ширина</div>
           <div>Количество</div>
-          <input type="text" placeholder="" v-model="itemWindow.heightWindow">
-          <input type="text" placeholder="" v-model="itemWindow.widthWindow">
-          <input type="text" placeholder="" v-model="itemWindow.quantityWindow">
+          <input type="number" class="inBlock" placeholder="" v-model="itemWindow.heightWindow">
+          <input type="number" class="inBlock" placeholder="" v-model="itemWindow.widthWindow">
+          <input type="number" class="inBlock" placeholder="" v-model="itemWindow.quantityWindow">
         </div>
         <br>
         <div class="plus11" @click="duplicateBlockWindow">
@@ -127,9 +121,9 @@
           <div>Высота</div>
           <div>Ширина</div>
           <div>Количество</div>
-          <input type="text" placeholder="" v-model="itemDoorsOut.heightDoorsOut">
-          <input type="text" placeholder="" v-model="itemDoorsOut.widthDoorsOut">
-          <input type="text" placeholder="" v-model="itemDoorsOut.quantityDoorsOut">
+          <input type="number" class="inBlock" placeholder="" v-model="itemDoorsOut.heightDoorsOut">
+          <input type="number" class="inBlock" placeholder="" v-model="itemDoorsOut.widthDoorsOut">
+          <input type="number" class="inBlock" placeholder="" v-model="itemDoorsOut.quantityDoorsOut">
         </div>
         <br>
         <div class="plus12" @click="duplicateBlockDoorsOut">
@@ -142,9 +136,9 @@
           <div>Высота</div>
           <div>Ширина</div>
           <div>Количество</div>
-          <input type="text" placeholder="" v-model="itemDoorsInner.heightDoorsInner">
-          <input type="text" placeholder="" v-model="itemDoorsInner.widthDoorsInner">
-          <input type="text" placeholder="" v-model="itemDoorsInner.quantityDoorsInner">
+          <input type="number" class="inBlock" placeholder="" v-model="itemDoorsInner.heightDoorsInner">
+          <input type="number" class="inBlock" placeholder="" v-model="itemDoorsInner.widthDoorsInner">
+          <input type="number" class="inBlock" placeholder="" v-model="itemDoorsInner.quantityDoorsInner">
         </div>
         <br>
         <div class="plus13" @click="duplicateBlockDoorsInner">
@@ -154,16 +148,13 @@
     </div>
     <br>
     <div>
-      <input class="hide" id="hd-3" type="checkbox" >
-      <label for="hd-3">
-        <div class="plus">
+        <div class="plus" @click="openOverlapInputs">
           <div class="circle">+</div>
           <div class="plus_text">Добавить расчет перекрытий</div>
         </div>
-      </label>
-      <div>
+      <div v-if="floorData.overlapInputsShow">
         <br>
-        <div class="table">Толщина перекрытия <input type="text" placeholder=""></div>
+        <div class="table">Толщина перекрытия <input type="number" class="outBlock" placeholder=""></div>
         <div class="table">
           ОСБ
           <select>
@@ -208,16 +199,20 @@
 </template>
 
 <script>
-export default {props: {
-    currentFloor: Number // Передаем номер текущего этажа в компонент
-  },
+export default {
+  props: ['currentFloor'],
   data() {
     return {
       floorData: {
+        showTable: false,
+        overlapInputsShow: false,
+        windowsTableShow: false,
         currentFloor: this.currentFloor,
         itemsWindow: [{ heightWindow: '', widthWindow: '', quantityWindow: '' }],
         itemsDoorsOut: [{ heightDoorsOut: '', widthDoorsOut: '', quantityDoorsOut: '' }],
         itemsDoorsInner: [{ heightDoorsInner: '', widthDoorsInner: '', quantityDoorsInner: '' }],
+        osbInput: "",
+        overlapInputs: [{slabThickness: '', OSB: '', steamAndWaterproofing: '', windProtection: '', insulation: ''}]
       }
     };
   },
@@ -231,8 +226,17 @@ export default {props: {
       this.floorData.itemsDoorsOut.push({ heightDoorsOut: '', widthDoorsOut: '', quantityDoorsOut: '' });
     },
     duplicateBlockDoorsInner() {
-      // this.$emit('duplicateBlock', this.currentFloor);
       this.floorData.itemsDoorsInner.push({ heightDoorsInner: '', widthDoorsInner: '', quantityDoorsInner: '' });
+    },
+    openWallsInputs() {
+      this.floorData.showTable = !this.floorData.showTable;
+      this.floorData.osbInput = 0;
+    },
+    openOverlapInputs() {
+      this.floorData.overlapInputsShow = !this.floorData.overlapInputsShow;
+    },
+    openWindowInputs() {
+      this.floorData.windowsTableShow = !this.floorData.windowsTableShow;
     }
   }
 };
