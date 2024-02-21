@@ -3,29 +3,31 @@
         padding: 10px;
         display: flex;
         flex-direction: column;
+        
     }
     .logo{
         width: 100%;
         height: 130px;
+        
     }
     .client_data{
-        margin-top: 10px;
         font-size: 1em;
         font-family: Roboto-Medium;
         padding: 0;
-        text-align: center;
     }
     .employee {
         font-size: 1em;
-        text-align: center;
+        text-align: left;
+        color: rgba(0, 0, 0, 0.53);
     }
     .nav{
-        display: flex;
+        display: grid;
+        grid-template-columns: 10% 80% 10%;
         font-size: 2em;
         font-family: Roboto-Medium;
     }
     .carcass{
-        margin-left: 25%;
+        text-align: center;
     }
     .adress{
         display: flex;
@@ -38,9 +40,8 @@
     }
     .table{
         display: flex;
-        /*grid-template-columns: 50% 50%;*/
+        flex-direction: column;
         padding-top: 10px;
-        flex-direction: column
     }
     .plus{
         height: 35px;
@@ -63,12 +64,16 @@
     }
     input[type='submit']{
         width: 200px;
+        height: 40px;
         margin-top: 20px;
-        margin-left: 25%;
+        
         border-radius: 7px;
+        background-color: rgba(0, 0, 0, 0.38);
     }
-    .plus_text {
-        padding-left: 10px;
+    .submit{
+        margin: 0;
+        display: flex;
+        justify-content: center;
     }
     /* Для страницы "Клиент" */
 
@@ -90,8 +95,8 @@
 
     /* Блок кнопок */
     .buttons{
-        /*display: grid;*/
-        /*grid-template-columns: 10% 20%;*/
+        display: grid;
+        grid-template-columns: 10% 20%;
     }
     .copy{
 
@@ -101,10 +106,10 @@
         margin-left: 10px;
         width: 35px;
         height: 40px;
-
+        
     }
     .delete{
-
+    
     }
     .delete img{
         width: 35px;
@@ -129,11 +134,19 @@
         background-color: rgba(0, 0, 0, 0.38); /* Цвет линии */
         color: rgba(0, 0, 0, 0.38); /* Цвет линии для IE6-7 */
         height: 3px; /* Толщина линии */
-    }
+       }
     .line{
         margin-top: 20px;
     }
 }
+
+
+
+
+
+
+
+
 @media (min-width: 768px) {
     .header{
         padding: 10px;
@@ -141,8 +154,15 @@
         grid-template-columns: 35% 30% 30% 5%;
         
     }
-
-
+    .nav{
+        display: grid;
+        grid-template-columns: 10% 80% 10%;
+        font-size: 2em;
+        font-family: Roboto-Medium;
+    }
+    .carcass{
+        text-align: center;
+    }
     .adress{
         display: grid;
         grid-template-columns: 40% 25% 25%;
@@ -159,7 +179,63 @@
         display: grid;
         grid-template-columns: 5% 50% ;
     }
+    /* Для страницы "Клиент" */
+
+    /* Главный блок расчетов */
+    .client{
+        margin-top: 0;
+        width: 100%;
+        min-height: 200px;
+        display: grid;
+        grid-template-columns: 70% 30%;
+
+    }
+
+    /* Блок вывода расчетов */
+    .calculation{
+        display: flex;
+    }
+
+    /* Блок кнопок */
+    .buttons{
+        display: grid;
+        grid-template-columns: 15% 20%;
+    }
+    .copy{
+
+    }
+    .copy img{
+        margin-top: 20px;
+        margin-left: 10px;
+        width: 35px;
+        height: 40px;
+        
+    }
+    .delete{
+    
+    }
+    .delete img{
+        width: 35px;
+        height: 45px;
+        margin-top: 15px;
+        margin-left: 20px;
+    }
+    hr {
+        border: none; /* Убираем границу */
+        background-color: rgba(0, 0, 0, 0.38); /* Цвет линии */
+        color: rgba(0, 0, 0, 0.38); /* Цвет линии для IE6-7 */
+        height: 0; /* Толщина линии */
+       }
+    .line{
+        margin: 0;
+    }
 }
+
+
+
+
+
+
 @media (min-width: 1000px) {
         /* * {
         all: unset; 
@@ -173,17 +249,9 @@
 
     body {
         min-height: 1693px;
+        background-color: #e5e5e5;
         font-family: Roboto-Regular;
     }
-    select {
-        width: 300px;
-        height: 37px;
-    }
-    .outBlock {
-        width: 290px;
-        height: 26px;
-    }
-
 
     .logo{
         width: 100%;
@@ -199,12 +267,13 @@
         letter-spacing: normal;
         text-align: center;
         padding-top: 20px;
+        color: rgba(0, 0, 0, 0.53);
     }
     .header{
         padding: 10px;
         display: grid;
         grid-template-columns: 30% 35% 30% 5%;
-
+        
     }
 
     .client_data{
@@ -215,19 +284,20 @@
     .employee{
         font-size: 1em;
         text-align: right;
+        color: rgba(0, 0, 0, 0.53);
     }
     .exit{
         margin-left: auto;
         margin-right: 0;
         width: 20px;
         height: 20px;
-        background-image: url("@/assets/img/x.png");
+        background-image: url("img/x.png");
         background-size: 100%;
     }
     .nav{
     
         display: grid;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 10% 80% 10%;
         font-size: 2em;
         font-family: Roboto-Medium;
     }
@@ -236,18 +306,18 @@
         margin-top: 10px;
         width: 40px;
         height: 40px;
-        background-image: url("@/assets/img/back.png");
+        background-image: url("img/back.png");
         background-size: 100%;
     }
     .carcass{
-        margin: 0;
+        text-align: center;
     }
     main{
         margin-left: 40px;
     }
     .adress{
         display: grid;
-        grid-template-columns: 35% 13% 13%;
+        grid-template-columns: 40% 13% 13%;
         padding: 0;
         grid-gap: 20px;
     }
@@ -258,18 +328,19 @@
         padding-left: 20px;
     }
     input{
-        height: 30px;
+        height: 30px; 
         border: 0;
+        background-color: rgba(0, 0, 0, 0.226);
         font-weight: bold;
     }
     input[type='button'],input[type='reset']{
         border-radius:7px;
-        /*background-color: rgba(0, 0, 0, 0.38);*/
+        background-color: rgba(0, 0, 0, 0.38);
     }
     select{
-        height: 30px;
+        height: 30px; 
         border: 0;
-        /*background-color: rgba(0, 0, 0, 0.226);*/
+        background-color: rgba(0, 0, 0, 0.226);
     }
     .table{
         display: grid;
@@ -287,8 +358,8 @@
     .circle{
         width: 30px;
         height: 30px;
-        /*background-color:  rgba(0, 0, 0, 0.38);*/
-        /*border-radius: 20px;*/
+        background-color:  rgba(0, 0, 0, 0.38);
+        border-radius: 20px;
         text-align: center;
         font-size: 25px;
     }
@@ -302,24 +373,73 @@
         cursor: pointer;
         width: 30px;
         height: 30px;
-        margin-left: 30.5%;
+        margin-left: 31%;
         font-size: 25px;
     }
     input[type='submit']{
-        width: 200px;
+        width: 190px;
+        height: 40px;
         margin-top: 20px;
+        border-radius: 7px;
+        background-color: rgba(0, 0, 0, 0.38);
+    }
+    .submit{
         margin-left: 30%;
+    }
+    /* Для страницы "Клиент" */
+
+    /* Главный блок расчетов */
+    .client{
+        margin-top: 0;
+        width: 100%;
+        min-height: 80px;
+        display: grid;
+        grid-template-columns: 50% 50%;
+
+    }
+
+    /* Блок вывода расчетов */
+    .calculation{
+        display: flex;
+    }
+
+    /* Блок кнопок */
+    .buttons{
+        display: grid;
+        grid-template-columns: 10% 20%;
+    }
+    .copy{
+
+    }
+    .copy img{
+        margin-top: 20px;
+        margin-left: 10px;
+        width: 35px;
+        height: 40px;
+        
+    }
+    .delete{
+    
+    }
+    .delete img{
+        width: 35px;
+        height: 45px;
+        margin-top: 15px;
+        margin-left: 0;
+    }
+    .line{
+        margin: 0;
     }
     @font-face {
         font-family: Roboto-Regular;
-        src: url("@/assets/fonts/Roboto/Roboto-Regular.ttf");
+        src: url("fonts/Roboto/Roboto-Regular.ttf");
     }
     @font-face {
         font-family: Roboto-Bold;
-        src: url("@/assets/fonts/Roboto/Roboto-Bold.ttf");
+        src: url("fonts/Roboto/Roboto-Bold.ttf");
     }
     @font-face {
         font-family: Roboto-Medium;
-        src: url("@/assets/fonts/Roboto/Roboto-Medium.ttf");
+        src: url("fonts/Roboto/Roboto-Medium.ttf");
     }
 }
