@@ -232,23 +232,10 @@
 }
 
 
-
-
-
-
 @media (min-width: 1000px) {
-        /* * {
-        all: unset; 
-        display: revert;
-    }
-    
-    *, *::before, *::after{ 
-        box-sizing: border-box;
-    }
-    */
 
     body {
-        min-height: 1693px;
+      
         background-color: #e5e5e5;
         font-family: Roboto-Regular;
     }
