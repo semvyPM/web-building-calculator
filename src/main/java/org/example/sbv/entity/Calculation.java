@@ -3,16 +3,16 @@ package org.example.sbv.entity;
 import jakarta.persistence.*;
 
 import java.sql.Date;
-
+// изменено
 @Entity
-@Table(name = "calculation", schema = "public", catalog = "db")
+@Table(name = "calculation", schema = "public", catalog = "building_calculator") // catalog = "db"
 public class Calculation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customers customerId;
     @Basic
     @Column(name = "address_object_constractions", nullable = false, length = 100)
@@ -23,9 +23,6 @@ public class Calculation {
     @Basic
     @Column(name = "created_date", nullable = false)
     private Date createdDate;
-    @ManyToOne
-    @JoinColumn(name = "results_id", nullable = false)
-    private Results resultsId;
     @ManyToOne
     @JoinColumn(name = "сalculation_state_id", nullable = false)
     private CalculationState сalculationStateId;
@@ -70,13 +67,6 @@ public class Calculation {
         this.createdDate = createdDate;
     }
 
-    public Results getResultsId() {
-        return resultsId;
-    }
-
-    public void setResultsId(Results resultsId) {
-        this.resultsId = resultsId;
-    }
 
     public CalculationState getСalculationStateId() {
         return сalculationStateId;
@@ -89,22 +79,20 @@ public class Calculation {
     public Calculation() {
     }
 
-    public Calculation(Customers customerId, String addressObjectConstractions, Integer number, Date createdDate, Results resultsId, CalculationState сalculationStateId) {
+    public Calculation(Customers customerId, String addressObjectConstractions, Integer number, Date createdDate, CalculationState сalculationStateId) {
         this.customerId = customerId;
         this.addressObjectConstractions = addressObjectConstractions;
         this.number = number;
         this.createdDate = createdDate;
-        this.resultsId = resultsId;
         this.сalculationStateId = сalculationStateId;
     }
 
-    public Calculation(Integer id, Customers customerId, String addressObjectConstractions, Integer number, Date createdDate, Results resultsId, CalculationState сalculationStateId) {
+    public Calculation(Integer id, Customers customerId, String addressObjectConstractions, Integer number, Date createdDate, CalculationState сalculationStateId) {
         this.id = id;
         this.customerId = customerId;
         this.addressObjectConstractions = addressObjectConstractions;
         this.number = number;
         this.createdDate = createdDate;
-        this.resultsId = resultsId;
         this.сalculationStateId = сalculationStateId;
     }
 
@@ -121,7 +109,6 @@ public class Calculation {
             return false;
         if (number != null ? !number.equals(that.number) : that.number != null) return false;
         if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (resultsId != null ? !resultsId.equals(that.resultsId) : that.resultsId != null) return false;
         if (сalculationStateId != null ? !сalculationStateId.equals(that.сalculationStateId) : that.сalculationStateId != null)
             return false;
 
@@ -135,7 +122,6 @@ public class Calculation {
         result = 31 * result + (addressObjectConstractions != null ? addressObjectConstractions.hashCode() : 0);
         result = 31 * result + (number != null ? number.hashCode() : 0);
         result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (resultsId != null ? resultsId.hashCode() : 0);
         result = 31 * result + (сalculationStateId != null ? сalculationStateId.hashCode() : 0);
         return result;
     }
