@@ -1,9 +1,9 @@
 package org.example.sbv.entity;
 
 import jakarta.persistence.*;
-
+// изменено
 @Entity
-@Table(name = "customers", schema = "public", catalog = "db")
+@Table(name = "customers", schema = "public", catalog = "building_calculator") // catalog = "db"
 public class Customers {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -27,6 +27,9 @@ public class Customers {
     @Basic
     @Column(name = "adress", nullable = false, length = 100)
     private String adress;
+    @ManyToOne
+    @JoinColumn(name = "users_id", nullable = false)
+    private Users usersId;
 
     public Integer getId() {
         return id;
@@ -84,19 +87,23 @@ public class Customers {
         this.adress = adress;
     }
 
+    public Users getUsersId() { return usersId;}
+    public void setUsersId(Users usersId) { this.usersId = usersId;}
+
     public Customers() {
     }
 
-    public Customers(String lastName, String firstName, String secondName, String phone, String eMail, String adress) {
+    public Customers(String lastName, String firstName, String secondName, String phone, String eMail, String adress, Users usersId) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.secondName = secondName;
         this.phone = phone;
         this.eMail = eMail;
         this.adress = adress;
+        this.usersId = usersId;
     }
 
-    public Customers(Integer id, String lastName, String firstName, String secondName, String phone, String eMail, String adress) {
+    public Customers(Integer id, String lastName, String firstName, String secondName, String phone, String eMail, String adress, Users usersId) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -104,6 +111,7 @@ public class Customers {
         this.phone = phone;
         this.eMail = eMail;
         this.adress = adress;
+        this.usersId = usersId;
     }
 
     @Override
@@ -120,6 +128,7 @@ public class Customers {
         if (phone != null ? !phone.equals(customers.phone) : customers.phone != null) return false;
         if (eMail != null ? !eMail.equals(customers.eMail) : customers.eMail != null) return false;
         if (adress != null ? !adress.equals(customers.adress) : customers.adress != null) return false;
+        if (usersId != null ? !usersId.equals(customers.usersId) : customers.usersId != null) return false;
 
         return true;
     }
@@ -133,6 +142,7 @@ public class Customers {
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (eMail != null ? eMail.hashCode() : 0);
         result = 31 * result + (adress != null ? adress.hashCode() : 0);
+        result = 31 * result + (usersId != null ? usersId.hashCode() : 0);
         return result;
     }
 }

@@ -1,17 +1,14 @@
 package org.example.sbv.entity;
 
 import jakarta.persistence.*;
-
+// изменено
 @Entity
-@Table(name = "users", schema = "public", catalog = "db")
+@Table(name = "users", schema = "public", catalog = "building_calculator") // catalog = "db"
 public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
-    private Long id;
-    @ManyToOne
-    @JoinColumn(name = "customer_id", nullable = true)
-    private Customers customerId;
+    private Integer id;
     @ManyToOne
     @JoinColumn(name = "state_id", nullable = false)
     private State stateId;
@@ -41,7 +38,6 @@ public class Users {
     public String toString() {
         return "Users{" +
                 "id=" + id +
-                ", customerId=" + customerId +
                 ", stateId=" + stateId +
                 ", lastName='" + lastName + '\'' +
                 ", firstName='" + firstName + '\'' +
@@ -53,20 +49,12 @@ public class Users {
                 '}';
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Customers getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Customers customerId) {
-        this.customerId = customerId;
     }
 
     public State getStateId() {
@@ -133,8 +121,7 @@ public class Users {
         this.password = password;
     }
 
-    public Users(Customers customerId, State stateId, String lastName, String firstName, String secondName, String phone, String eMail, String login, String password) {
-        this.customerId = customerId;
+    public Users(State stateId, String lastName, String firstName, String secondName, String phone, String eMail, String login, String password) {
         this.stateId = stateId;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -145,9 +132,8 @@ public class Users {
         this.password = password;
     }
 
-    public Users(Long id, Customers customerId, State stateId, String lastName, String firstName, String secondName, String phone, String eMail, String login, String password) {
+    public Users(Integer id, State stateId, String lastName, String firstName, String secondName, String phone, String eMail, String login, String password) {
         this.id = id;
-        this.customerId = customerId;
         this.stateId = stateId;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -169,7 +155,6 @@ public class Users {
         Users users = (Users) o;
 
         if (id != null ? !id.equals(users.id) : users.id != null) return false;
-        if (customerId != null ? !customerId.equals(users.customerId) : users.customerId != null) return false;
         if (stateId != null ? !stateId.equals(users.stateId) : users.stateId != null) return false;
         if (lastName != null ? !lastName.equals(users.lastName) : users.lastName != null) return false;
         if (firstName != null ? !firstName.equals(users.firstName) : users.firstName != null) return false;
@@ -185,7 +170,6 @@ public class Users {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (customerId != null ? customerId.hashCode() : 0);
         result = 31 * result + (stateId != null ? stateId.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
