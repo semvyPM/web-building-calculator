@@ -1,9 +1,9 @@
 package org.example.sbv.entity;
 
 import jakarta.persistence.*;
-
+// изменено
 @Entity
-@Table(name = "materialCharacteristics", schema = "public", catalog = "db")
+@Table(name = "material_characteristics", schema = "public", catalog = "building_calculator") // catalog = "db"
 public class MaterialCharacteristics {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -19,16 +19,15 @@ public class MaterialCharacteristics {
     @JoinColumn(name = "measurement_unit_id", nullable = false)
     private MeasurementUnits measurementUnitId;
     @Basic
-    @Column(name = "length", nullable = false, precision = 0)
+    @Column(name = "length", precision = 0)
     private Float length;
     @Basic
-    @Column(name = "wedth", nullable = false, precision = 0)
+    @Column(name = "wedth", precision = 0)
     private Float wedth;
     @Basic
-    @Column(name = "thickness", nullable = false, precision = 0)
+    @Column(name = "thickness", precision = 0)
     private Float thickness;
-    @Basic
-    @Column(name = "volume", nullable = false, precision = 0)
+    @Column(name = "volume", precision = 0)
     private Float volume;
 
     public Integer getId() {

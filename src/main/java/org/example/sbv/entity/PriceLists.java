@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.sql.Date;
-
+// изменено
 @Entity
-@Table(name = "priceLists", schema = "public", catalog = "db")
+@Table(name = "price_lists", schema = "public", catalog = "building_calculator") // catalog = "db"
 public class PriceLists {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

@@ -1,17 +1,14 @@
 package org.example.sbv.entity;
 
 import jakarta.persistence.*;
-
+// изменено
 @Entity
-@Table(name = "structuralElementBasement", schema = "public", catalog = "db")
+@Table(name = "structural_element_basement", schema = "public", catalog = "building_calculator") // catalog = "db"
 public class StructuralElementBasement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
-    @ManyToOne
-    @JoinColumn(name = "results_id", nullable = false)
-    private Results resultsId;
     @Basic
     @Column(name = "perimeter_of_external_walls", nullable = false, precision = 0)
     private Float perimeterOfExternalWalls;
@@ -33,13 +30,6 @@ public class StructuralElementBasement {
         this.id = id;
     }
 
-    public Results getResultsId() {
-        return resultsId;
-    }
-
-    public void setResultsId(Results resultsId) {
-        this.resultsId = resultsId;
-    }
 
     public Float getPerimeterOfExternalWalls() {
         return perimeterOfExternalWalls;
@@ -73,17 +63,15 @@ public class StructuralElementBasement {
         this.concrete = concrete;
     }
 
-    public StructuralElementBasement(Integer id, Results resultsId, Float perimeterOfExternalWalls, Float internalWallLength, String concretePiles, String concrete) {
+    public StructuralElementBasement(Integer id, Float perimeterOfExternalWalls, Float internalWallLength, String concretePiles, String concrete) {
         this.id = id;
-        this.resultsId = resultsId;
         this.perimeterOfExternalWalls = perimeterOfExternalWalls;
         this.internalWallLength = internalWallLength;
         this.concretePiles = concretePiles;
         this.concrete = concrete;
     }
 
-    public StructuralElementBasement(Results resultsId, Float perimeterOfExternalWalls, Float internalWallLength, String concretePiles, String concrete) {
-        this.resultsId = resultsId;
+    public StructuralElementBasement(Float perimeterOfExternalWalls, Float internalWallLength, String concretePiles, String concrete) {
         this.perimeterOfExternalWalls = perimeterOfExternalWalls;
         this.internalWallLength = internalWallLength;
         this.concretePiles = concretePiles;
@@ -101,7 +89,6 @@ public class StructuralElementBasement {
         StructuralElementBasement that = (StructuralElementBasement) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (resultsId != null ? !resultsId.equals(that.resultsId) : that.resultsId != null) return false;
         if (perimeterOfExternalWalls != null ? !perimeterOfExternalWalls.equals(that.perimeterOfExternalWalls) : that.perimeterOfExternalWalls != null)
             return false;
         if (internalWallLength != null ? !internalWallLength.equals(that.internalWallLength) : that.internalWallLength != null)
@@ -116,7 +103,6 @@ public class StructuralElementBasement {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (resultsId != null ? resultsId.hashCode() : 0);
         result = 31 * result + (perimeterOfExternalWalls != null ? perimeterOfExternalWalls.hashCode() : 0);
         result = 31 * result + (internalWallLength != null ? internalWallLength.hashCode() : 0);
         result = 31 * result + (concretePiles != null ? concretePiles.hashCode() : 0);
