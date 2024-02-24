@@ -430,6 +430,14 @@
     .line{
         margin: 0;
     }
+    
+    /* Для страницы "Расчет" */
+
+    .report{
+        width: 50%;
+        height: 600px;
+        background-color:rgba(0, 0, 0, 0.38);
+    }
     @font-face {
         font-family: Roboto-Regular;
         src: url("fonts/Roboto/Roboto-Regular.ttf");
