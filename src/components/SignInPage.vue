@@ -1,11 +1,12 @@
 <script setup>
 import Logo from './icons/Logo.vue';
+import LogoSignIn from "@/components/icons/LogoSignIn.vue";
 </script>
 
 <template>
 <div class="auth-container">
   <div class="logo">
-    <Logo/>
+    <LogoSignIn />
   </div>
   <!-- Форма авторизации -->
   <div class="form">
@@ -18,7 +19,7 @@ import Logo from './icons/Logo.vue';
 </div>
 <!-- Крестик закрытия -->
 <div>
-  <a href="#" class="close-button">&times;</a>
+  <span class="close-button" @click="goBack">&times;</span>
 </div>
 </template>
 
@@ -35,15 +36,19 @@ export default {
     };
   },
   methods: {
+    goBack() {
+      window.history.go(-1);
+    },
     async login(){
       try {
+        alert(this.userlogin);
         const response = await axios.post("http://localhost:8080/api/users/authuser", {
           userlogin: this.userlogin,
           userpassword: this.userpassword
         });
 
         if (response.data) {
-          this.$router.push({name: "carcasPage"});
+          this.$router.push({name: "clientsPage"});
         } else {
           alert(response.data.message);
         }
