@@ -133,6 +133,18 @@
     .create-customer-form input[type='submit'] {
         width: 97%;
     }
+    /* Модальное окно выбора элемента */
+    .element{
+        display: grid;
+        grid-template-columns: 20% 60% 20%;
+        width: 60%;
+        height: 100%;
+        color: #2a622a;
+        background-color: #ffc945;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
 }
 @media (min-width: 768px) {
     .header{
@@ -172,6 +184,19 @@
         flex: 1 0 20%;
         margin: 5px;
     }
+    /* Модальное окно выбора элемента */
+    .element{
+        display: grid;
+        grid-template-columns: 20% 60% 20%;
+        width: 60%;
+        height: 100%;
+        color: #2a622a;
+        background-color: #ffc945;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
 }
 @media (min-width: 1000px) {
         /* * {
@@ -311,6 +336,41 @@
     .card-container {
         margin-right: 40px;
     }
+    /* Модальное окно выбора элемента */
+
+.popup-elements{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.popup-content h2{
+    text-align: center;
+}
+
+.element{
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    width: 50%;
+    height: 100%;
+    color: #2a622a;
+    background-color: #ffc945;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.element img{
+    width: 70%;
+    height: 70%;
+    margin-left: 10px;
+    margin-top: 8px;
+}
+.element h3{
+    margin: 0;
+    margin-top: 7%;
+}
+
 
     @font-face {
         font-family: Roboto-Regular;

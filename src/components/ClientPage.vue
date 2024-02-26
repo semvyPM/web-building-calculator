@@ -14,7 +14,8 @@ import Header from "@/components/Header.vue";
   </div>
   <main>
     <form action="">
-      <input type="submit" value="Создать расчет">
+      <input type="button" style="cursor: pointer;" value="Создать расчет" @click="togglePopup">
+      <ConstructionElementPopup v-if="showPopup" @close="showPopup = false"/>
     </form>
     <div class="line">
       <hr>
@@ -42,9 +43,24 @@ import Header from "@/components/Header.vue";
 </template>
 
 <script>
-export default {
-  methods: {
+import ConstructionElementPopup from "@/components/ConstructionElementPopup.vue";
 
+export default {
+  components: {
+    ConstructionElementPopup
+  },
+  data() {
+    return {
+      showPopup: false
+    };
+  },
+  methods: {
+    togglePopup() {
+      this.showPopup = !this.showPopup
+    },
+    saveAndRedirect() {
+      alert("saveAndRedirect");
+    },
   }
 }
 </script>

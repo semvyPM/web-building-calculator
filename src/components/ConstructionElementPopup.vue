@@ -4,15 +4,15 @@
             <span class="close" @click="closeModal">&times;</span>
             <h2>Выбор конструктивного элемента</h2>
             <div class="popup-elements">
-                <div class="element">
+                <div @click="redirectToCarcasPage" style="cursor: pointer;" class="element">
                     <img src="@/assets/img/house.png" alt="">
                     <h3>Каркас</h3>
                 </div>
-                <div class="element">
+                <div @click="redirectToFoundationPage" style="cursor: pointer;" class="element">
                     <img src="@/assets/img/foundation.png" alt="">
                     <h3>Фундамент</h3>
                 </div>
-                <div class="element">
+                <div @click="redirectToRoofPage" style="cursor: pointer;" class="element">
                     <img src="@/assets/img/roof.png" alt="">
                     <h3>Крыша</h3>
                 </div>
@@ -22,11 +22,24 @@
 </template>
 
 <script>
+import router from './router.js';
 export default {
   methods: {
     closeModal() {
       this.$emit('close');
-    }
+    },
+    redirectToCarcasPage() {
+      // Используем маршрутизатор для перенаправления
+      router.push('carcasPage');
+    },
+    redirectToFoundationPage() {
+      // Используем маршрутизатор для перенаправления
+      router.push('foundationPage');
+    },
+    redirectToRoofPage() {
+      // Используем маршрутизатор для перенаправления
+      router.push('roofPage');
+    },
   }
 }
 

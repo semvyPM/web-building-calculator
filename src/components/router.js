@@ -6,6 +6,8 @@ import ClientsPage from "@/components/ClientsPage.vue";
 const routes = [
     { path: '/', name: 'signIn', component: SignInPage },
     { path: '/carcasPage',  name: 'carcasPage', component: CarcasPage },
+   // { path: '/foundationPage',  name: 'foundationPage', component: FoundationPage },
+   // { path: '/roofPage',  name: 'roofPage', component: RoofPage },
     { path: '/client',  name: 'clientPage', component: ClientPage },
     { path: '/clients',  name: 'clientsPage', component: ClientsPage },
 ];

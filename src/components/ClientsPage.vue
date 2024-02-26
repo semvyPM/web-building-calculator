@@ -15,7 +15,7 @@ import Header from "@/components/Header.vue";
   <main>
 
 
-    <input type="button" value="Создать клиента" @click="togglePopup">
+    <input type="button" style="cursor: pointer;" value="Создать клиента" @click="togglePopup">
     <CreateUserPopup v-if="showPopup" @close="showPopup = false"/>
 
     <div class="card-container">
@@ -36,7 +36,7 @@ import Header from "@/components/Header.vue";
 </template>
 
 <script>
-import CreateUserPopup from "@/components/ConstructionElementPopup.vue";
+import CreateUserPopup from "@/components/CreateUserPopup.vue";
 
 export default {
   components: {
