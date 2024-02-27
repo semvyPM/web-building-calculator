@@ -6,20 +6,22 @@ import Header from "@/components/Header.vue";
 <Header/>
   <div class="nav">
     <div class="back"></div>
-    <div class="carcass">
+    
       <p>
         Карточка клиента
       </p>
     </div>
-  </div>
+  
   <main>
     <form action="">
-      <input type="button" style="cursor: pointer;" value="Создать расчет" @click="togglePopup">
-      <ConstructionElementPopup v-if="showPopup" @close="showPopup = false"/>
+      <div class="create-calculation-button">
+        <input type="button" style="cursor: pointer;" value="Создать расчет" @click="togglePopup">
+        <ConstructionElementPopup v-if="showPopup" @close="showPopup = false"/>
+      </div>
     </form>
-    <div class="line">
-      <hr>
-    </div>
+    <div class="client-bg">
+    <hr>
+    
 
     <div class="client">
       <div class="calculation">
@@ -39,6 +41,7 @@ import Header from "@/components/Header.vue";
 
     </div>
     <hr>
+    </div>
   </main>
 </template>
 

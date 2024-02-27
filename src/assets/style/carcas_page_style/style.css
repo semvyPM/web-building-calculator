@@ -60,7 +60,7 @@ body {
 }
 .nav{
     display: grid;
-    grid-template-columns: 45% 50%;
+    grid-template-columns: 10% 80% 10%;
     font-size: 2em;
     font-family: Roboto-Medium;
 }
@@ -234,12 +234,16 @@ input[type='submit']{
 
 /* Главный блок расчетов */
 .client{
-    margin-top: 50px;
+    
     width: 100%;
-    min-height: 200px;
+    height: 100px;
     display: grid;
     grid-template-columns: 50% 50%;
+    
 
+}
+.client-bg{
+    background-color: #edf1ec;
 }
 
 /* Блок вывода расчетов */
@@ -271,7 +275,10 @@ input[type='submit']{
 .container{
     width: 25%;
     height: 55px;
-    background-color: rgba(0, 0, 0, 0.38);
+    
+    box-shadow: 0 1px 2px #5e5e5e;
+    background-color: #597359;
+    color: #f0f0f0;
     margin-top: 10px;
     margin-right: 10px;
     text-align: center;
@@ -410,7 +417,14 @@ input[type='submit']{
     cursor: pointer;
 }
 
-
+/* Страница клиента */
+/* Кнопка "Создать расчет" */
+.create-calculation-button input{
+    width: 12%;
+    background-color: #ffc945;
+    color: #000000;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
 
 @font-face {
     font-family: Roboto-Regular;

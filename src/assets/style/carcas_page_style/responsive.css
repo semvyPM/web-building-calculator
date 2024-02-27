@@ -21,10 +21,12 @@
     }
     .nav{
         display: grid;
+        text-align: center;
         grid-template-columns: 23% 50%;
         font-size: 2em;
         font-family: Roboto-Medium;
     }
+    
     .carcass{
         margin-left: 25%;
     }
@@ -71,7 +73,7 @@
     .client{
         margin-top: 0;
         width: 100%;
-        min-height: 150px;
+        height: 100px;
         display: grid;
         grid-template-columns: 100%;
 
@@ -145,6 +147,15 @@
         margin-bottom: 20px;
         text-align: center;
     }
+    /* Страница клиента */
+    /* Кнопка "Создать расчет" */
+    .create-calculation-button input{
+        width: 100%;
+        background-color: #ffc945;
+        color: #000000;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
 }
 @media (min-width: 768px) {
     .header{
@@ -155,11 +166,13 @@
     }
     .nav{
         display: grid;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 10% 80% 10%;
         font-size: 2em;
         font-family: Roboto-Medium;
     }
-
+    .nav p{
+        text-align: center;
+    }
     .adress{
         display: grid;
         grid-template-columns: 40% 25% 25%;
@@ -196,7 +209,30 @@
         margin-bottom: 20px;
         text-align: center;
     }
-    
+    /* Страница клиента */
+    /* Кнопка "Создать расчет" */
+    .create-calculation-button input{
+        width: 12%;
+        background-color: #ffc945;
+        color: #000000;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    }
+    /* Для страницы "Клиент" */
+
+    /* Главный блок расчетов */
+    .client{
+        
+        width: 100%;
+        height: 100px;
+        display: grid;
+        grid-template-columns: 70% 30%;
+
+    }
+    /* Блок кнопок */
+    .buttons{
+        display: grid;
+        grid-template-columns: 30% 30%;
+    }
 }
 @media (min-width: 1000px) {
         /* * {
@@ -244,7 +280,15 @@
         grid-template-columns: 30% 35% 30% 5%;
 
     }
-
+    .nav{
+        display: grid;
+        grid-template-columns: 10% 80% 10%;
+        font-size: 2em;
+        font-family: Roboto-Medium;
+    }
+    .nav p{
+        text-align: center;
+    }
     .client_data{
         font-size: 1em;
         padding-left: 50px;
@@ -262,12 +306,7 @@
         background-image: url("@/assets/img/x.png");
         background-size: 100%;
     }
-    .nav{
-        display: grid;
-        grid-template-columns: 45% 50%;
-        font-size: 2em;
-        font-family: Roboto-Medium;
-    }
+    
     .back{
         margin-left: 10px;
         margin-top: 10px;
@@ -338,39 +377,62 @@
     }
     /* Модальное окно выбора элемента */
 
-.popup-elements{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.popup-content h2{
-    text-align: center;
-}
+    .popup-elements{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .popup-content h2{
+        text-align: center;
+    }
 
-.element{
-    display: grid;
-    grid-template-columns: 20% 60% 20%;
-    width: 50%;
-    height: 100%;
-    color: #2a622a;
-    background-color: #ffc945;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-.element img{
-    width: 70%;
-    height: 70%;
-    margin-left: 10px;
-    margin-top: 8px;
-}
-.element h3{
-    margin: 0;
-    margin-top: 7%;
-}
+    .element{
+        display: grid;
+        grid-template-columns: 20% 60% 20%;
+        width: 50%;
+        height: 100%;
+        color: #2a622a;
+        background-color: #ffc945;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .element img{
+        width: 70%;
+        height: 70%;
+        margin-left: 10px;
+        margin-top: 8px;
+    }
+    .element h3{
+        margin: 0;
+        margin-top: 7%;
+    }
+    /* Страница клиента */
+    /* Кнопка "Создать расчет" */
+    .create-calculation-button input{
+        width: 12%;
+        background-color: #ffc945;
+        color: #000000;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    }
+    /* Для страницы "Клиент" */
 
+    /* Главный блок расчетов */
+    .client{
+        
+        width: 100%;
+        height: 80px;
+        display: grid;
+        grid-template-columns: 50% 50%;
+
+    }
+    /* Блок кнопок */
+    .buttons{
+        display: grid;
+        grid-template-columns: 15% 20%;
+    }
 
     @font-face {
         font-family: Roboto-Regular;
