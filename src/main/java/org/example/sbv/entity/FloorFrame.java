@@ -3,7 +3,7 @@ package org.example.sbv.entity;
 import jakarta.persistence.*;
 // создано
 @Entity
-@Table(name = "structuralElementFrame", schema = "public", catalog = "building_calculator") // catalog = "db"
+@Table(name = "floor_frame", schema = "public", catalog = "building_calculator") // catalog = "db"
 public class FloorFrame {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -31,7 +31,7 @@ public class FloorFrame {
     @Column(name = "internal_wall_thickness", nullable = false, precision = 0)
     private Float internalWallThickness;
     @Basic
-    @Column(name = "OSB_external_wall", nullable = false, length = 100)
+    @Column(name = "osb_external_wall", nullable = false, length = 100)
     private String osbExternalWall;
     @Basic
     @Column(name = "steam_waterproofing_external _wall", nullable = false, length = 100)
@@ -46,7 +46,7 @@ public class FloorFrame {
     @Column(name = "overlap_thickness", nullable = false, length = 100)
     private String overlapThickness;
     @Basic
-    @Column(name = "OSB_thickness", nullable = false, length = 100)
+    @Column(name = "osb_thickness", nullable = false, length = 100)
     private String osbThickness;
     @Basic
     @Column(name = "steam_waterproofing_thickness", nullable = false, length = 100)
@@ -58,10 +58,10 @@ public class FloorFrame {
     @Column(name = "insulation_thickness", nullable = false, length = 100)
     private String insulationThickness;
     @Basic
-    @Column(name = "OSB_internal_wall", nullable = false, length = 100)
+    @Column(name = "osb_internal_wall", nullable = false, length = 100)
     private String osbInternalWall;
     @ManyToOne
-    @JoinColumn(name = "structuralElementFrame_id", nullable = false)
+    @JoinColumn(name = "structural_element_frame_id", nullable = false)
     private StructuralElementFrame structuralElementFrameId;
 
 

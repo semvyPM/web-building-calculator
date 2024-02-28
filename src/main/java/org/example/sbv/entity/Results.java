@@ -28,13 +28,13 @@ public class Results {
     @Column(name = "full_price", nullable = false, precision = 0)
     private Float fullPrice;
     @ManyToOne
-    @JoinColumn(name = "structuralElementBasement_id")
+    @JoinColumn(name = "structural_element_basement_id")
     private StructuralElementBasement structuralElementBasementId;
     @ManyToOne
     @JoinColumn(name = "calculation_id", nullable = false)
     private Calculation calculationId;
     @ManyToOne
-    @JoinColumn(name = "structuralElementFrame_id")
+    @JoinColumn(name = "structural_element_frame_id")
     private StructuralElementFrame structuralElementFrameId;
 
 
