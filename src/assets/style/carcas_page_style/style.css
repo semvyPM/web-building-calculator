@@ -425,7 +425,16 @@ input[type='submit']{
     color: #000000;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
-
+.result-buttons{
+    display: inline-flex;
+    
+}
+.edit img{
+    margin-left: 10px;
+    margin-right: 20px;
+    width: 35px;
+    height: 40px;
+}
 @font-face {
     font-family: Roboto-Regular;
     src: url("@/assets/fonts/Roboto/Roboto-Regular.ttf");
