@@ -1,7 +1,11 @@
 package org.example.sbv.entity;
 
 import jakarta.persistence.*;
-// изменено
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "structural_element_basement", schema = "public", catalog = "building_calculator") // catalog = "db"
 public class StructuralElementBasement {
@@ -21,47 +25,6 @@ public class StructuralElementBasement {
     @Basic
     @Column(name = "concrete", nullable = false, length = 100)
     private String concrete;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-
-    public Float getPerimeterOfExternalWalls() {
-        return perimeterOfExternalWalls;
-    }
-
-    public void setPerimeterOfExternalWalls(Float perimeterOfExternalWalls) {
-        this.perimeterOfExternalWalls = perimeterOfExternalWalls;
-    }
-
-    public Float getInternalWallLength() {
-        return internalWallLength;
-    }
-
-    public void setInternalWallLength(Float internalWallLength) {
-        this.internalWallLength = internalWallLength;
-    }
-
-    public String getConcretePiles() {
-        return concretePiles;
-    }
-
-    public void setConcretePiles(String concretePiles) {
-        this.concretePiles = concretePiles;
-    }
-
-    public String getConcrete() {
-        return concrete;
-    }
-
-    public void setConcrete(String concrete) {
-        this.concrete = concrete;
-    }
 
     public StructuralElementBasement(Integer id, Float perimeterOfExternalWalls, Float internalWallLength, String concretePiles, String concrete) {
         this.id = id;

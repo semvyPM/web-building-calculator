@@ -1,7 +1,11 @@
 package org.example.sbv.entity;
 
 import jakarta.persistence.*;
-// изменено
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "results", schema = "public", catalog = "building_calculator") // catalog = "db"
 public class Results {
@@ -36,81 +40,6 @@ public class Results {
     @ManyToOne
     @JoinColumn(name = "structural_element_frame_id")
     private StructuralElementFrame structuralElementFrameId;
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public MaterialCharacteristics getMaterialCharacteristicsId() {
-        return materialCharacteristicsId;
-    }
-
-    public void setMaterialCharacteristicsId(MaterialCharacteristics materialCharacteristicsId) {
-        this.materialCharacteristicsId = materialCharacteristicsId;
-    }
-
-    public String getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(String material) {
-        this.material = material;
-    }
-
-    public Float getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Float amount) {
-        this.amount = amount;
-    }
-
-    public Float getPrice() {
-        return price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
-    }
-
-    public String getMeasurementUnit() {
-        return measurementUnit;
-    }
-
-    public void setMeasurementUnit(String measurementUnit) {
-        this.measurementUnit = measurementUnit;
-    }
-
-    public Float getFullPrice() {
-        return fullPrice;
-    }
-
-    public void setFullPrice(Float fullPrice) {
-        this.fullPrice = fullPrice;
-    }
-
-    public StructuralElementBasement getStructuralElementBasementId(){return structuralElementBasementId;}
-
-    public void setStructuralElementBasementId(StructuralElementBasement structuralElementBasementId) {
-        this.structuralElementBasementId = structuralElementBasementId;
-    }
-
-    public Calculation getCalculationId(){return calculationId;}
-
-    public void setCalculationId(Calculation calculationIdd) {
-        this.calculationId = calculationIdd;
-    }
-
-    public StructuralElementFrame getStructuralElementFrameId(){return structuralElementFrameId;}
-
-    public void setStructuralElementFrameId(StructuralElementFrame structuralElementFrameId) {
-        this.structuralElementFrameId = structuralElementFrameId;
-    }
 
     public Results() {
     }

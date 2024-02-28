@@ -1,10 +1,13 @@
 package org.example.sbv.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.sql.Date;
-// изменено
+@Getter
+@Setter
 @Entity
 @Table(name = "price_lists", schema = "public", catalog = "building_calculator") // catalog = "db"
 public class PriceLists {
@@ -24,49 +27,6 @@ public class PriceLists {
     @Basic
     @Column(name = "selling_price", nullable = false, precision = 2)
     private BigDecimal sellingPrice;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public MaterialCharacteristics getMaterialCharacteristicsId() {
-        return materialCharacteristicsId;
-    }
-
-    public void setMaterialCharacteristicsId(MaterialCharacteristics materialCharacteristicsId) {
-        this.materialCharacteristicsId = materialCharacteristicsId;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public BigDecimal getPurchasePrice() {
-        return purchasePrice;
-    }
-
-    public void setPurchasePrice(BigDecimal purchasePrice) {
-        this.purchasePrice = purchasePrice;
-    }
-
-    public BigDecimal getSellingPrice() {
-        return sellingPrice;
-    }
-
-    public void setSellingPrice(BigDecimal sellingPrice) {
-        this.sellingPrice = sellingPrice;
-    }
-
-    public PriceLists() {
-    }
 
     public PriceLists(MaterialCharacteristics materialCharacteristicsId, Date date, BigDecimal purchasePrice, BigDecimal sellingPrice) {
         this.materialCharacteristicsId = materialCharacteristicsId;

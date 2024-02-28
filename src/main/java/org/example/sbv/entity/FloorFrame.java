@@ -1,7 +1,11 @@
 package org.example.sbv.entity;
 
 import jakarta.persistence.*;
-// создано
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "floor_frame", schema = "public", catalog = "building_calculator") // catalog = "db"
 public class FloorFrame {
@@ -63,159 +67,6 @@ public class FloorFrame {
     @ManyToOne
     @JoinColumn(name = "structural_element_frame_id", nullable = false)
     private StructuralElementFrame structuralElementFrameId;
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-
-
-    public Integer getFloorNumber() {
-        return floorNumber;
-    }
-
-    public void setFloorNumber(Integer floorNumber) {
-        this.floorNumber = floorNumber;
-    }
-
-    public Integer getFloorHeight() {
-        return floorHeight;
-    }
-
-    public void setFloorHeight(Integer floorHeight) {
-        this.floorHeight = floorHeight;
-    }
-
-    public Float getPerimeterOfExternalWalls() {
-        return perimeterOfExternalWalls;
-    }
-
-    public void setPerimeterOfExternalWalls(Float perimeterOfExternalWalls) {
-        this.perimeterOfExternalWalls = perimeterOfExternalWalls;
-    }
-
-    public Float getBaseArea() {
-        return baseArea;
-    }
-
-    public void setBaseArea(Float baseArea) {
-        this.baseArea = baseArea;
-    }
-
-    public Float getExternalWallThickness() {
-        return externalWallThickness;
-    }
-
-    public void setExternalWallThickness(Float externalWallThickness) {
-        this.externalWallThickness = externalWallThickness;
-    }
-
-    public Float getInternalWallLength() {
-        return internalWallLength;
-    }
-
-    public void setInternalWallLength(Float internalWallLength) {
-        this.internalWallLength = internalWallLength;
-    }
-
-    public Float getInternalWallThickness() {
-        return internalWallThickness;
-    }
-
-    public void setInternalWallThickness(Float internalWallThickness) {
-        this.internalWallThickness = internalWallThickness;
-    }
-
-    public String getOsbExternalWall() {
-        return osbExternalWall;
-    }
-
-    public void setOsbExternalWall(String osbExternalWall) {
-        this.osbExternalWall = osbExternalWall;
-    }
-
-    public String getSteamWaterproofingExternalWall() {
-        return steamWaterproofingExternalWall;
-    }
-
-    public void setSteamWaterproofingExternalWall(String steamWaterproofingExternalWall) {
-        this.steamWaterproofingExternalWall = steamWaterproofingExternalWall;
-    }
-
-    public String getWindscreenExternalWall() {
-        return windscreenExternalWall;
-    }
-
-    public void setWindscreenExternalWall(String windscreenExternalWall) {
-        this.windscreenExternalWall = windscreenExternalWall;
-    }
-
-    public String getInsulationExternalWall() {
-        return insulationExternalWall;
-    }
-
-    public void setInsulationExternalWall(String insulationExternalWall) {
-        this.insulationExternalWall = insulationExternalWall;
-    }
-
-    public String getOverlapThickness() {
-        return overlapThickness;
-    }
-
-    public void setOverlapThickness(String overlapThickness) {
-        this.overlapThickness = overlapThickness;
-    }
-
-    public String getOsbThickness() {
-        return osbThickness;
-    }
-
-    public void setOsbThickness(String osbThickness) {
-        this.osbThickness = osbThickness;
-    }
-
-    public String getSteamWaterproofingThickness() {
-        return steamWaterproofingThickness;
-    }
-
-    public void setSteamWaterproofingThickness(String steamWaterproofingThickness) {
-        this.steamWaterproofingThickness = steamWaterproofingThickness;
-    }
-
-    public String getWindscreenThickness() {
-        return windscreenThickness;
-    }
-
-    public void setWindscreenThickness(String windscreenThickness) {
-        this.windscreenThickness = windscreenThickness;
-    }
-
-    public String getInsulationThickness() {
-        return insulationThickness;
-    }
-
-    public void setInsulationThickness(String insulationThickness) {
-        this.insulationThickness = insulationThickness;
-    }
-
-    public String getOsbInternalWall() {
-        return osbInternalWall;
-    }
-
-    public void setOsbInternalWall(String osbInternalWall) {
-        this.osbInternalWall = osbInternalWall;
-    }
-
-    public StructuralElementFrame getStructuralElementFrameId() {return structuralElementFrameId;}
-
-    public void setStructuralElementFrameId(StructuralElementFrame structuralElementFrameId) {
-        this.structuralElementFrameId = structuralElementFrameId;
-    }
 
     public FloorFrame(Integer id, Integer floorNumber, Integer floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, String osbExternalWall, String steamWaterproofingExternalWall, String windscreenExternalWall, String insulationExternalWall, String overlapThickness, String osbThickness, String steamWaterproofingThickness, String windscreenThickness, String insulationThickness, String osbInternalWall, StructuralElementFrame structuralElementFrameId) {
         this.id = id;

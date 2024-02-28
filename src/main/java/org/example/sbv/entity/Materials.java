@@ -1,7 +1,11 @@
 package org.example.sbv.entity;
 
 import jakarta.persistence.*;
-// изменено
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "materials", schema = "public", catalog = "building_calculator") // catalog = "db"
 public class Materials {
@@ -19,37 +23,6 @@ public class Materials {
     @Column(name = "structural_element_type", nullable = false, length = 100)
     private String structuralElementType;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMaterialType() {
-        return materialType;
-    }
-
-    public void setMaterialType(String materialType) {
-        this.materialType = materialType;
-    }
-
-    public String getStructuralElementType() {
-        return structuralElementType;
-    }
-
-    public void setStructuralElementType(String structuralElementType) {
-        this.structuralElementType = structuralElementType;
-    }
 
     public Materials() {
     }
