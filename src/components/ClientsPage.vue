@@ -1,3 +1,4 @@
+
 <script setup>
 import Header from "@/components/Header.vue";
 </script>
@@ -62,15 +63,20 @@ export default {
             console.error('Ошибка при получении списка клиентов', error);
           });
 
+
+
     }
   }
 }
 </script>
 
 <style scoped>
+
 @import '@/assets/style/carcas_page_style/style.css';
 @import '@/assets/style/carcas_page_style/slide.css';
 @import '@/assets/style/carcas_page_style/responsive.css';
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i);
 </style>
+
+
