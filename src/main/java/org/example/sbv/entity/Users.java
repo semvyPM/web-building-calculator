@@ -1,8 +1,13 @@
 package org.example.sbv.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 // изменено
 @Entity
+@Getter
+@Setter
 @Table(name = "users", schema = "public", catalog = "building_calculator") // catalog = "db"
 public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,79 +53,6 @@ public class Users {
                 ", password='" + password + '\'' +
                 '}';
     }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public State getStateId() {
-        return stateId;
-    }
-
-    public void setStateId(State stateId) {
-        this.stateId = stateId;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String geteMail() {
-        return eMail;
-    }
-
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public Users(State stateId, String lastName, String firstName, String secondName, String phone, String eMail, String login, String password) {
         this.stateId = stateId;
         this.lastName = lastName;

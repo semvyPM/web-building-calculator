@@ -1,25 +1,29 @@
 package org.example.sbv.controller;
 
-import org.example.sbv.entity.Users;
-import org.example.sbv.repository.UsersRepository;
+import org.example.sbv.entity.UsersUsersGroup;
 import org.example.sbv.response.UserRequest;
+import org.example.sbv.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
+    private final UserService userService;
     @Autowired
-    private UsersRepository usersRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
 
     @PostMapping("/authuser")
     @ResponseBody
-    public ResponseEntity<Users> getUser(@RequestBody UserRequest userRequest) {
-        System.out.println("try to search");
-        Users userFind = usersRepository.findByLogin(userRequest.getUserlogin());
-        if (userFind != null && userFind.getPassword().equals(userRequest.getUserpassword())) {
-            System.out.println(userFind.toString());
+    public ResponseEntity<List<UsersUsersGroup>> getUser(@RequestBody UserRequest userRequest) {
+        List<UsersUsersGroup> userFind = userService.findUsersByLogin(userRequest);
+        if (userFind != null) {
             return ResponseEntity.ok(userFind);
         } else {
             return ResponseEntity.notFound().build();
