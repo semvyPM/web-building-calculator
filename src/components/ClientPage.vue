@@ -1,7 +1,4 @@
 <script setup>
-import Logo from './icons/Logo.vue';
-import Floor from "@/components/Floor.vue";
-import LogoTest from "@/components/icons/Logo.vue";
 import Header from "@/components/Header.vue";
 </script>
 
@@ -9,19 +6,22 @@ import Header from "@/components/Header.vue";
 <Header/>
   <div class="nav">
     <div class="back"></div>
-    <div class="carcass">
+    
       <p>
         Карточка клиента
       </p>
     </div>
-  </div>
+  
   <main>
     <form action="">
-      <input type="submit" value="Создать расчет">
+      <div class="create-calculation-button">
+        <input type="button" style="cursor: pointer;" value="Создать расчет" @click="togglePopup">
+        <ConstructionElementPopup v-if="showPopup" @close="showPopup = false"/>
+      </div>
     </form>
-    <div class="line">
-      <hr>
-    </div>
+    <div class="client-bg">
+    <hr>
+    
 
     <div class="client">
       <div class="calculation">
@@ -41,36 +41,29 @@ import Header from "@/components/Header.vue";
 
     </div>
     <hr>
+    </div>
   </main>
 </template>
 
 <script>
+import ConstructionElementPopup from "@/components/ConstructionElementPopup.vue";
+
 export default {
   components: {
-    Floor
+    ConstructionElementPopup
   },
   data() {
     return {
-      floorsCount: 1, // Начальное количество этажей
-      floors: [{}] // Массив с данными для каждого этажа, начинаем с одного пустого объекта
+      showPopup: false
     };
   },
   methods: {
-    duplicateFloors() {
-      // Обновляем количество этажей в соответствии с введенным числом
-      const newCount = Number(this.floorsCount);
-      if (!isNaN(newCount) && newCount >= 0) {
-        const currentCount = this.floors.length;
-
-        if (newCount > currentCount) {
-          for (let i = currentCount; i < newCount; i++) {
-            this.floors.push({}); // Добавляем пустой объект для нового этажа
-          }
-        } else if (newCount < currentCount) {
-          this.floors = this.floors.slice(0, newCount); // Обрезаем массив до нового количества этажей
-        }
-      }
-    }
+    togglePopup() {
+      this.showPopup = !this.showPopup
+    },
+    saveAndRedirect() {
+      alert("saveAndRedirect");
+    },
   }
 }
 </script>

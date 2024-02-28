@@ -11,28 +11,24 @@ import Header from "@/components/Header.vue";
   <div class="back"></div>
   <div class="carcass">
     <p>
-      Каркас
+      Фундамент
     </p>
   </div>
 </div>
 <main>
   <form action="">
     <div class="adress">
-      <input type="text" placeholder="Введите адрес объекта строительства">
-      <input type="button" value="Сохранить">
-
-      <input type="reset" value="Очистить расчет">
-    </div>
-    <h3>Исходные данные</h3>
-    <div class="table floorsInput">Количество этажей <input type="number" placeholder="Введите число этажей" v-model="floorsCount" @change="duplicateFloors"> </div>
-    <div v-for="(currentFloor, index) in floors" :key="index">
-      <h3>Этаж: {{ index + 1 }}</h3>
-      <Floor :currentFloor="index"></Floor>
-    </div>
-
-
-
-    <input type="submit" value="Рассчитать">
+                <input type="text" placeholder="Добавить адрес объекта строительства">
+                <input type="button" value="Сохранить">
+                
+                <input type="reset" value="Очистить расчет">
+            </div>
+                <h3>Исходные данные</h3>
+                <div class="table floorsInput">Периметр внешних стен <input type="number" placeholder=""> </div>
+                <div class="table floorsInput">Длина внутренних стен <input type="number" placeholder=""> </div>
+                <div class="submit">
+                    <input type="submit" value="Рассчитать">
+                </div>
   </form>
 </main>
 </template>
@@ -63,9 +59,6 @@ export default {
           this.floors = this.floors.slice(0, newCount); // Обрезаем массив до нового количества этажей
         }
       }
-    },
-    backToPrevious() {
-      window.history.go(-1);
     }
   }
 }
