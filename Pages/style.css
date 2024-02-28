@@ -205,6 +205,13 @@ input[type='submit']{
     display: table-cell;
     vertical-align: middle;
 }
+/* Для страницы "Расчет" */
+
+.report{
+    width: 50%;
+    height: 600px;
+    background-color:rgba(0, 0, 0, 0.38);
+}
 
 @font-face {
     font-family: Roboto-Regular;
