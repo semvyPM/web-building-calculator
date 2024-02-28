@@ -36,6 +36,9 @@ public class Customers {
     @JoinColumn(name = "users_id", nullable = false)
     private Users usersId;
 
+    public Users getUsersId() { return usersId;}
+    public void setUsersId(Users usersId) { this.usersId = usersId;}
+
     public Customers() {
     }
 

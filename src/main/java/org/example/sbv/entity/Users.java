@@ -53,6 +53,7 @@ public class Users {
                 ", password='" + password + '\'' +
                 '}';
     }
+
     public Users(State stateId, String lastName, String firstName, String secondName, String phone, String eMail, String login, String password) {
         this.stateId = stateId;
         this.lastName = lastName;
