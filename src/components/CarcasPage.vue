@@ -63,6 +63,9 @@ export default {
           this.floors = this.floors.slice(0, newCount); // Обрезаем массив до нового количества этажей
         }
       }
+    },
+    backToPrevious() {
+      window.history.go(-1);
     }
   }
 }

@@ -14,29 +14,23 @@ import Header from "@/components/Header.vue";
   </div>
   <main>
 
-
-    <input type="button" style="cursor: pointer;" value="Создать клиента" @click="togglePopup">
-    <CreateUserPopup v-if="showPopup" @close="showPopup = false"/>
-
-    <div class="card-container">
-      <div class="card">Виссарионов Амуджалибай Хабирбековиджович</div>
-      <div class="card">Иванов Иван Иванович</div>
-      <div class="card">Иванов Иван Иванович</div>
-      <div class="card">Иванов Иван Иванович</div>
-      <div class="card">Иванов Иван Иванович</div>
-      <div class="card">Иванов Иван Иванович</div>
-      <div class="card">Иванов Иван Иванович</div>
-      <div class="card">Иванов Иван Иванович</div>
-      <div class="card">Иванов Иван Иванович</div>
-      <div class="card">Иванов Иван Иванович</div>
-      <div class="card">Иванов Иван Иванович</div>
-      <div class="card">Иванов Иван Иванович</div>
+    <div class="adress">
+      <input type="button" value="Создать клиента" @click="togglePopup">
     </div>
+      <CreateUserPopup v-if="showPopup" @close="showPopup = false"/>
+
+      <div class="card-container">
+        <div v-for="client in clients" :key="client.id">
+          <router-link :to="'/client/' + client.id"  v-if="client"><div class="card">{{ client.lastName }} {{ client.firstName }} {{ client.secondName }}</div></router-link>
+        </div>
+      </div>
+
   </main>
 </template>
 
 <script>
 import CreateUserPopup from "@/components/CreateUserPopup.vue";
+import axios from "axios";
 
 export default {
   components: {
@@ -44,8 +38,12 @@ export default {
   },
   data() {
     return {
-      showPopup: false
+      showPopup: false,
+      clients: []
     };
+  },
+  mounted() {
+    this.getClients()
   },
   methods: {
     togglePopup() {
@@ -54,6 +52,17 @@ export default {
     saveAndRedirect() {
       alert("saveAndRedirect");
     },
+    async getClients() {
+      await axios.get('http://localhost:8080/api/clients/by-user/4')
+          .then(response => {
+            this.clients = response.data;
+            console.log(response.data);
+          })
+          .catch(error => {
+            console.error('Ошибка при получении списка клиентов', error);
+          });
+
+    }
   }
 }
 </script>

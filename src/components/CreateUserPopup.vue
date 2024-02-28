@@ -3,36 +3,72 @@
     <div class="popup-content" >
       <span class="close" @click="closeModal">&times;</span>
       <h2>Введите данные:</h2>
-      <form action="" class="create-customer-form">
+      <form action="" class="create-customer-form" @submit.prevent="createCustomer">
         <label for="lastname">Фамилия:</label>
-        <input type="text" id="lastname">
+        <input type="text" id="lastname" v-model="customer_lastname">
 
         <label for="firstname">Имя:</label>
-        <input type="text" id="firstname">
+        <input type="text" id="firstname" v-model="customer_firstname">
 
         <label for="patronymic">Отчество:</label>
-        <input type="text" id="patronymic">
+        <input type="text" id="patronymic" v-model="customer_patronymic">
 
         <label for="phone">Телефон:</label>
-        <input type="text" id="phone">
+        <input type="text" id="phone" v-model="customer_phone">
 
         <label for="email">Email:</label>
-        <input type="email" id="email">
+        <input type="text" id="email" v-model="customer_email">
 
         <label for="address">Адрес:</label>
-        <input type="text" id="address">
+        <input type="text" id="address" v-model="customer_address">
 
-        <input type="submit" @click="saveAndRedirect()" value="Сохранить" class="save">
+        <input type="submit" value="Сохранить" class="save">
       </form>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
+  data() {
+    return {
+      customer_lastname: "",
+      customer_firstname: "",
+      customer_patronymic: "",
+      customer_phone: "",
+      customer_email: "",
+      customer_address: ""
+    };
+  },
   methods: {
     closeModal() {
       this.$emit('close');
+    },
+    async createCustomer() {
+      try {
+        const response = await axios.post("http://localhost:8080/api/clients/create", {
+          lastName: this.customer_lastname,
+          firstName: this.customer_firstname,
+          secondName: this.customer_patronymic,
+          phone: this.customer_phone,
+          email: this.customer_email,
+          adress: this.customer_address,
+          usersId: {id: this.$store.state.user[0].usersId.id}
+        });
+
+        if (response.data) {
+          console.log(response.data);
+          console.log(response.data.id);
+          this.$router.push({path: "/client/" + response.data.id});
+        } else {
+          alert(response.data.message);
+        }
+      } catch (error) {
+        this.error = error.response.data.message;
+        console.log(error)
+      }
     }
   }
 }
