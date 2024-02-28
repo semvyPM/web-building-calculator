@@ -11,28 +11,35 @@ import Header from "@/components/Header.vue";
   <div class="back"></div>
   <div class="carcass">
     <p>
-      Каркас
+        Расчет <input type="button" value="Статус">
     </p>
   </div>
 </div>
 <main>
   <form action="">
-    <div class="adress">
-      <input type="text" placeholder="Введите адрес объекта строительства">
-      <input type="button" value="Сохранить">
+    <h3>Дата: 22.02.2023</h3>
+                <h3>Адрес объекта: г.Такой, ул.Такая, д.25</h3>
+                <div class="result-buttons">
+                    <div>
+                        <input class="hide" id="hd-3" type="checkbox" >
+                        <label for="hd-3">
+                            <div class="plus">
+                                <div class="circle">+</div>
+                                <div class="plus_text">Результат расчета каркаса</div> 
+                            </div>
+                        </label>
+                        <div>
+                            
+                        </div>
+                    </div>
+                    <div class="edit">
+                        <img src="@/assets/img/edit.png" alt="">
+                    </div>
+                    <input type="button" value="Добавить конструктивный элемент">                  
+                </div>
+                <div class="report">
 
-      <input type="reset" value="Очистить расчет">
-    </div>
-    <h3>Исходные данные</h3>
-    <div class="table floorsInput">Количество этажей <input type="number" placeholder="Введите число этажей" v-model="floorsCount" @change="duplicateFloors"> </div>
-    <div v-for="(currentFloor, index) in floors" :key="index">
-      <h3>Этаж: {{ index + 1 }}</h3>
-      <Floor :currentFloor="index"></Floor>
-    </div>
-
-
-
-    <input type="submit" value="Рассчитать">
+                </div>
   </form>
 </main>
 </template>
@@ -63,9 +70,6 @@ export default {
           this.floors = this.floors.slice(0, newCount); // Обрезаем массив до нового количества этажей
         }
       }
-    },
-    backToPrevious() {
-      window.history.go(-1);
     }
   }
 }
