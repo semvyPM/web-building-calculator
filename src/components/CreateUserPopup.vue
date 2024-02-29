@@ -1,5 +1,5 @@
 <template>
-  <div class="popup">
+  <div class="popup" @click="closeModal">
     <div class="popup-content" >
       <span class="close" @click="closeModal">&times;</span>
       <h2>Введите данные:</h2>
@@ -43,8 +43,13 @@ export default {
     };
   },
   methods: {
-    closeModal() {
-      this.$emit('close');
+    closeModal(event) {
+      if (!event.target.closest('.popup-content')) {
+        this.$emit('close');
+      }
+      else if (event.target.classList.contains('close')){
+        this.$emit('close');
+      }
     },
     async createCustomer() {
       try {

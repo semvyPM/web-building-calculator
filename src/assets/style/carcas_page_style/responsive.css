@@ -346,13 +346,14 @@
     }
     .plus{
         height: 35px;
-        display: grid;
-        grid-template-columns: 5% 90% ;
+        display: flex;
     }
     .plus_text{
-        padding-top: 5px;
+        margin-left: 20px;
+        padding-top: 10px;
     }
     .circle{
+        margin-top: 3px;
         width: 30px;
         height: 30px;
         text-align: center;

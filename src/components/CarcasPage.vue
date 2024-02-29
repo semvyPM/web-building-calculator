@@ -1,5 +1,6 @@
 <script setup>
 import Header from "@/components/Header.vue";
+import Floor from "@/components/Floor.vue";
 </script>
 
 <template>
