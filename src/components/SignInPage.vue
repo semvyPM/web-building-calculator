@@ -41,13 +41,14 @@ export default {
     },
     async login(){
       try {
-        alert(this.userlogin);
         const response = await axios.post("http://localhost:8080/api/users/authuser", {
           userlogin: this.userlogin,
           userpassword: this.userpassword
         });
 
         if (response.data) {
+          this.$store.commit('setUser', response.data);
+          console.log(response.data);
           this.$router.push({name: "clientsPage"});
         } else {
           alert(response.data.message);
@@ -59,6 +60,7 @@ export default {
     },
   },
   mounted() {
+    this.$store.commit('clearUser');
   }
 };
 </script>

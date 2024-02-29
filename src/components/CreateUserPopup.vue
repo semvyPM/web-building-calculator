@@ -4,7 +4,7 @@
       <span class="close" @click="closeModal">&times;</span>
       <h2>Введите данные:</h2>
       <form action="" class="create-customer-form" @submit.prevent="createCustomer">
-        <label for="lastname">Фамилия:</label>
+        <label for="lastname">Фамилия: </label>
         <input type="text" id="lastname" v-model="customer_lastname">
 
         <label for="firstname">Имя:</label>

@@ -9,7 +9,7 @@ import Header from "@/components/Header.vue";
     <div class="back"></div>
     <div class="carcass">
       <p>
-        Клиенты
+        Клиенты 
       </p>
     </div>
   </div>
