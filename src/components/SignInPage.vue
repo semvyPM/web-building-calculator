@@ -1,5 +1,4 @@
 <script setup>
-import Logo from './icons/Logo.vue';
 import LogoSignIn from "@/components/icons/LogoSignIn.vue";
 </script>
 
@@ -25,7 +24,6 @@ import LogoSignIn from "@/components/icons/LogoSignIn.vue";
 
 <script>
 import axios from "axios";
-import router from "@/components/router.js";
 
 export default {
   data() {

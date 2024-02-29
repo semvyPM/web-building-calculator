@@ -1,69 +1,90 @@
-<script setup>
-import Header from "@/components/Header.vue";
-</script>
-
 <template>
-<Header/>
+  <Header :client="this.id" :clientData="clientData"/>
   <div class="nav">
-    <div class="back"></div>
-    
+    <div class="back"  @click="backToSignIn"></div>
+    <div class="carcass">
       <p>
         Карточка клиента
       </p>
     </div>
-  
+  </div>
   <main>
     <form action="">
       <div class="create-calculation-button">
         <input type="button" style="cursor: pointer;" value="Создать расчет" @click="togglePopup">
-        <ConstructionElementPopup v-if="showPopup" @close="showPopup = false"/>
+        <ConstructionElementPopup v-if="showPopup" :id="this.id" @close="showPopup = false"/>
       </div>
     </form>
     <div class="client-bg">
-    <hr>
-    
+      <hr>
 
-    <div class="client">
-      <div class="calculation">
-        <div class="container"> <div> Расчет №2 </div> </div>
-        <div class="container"> <div> 02.02.2021 </div> </div>
-        <div class="container"> <div> Актуален </div> </div>
-        <div class="container"> <div> Адрес <br> строительства </div> </div>
-      </div>
-      <div class="buttons">
-        <div class="copy">
-          <img src="@/assets/img/copy.png" alt="">
-        </div>
-        <div class="delete">
-          <img src="@/assets/img/delete.png" alt="">
-        </div>
+      <div class="client">
+      <div v-for="calculation in calculations" :key="calculation.id">
+          <div class="calculation" v-if="calculation && calculation.сalculationStateId">
+            <div class="container" @click="goToCalculation(calculation.id, client.id)"> <div> Расчет №{{ calculation.number }} </div></div>
+            <div class="container"> <div> {{ calculation.createdDate }} </div> </div>
+            <div class="container"> <div> {{ calculation.сalculationStateId.stateName }} </div> </div>
+            <div class="container"> <div> {{ calculation.addressObjectConstractions }} </div> </div>
+          </div>
+          <div class="buttons">
+            <div class="copy" @click="copyCalculation(calculation.id)">
+              <img src="@/assets/img/copy.png" alt="">
+            </div>
+            <div class="delete" @click="deleteCalculation(calculation.id)">
+              <img src="@/assets/img/delete.png" alt="">
+            </div>
+          </div>
       </div>
 
+      </div>
     </div>
     <hr>
-    </div>
   </main>
 </template>
 
 <script>
 import ConstructionElementPopup from "@/components/ConstructionElementPopup.vue";
+import Header from "@/components/Header.vue";
+import axios from "axios";
 
 export default {
-  components: {
-    ConstructionElementPopup
+  components: {Header, ConstructionElementPopup},
+  props: {
+    id: String
   },
   data() {
     return {
+      clientData: true,
+      client: Object,
+      calculations: [{}],
       showPopup: false
-    };
+    }
+  },
+  async mounted() {
+    await axios.get('http://localhost:8080/api/clients/' + this.id).then(response => { this.client = response.data; }).catch(error => { alert('Ошибка при получении данных клиента', error); });
+    await axios.get('http://localhost:8080/api/calculations/by-customer/' + this.id)
+        .then(response => { this.calculations = response.data; console.log(this.calculations);})
+        .catch(error => { alert('Ошибка при получении данных расчетов', error); });
   },
   methods: {
+    backToSignIn() {
+      this.$router.push({ name: "clientsPage", props: { id: this.id } });
+    },
+    copyCalculation(id) {
+      console.log("copy " + id);
+    },
+    deleteCalculation(id) {
+      console.log("delete " + id);
+    },
     togglePopup() {
       this.showPopup = !this.showPopup
     },
     saveAndRedirect() {
       alert("saveAndRedirect");
     },
+    goToCalculation(idcalculation, idclient) {
+      this.$router.push({ path: "/calculation/" + idcalculation + "/" + idclient});
+    }
   }
 }
 </script>
