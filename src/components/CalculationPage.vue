@@ -1,7 +1,7 @@
 <template>
-  <Header :client="iduser" :clientData="clientData"/>
+  <Header :client="idclient" :clientData="clientData"/>
   <div class="nav">
-    <router-link :to="'/client/' + iduser"><div class="back"></div></router-link>
+    <router-link :to="'/client/' + idclient"><div class="back"></div></router-link>
     <div class="carcass">
       <p>
         Расчет <input type="button" :value="calculation && calculation.сalculationStateId ? calculation.сalculationStateId.stateName : ''">
@@ -44,8 +44,8 @@ import axios from "axios";
 export default {
   components: {Header},
   props: {
-    iduser: "",
-    id: ""
+    idcalculation: "",
+    idclient: ""
   },
   data() {
     return {
@@ -54,13 +54,12 @@ export default {
     }
   },
   async mounted() {
-    await axios.get('http://localhost:8080/api/calculations/' + this.id)
+    await axios.get('http://localhost:8080/api/calculations/' + this.idcalculation)
         .then(response => { this.calculation = response.data; console.log(this.calculation);})
         .catch(error => { alert('Ошибка при получении данных расчетов', error); });
   },
   methods: {
     backToClient() {
-      alert(this.$props.iduser);
       this.$router.push({ name: "clientPage" });
     }
   }

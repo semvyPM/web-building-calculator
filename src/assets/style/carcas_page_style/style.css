@@ -10,7 +10,7 @@
 
 body {
     background-color: #f6f6f5;
-    font-family: Roboto-Regular;
+    font-family: Roboto-Regular, serif;
 }
 
 .logo{
@@ -42,7 +42,7 @@ body {
     color: #004600;
     padding-left: 50px;
     /*color: #3d4b58;*/
-    font-family: Roboto-Medium;
+    font-family: Roboto-Medium, serif;
 }
 .employee{
     color: #004600;
@@ -62,7 +62,7 @@ body {
     display: grid;
     grid-template-columns: 10% 80% 10%;
     font-size: 2em;
-    font-family: Roboto-Medium;
+    font-family: Roboto-Medium, serif;
 }
 .back{
     margin-left: 10px;
@@ -177,12 +177,13 @@ select{
 .plus{
     height: 35px;
     display: grid;
-    grid-template-columns: 3% 30% ;
+    grid-template-columns: 3% 30%;
 }
 .plus_text{
     padding-top: 5px;
     font-weight: bold;
     color: #135213;
+
 }
 .circle {
     width: 30px;
@@ -234,12 +235,12 @@ input[type='submit']{
 
 /* Главный блок расчетов */
 .client{
-    
+
     width: 100%;
     height: 100px;
     display: grid;
     grid-template-columns: 50% 50%;
-    
+
 
 }
 .client-bg{
@@ -275,7 +276,7 @@ input[type='submit']{
 .container{
     width: 25%;
     height: 55px;
-    
+
     box-shadow: 0 1px 2px #5e5e5e;
     background-color: #597359;
     color: #f0f0f0;
@@ -310,6 +311,9 @@ input[type='submit']{
     border-radius: 5px;
     text-align: center;
     border:1px solid skyblue;
+
+    /* изменить на адаптацию под экран */
+    min-width: 350px;
 }
 
 .popup {
@@ -401,7 +405,8 @@ input[type='submit']{
     color: #8a8f89;
 }
 
-.create-customer-form > input[type='submit'] {
+.create-customer-form input[type='submit'], .create-customer-form input[type='button'] {
+    margin-top: 15px;
     width: 200px;
 }
 
@@ -427,7 +432,7 @@ input[type='submit']{
 }
 .result-buttons{
     display: inline-flex;
-    
+
 }
 .edit img{
     margin-left: 10px;
