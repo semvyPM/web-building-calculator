@@ -1,5 +1,4 @@
 <script setup>
-import Logo from './icons/Logo.vue';
 import LogoSignIn from "@/components/icons/LogoSignIn.vue";
 </script>
 
@@ -25,7 +24,6 @@ import LogoSignIn from "@/components/icons/LogoSignIn.vue";
 
 <script>
 import axios from "axios";
-import router from "@/components/router.js";
 
 export default {
   data() {
@@ -41,13 +39,14 @@ export default {
     },
     async login(){
       try {
-        alert(this.userlogin);
         const response = await axios.post("http://localhost:8080/api/users/authuser", {
           userlogin: this.userlogin,
           userpassword: this.userpassword
         });
 
         if (response.data) {
+          this.$store.commit('setUser', response.data);
+          console.log(response.data);
           this.$router.push({name: "clientsPage"});
         } else {
           alert(response.data.message);
@@ -59,6 +58,7 @@ export default {
     },
   },
   mounted() {
+    this.$store.commit('clearUser');
   }
 };
 </script>

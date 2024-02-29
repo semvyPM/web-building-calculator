@@ -1,44 +1,46 @@
 <template>
-    <div class="popup">
-        <div class="popup-content" >
-            <span class="close" @click="closeModal">&times;</span>
-            <h2>Выбор конструктивного элемента</h2>
-            <div class="popup-elements">
-                <div @click="redirectToCarcasPage" style="cursor: pointer;" class="element">
-                    <img src="@/assets/img/house.png" alt="">
-                    <h3>Каркас</h3>
-                </div>
-                <div @click="redirectToFoundationPage" style="cursor: pointer;" class="element">
-                    <img src="@/assets/img/foundation.png" alt="">
-                    <h3>Фундамент</h3>
-                </div>
-                <div @click="redirectToRoofPage" style="cursor: pointer;" class="element">
-                    <img src="@/assets/img/roof.png" alt="">
-                    <h3>Крыша</h3>
-                </div>
-            </div>
+  <div class="popup">
+    <div class="popup-content" >
+      <span class="close" @click="closeModal">&times;</span>
+      <h2>Выбор конструктивного элемента</h2>
+      <div class="popup-elements">
+        <div @click="redirectToCarcasPage" style="cursor: pointer;" class="element">
+          <img src="@/assets/img/house.png" alt="">
+          <h3>Каркас</h3>
         </div>
+        <div @click="redirectToFoundationPage" style="cursor: pointer;" class="element">
+          <img src="@/assets/img/foundation.png" alt="">
+          <h3>Фундамент</h3>
+        </div>
+        <div @click="redirectToRoofPage" style="cursor: pointer;" class="element">
+          <img src="@/assets/img/roof.png" alt="">
+          <h3>Крыша</h3>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-import router from './router.js';
 export default {
+  props: {
+    id: String
+  },
   methods: {
     closeModal() {
       this.$emit('close');
     },
     redirectToCarcasPage() {
       // Используем маршрутизатор для перенаправления
-      router.push('carcasPage');
+      this.$router.push({ name: 'carcasPage', props: { id: this.id }});
     },
     redirectToFoundationPage() {
       // Используем маршрутизатор для перенаправления
-      router.push('foundationPage');
+      this.$router.push({ name: 'foundationPage', props: { id: this.id }});
     },
     redirectToRoofPage() {
       // Используем маршрутизатор для перенаправления
-      router.push('roofPage');
+      this.$router.push({ name: 'roofPage', props: { id: this.id }});
     },
   }
 }

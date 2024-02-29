@@ -1,14 +1,11 @@
 <script setup>
-import Logo from './icons/Logo.vue';
-import Floor from "@/components/Floor.vue";
-import LogoTest from "@/components/icons/Logo.vue";
 import Header from "@/components/Header.vue";
 </script>
 
 <template>
-<Header/>
+<Header  :client="this.id" :clientData="true"/>
 <div class="nav">
-  <div class="back"></div>
+  <div class="back" @click="backToClient"></div>
   <div class="carcass">
     <p>
       Каркас
@@ -42,6 +39,9 @@ export default {
   components: {
     Floor
   },
+  props: {
+    id: String
+  },
   data() {
     return {
       floorsCount: 1, // Начальное количество этажей
@@ -66,7 +66,10 @@ export default {
     },
     backToPrevious() {
       window.history.go(-1);
-    }
+    },
+    backToClient() {
+      this.$router.push({ name: "clientPage", props: { id: this.id } });
+    },
   }
 }
 </script>

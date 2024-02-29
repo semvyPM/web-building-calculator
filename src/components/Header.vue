@@ -1,6 +1,7 @@
 <script setup>
 
 import LogoTest from "@/components/icons/Logo.vue";
+import ClientInfoPopup from "@/components/ClientInfoPopup.vue";
 </script>
 
 <template>
@@ -9,7 +10,8 @@ import LogoTest from "@/components/icons/Logo.vue";
       <LogoTest @click="signOut"/>
     </div>
     <div class="client_data">
-      <div v-if="clientData">
+      <div v-if="clientData" @click="openClientInfoPopup">
+        <ClientInfoPopup v-if="showPopup" @close="showPopup = false" :clientObject="clientObject"/>
         <p  style="font-family: Roboto-Medium">Клиент<br></p>
         <p>
           <span style="font-family: Roboto-Bold">{{ clientObject.lastName }} {{ clientObject.firstName }} {{ clientObject.secondName }}</span> <br>
@@ -40,6 +42,7 @@ export default {
   },
   data() {
     return {
+      showPopup: false,
       clientObject: Object
     }
   },
@@ -47,7 +50,7 @@ export default {
     user() {
       console.log("user:");
       this.$store.dispatch('loadUser');
-      console.log(this.$store.dispatch('loadUser'));
+      console.log(this.$store.state.user);
       if (this.$store.state.user != null) {
         return this.$store.state.user;
       } else {
@@ -61,12 +64,21 @@ export default {
   },
   async mounted() {
     this.$store.dispatch('loadUser');
-    await axios.get('http://localhost:8080/api/clients/' + this.client).then(response => { this.clientObject = response.data; }).catch(error => { alert('Ошибка при получении данных клиента', error); });
+    if (this.clientData === true) {
+      await axios.get('http://localhost:8080/api/clients/' + this.client).then(response => {
+        this.clientObject = response.data;
+      }).catch(error => {
+        alert('Ошибка при получении данных клиента', error);
+      });
+    }
   },
   methods: {
-      signOut() {
-        this.$router.push({name: "signIn"});
-      }
+    signOut() {
+      this.$router.push({name: "signIn"});
+    },
+    openClientInfoPopup() {
+      this.showPopup = !this.showPopup
+    }
   }
 }
 </script>
