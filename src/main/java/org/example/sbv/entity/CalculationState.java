@@ -3,7 +3,7 @@ package org.example.sbv.entity;
 import jakarta.persistence.*;
 // изменено
 @Entity
-@Table(name = "calculationState", schema = "public", catalog = "building_calculator") // catalog = "db"
+@Table(name = "calculation_state", schema = "public", catalog = "building_calculator") // catalog = "db"
 public class CalculationState {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
