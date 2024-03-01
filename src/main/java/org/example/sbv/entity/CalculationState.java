@@ -1,7 +1,12 @@
 package org.example.sbv.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 // изменено
+@Setter
+@Getter
 @Entity
 @Table(name = "calculation_state", schema = "public", catalog = "building_calculator") // catalog = "db"
 public class CalculationState {
@@ -11,34 +16,18 @@ public class CalculationState {
     private Integer id;
     @Basic
     @Column(name = "title", nullable = false, length = 16)
-    private String title;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    private String stateName;
 
     public CalculationState() {
     }
 
-    public CalculationState(String title) {
-        this.title = title;
+    public CalculationState(String stateName) {
+        this.stateName = stateName;
     }
 
-    public CalculationState(Integer id, String title) {
+    public CalculationState(Integer id, String stateName) {
         this.id = id;
-        this.title = title;
+        this.stateName = stateName;
     }
 
     @Override
@@ -49,7 +38,7 @@ public class CalculationState {
         CalculationState that = (CalculationState) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (title != null ? !title.equals(that.title) : that.title != null) return false;
+        if (stateName != null ? !stateName.equals(that.stateName) : that.stateName != null) return false;
 
         return true;
     }
@@ -57,7 +46,7 @@ public class CalculationState {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (stateName != null ? stateName.hashCode() : 0);
         return result;
     }
 }

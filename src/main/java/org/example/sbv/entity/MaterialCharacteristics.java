@@ -1,7 +1,11 @@
 package org.example.sbv.entity;
 
 import jakarta.persistence.*;
-// изменено
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "material_characteristics", schema = "public", catalog = "building_calculator") // catalog = "db"
 public class MaterialCharacteristics {
@@ -29,70 +33,6 @@ public class MaterialCharacteristics {
     private Float thickness;
     @Column(name = "volume", precision = 0)
     private Float volume;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Materials getMaterialsId() {
-        return materialsId;
-    }
-
-    public void setMaterialsId(Materials materialsId) {
-        this.materialsId = materialsId;
-    }
-
-    public MeasurementUnits getMeasurementUnitId() {
-        return measurementUnitId;
-    }
-
-    public void setMeasurementUnitId(MeasurementUnits measurementUnitId) {
-        this.measurementUnitId = measurementUnitId;
-    }
-
-    public Float getLength() {
-        return length;
-    }
-
-    public void setLength(Float length) {
-        this.length = length;
-    }
-
-    public Float getWedth() {
-        return wedth;
-    }
-
-    public void setWedth(Float wedth) {
-        this.wedth = wedth;
-    }
-
-    public Float getThickness() {
-        return thickness;
-    }
-
-    public void setThickness(Float thickness) {
-        this.thickness = thickness;
-    }
-
-    public Float getVolume() {
-        return volume;
-    }
-
-    public void setVolume(Float volume) {
-        this.volume = volume;
-    }
 
     public MaterialCharacteristics() {
     }

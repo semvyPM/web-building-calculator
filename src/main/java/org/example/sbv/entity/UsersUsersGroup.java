@@ -1,7 +1,11 @@
 package org.example.sbv.entity;
 
 import jakarta.persistence.*;
-// изменено
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "users_users_group", schema = "public", catalog = "building_calculator") // catalog = "db"
 public class UsersUsersGroup {
@@ -18,30 +22,6 @@ public class UsersUsersGroup {
 
     public UsersUsersGroup() {
 
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Users getUsersId() {
-        return usersId;
-    }
-
-    public void setUsersId(Users usersId) {
-        this.usersId = usersId;
-    }
-
-    public UsersGroup getUsersgroupId() {
-        return usersgroupId;
-    }
-
-    public void setUsersgroupId(UsersGroup usersgroupId) {
-        this.usersgroupId = usersgroupId;
     }
 
     public UsersUsersGroup(Users usersId, UsersGroup usersgroupId) {

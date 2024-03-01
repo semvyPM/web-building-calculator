@@ -1,9 +1,12 @@
 package org.example.sbv.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Date;
-// изменено
+@Getter
+@Setter
 @Entity
 @Table(name = "calculation", schema = "public", catalog = "building_calculator") // catalog = "db"
 public class Calculation {
@@ -26,55 +29,6 @@ public class Calculation {
     @ManyToOne
     @JoinColumn(name = "сalculation_state_id", nullable = false)
     private CalculationState сalculationStateId;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Customers getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Customers customerId) {
-        this.customerId = customerId;
-    }
-
-    public String getAddressObjectConstractions() {
-        return addressObjectConstractions;
-    }
-
-    public void setAddressObjectConstractions(String addressObjectConstractions) {
-        this.addressObjectConstractions = addressObjectConstractions;
-    }
-
-    public Integer getNumber() {
-        return number;
-    }
-
-    public void setNumber(Integer number) {
-        this.number = number;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-
-    public CalculationState getСalculationStateId() {
-        return сalculationStateId;
-    }
-
-    public void setСalculationStateId(CalculationState сalculationStateId) {
-        this.сalculationStateId = сalculationStateId;
-    }
 
     public Calculation() {
     }

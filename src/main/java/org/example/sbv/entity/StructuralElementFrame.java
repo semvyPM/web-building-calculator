@@ -1,7 +1,11 @@
 package org.example.sbv.entity;
 
 import jakarta.persistence.*;
-// изменено
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "structural_element_frame", schema = "public", catalog = "building_calculator") // catalog = "db"
 public class StructuralElementFrame {
@@ -12,24 +16,6 @@ public class StructuralElementFrame {
     @Basic
     @Column(name = "amount_floor", nullable = false)
     private Integer amountFloor;
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-
-    public Integer getAmountFloor() {
-        return amountFloor;
-    }
-
-    public void setAmountFloor(Integer amountFloor) {
-        this.amountFloor = amountFloor;
-    }
 
     public StructuralElementFrame(Integer id, Integer amountFloor) {
         this.id = id;
