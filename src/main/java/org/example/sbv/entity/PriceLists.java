@@ -43,6 +43,10 @@ public class PriceLists {
         this.sellingPrice = sellingPrice;
     }
 
+    public PriceLists() {
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

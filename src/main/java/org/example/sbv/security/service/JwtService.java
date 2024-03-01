@@ -32,6 +32,12 @@ public class JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 
+    public Integer extractUserId(String token) {
+        final Claims claims = extractAllClaims(token);
+        return claims.get("id", Integer.class);
+    }
+
+
     /**
      * Генерация токена
      *

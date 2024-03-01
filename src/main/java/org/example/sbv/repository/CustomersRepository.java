@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface CustomersRepository extends JpaRepository<Customers, Integer> {
     List<Customers> findCustomersByUsersId_Id(Integer id);
-    Customers findCustomersById(Integer id);
+    Customers findCustomersByIdAndUsersId_Id(Integer id, Integer userid);
 
 }
