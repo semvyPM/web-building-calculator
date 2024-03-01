@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
+
 import java.sql.Date;
 @Getter
 @Setter
@@ -23,19 +23,19 @@ public class PriceLists {
     private Date date;
     @Basic
     @Column(name = "purchase_price", nullable = false, precision = 2)
-    private BigDecimal purchasePrice;
+    private Float purchasePrice;
     @Basic
     @Column(name = "selling_price", nullable = false, precision = 2)
-    private BigDecimal sellingPrice;
+    private Float sellingPrice;
 
-    public PriceLists(MaterialCharacteristics materialCharacteristicsId, Date date, BigDecimal purchasePrice, BigDecimal sellingPrice) {
+    public PriceLists(MaterialCharacteristics materialCharacteristicsId, Date date, Float purchasePrice, Float sellingPrice) {
         this.materialCharacteristicsId = materialCharacteristicsId;
         this.date = date;
         this.purchasePrice = purchasePrice;
         this.sellingPrice = sellingPrice;
     }
 
-    public PriceLists(Integer id, MaterialCharacteristics materialCharacteristicsId, Date date, BigDecimal purchasePrice, BigDecimal sellingPrice) {
+    public PriceLists(Integer id, MaterialCharacteristics materialCharacteristicsId, Date date, Float purchasePrice, Float sellingPrice) {
         this.id = id;
         this.materialCharacteristicsId = materialCharacteristicsId;
         this.date = date;
