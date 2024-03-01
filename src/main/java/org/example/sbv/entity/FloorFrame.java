@@ -18,7 +18,7 @@ public class FloorFrame {
     private Integer floorNumber;
     @Basic
     @Column(name = "floor_height", nullable = false)
-    private Integer floorHeight;
+    private Float floorHeight;
     @Basic
     @Column(name = "perimeter_of_external_walls", nullable = false, precision = 0)
     private Float perimeterOfExternalWalls;
@@ -67,8 +67,19 @@ public class FloorFrame {
     @ManyToOne
     @JoinColumn(name = "structural_element_frame_id", nullable = false)
     private StructuralElementFrame structuralElementFrameId;
+    @Basic
+    @Column(name = "external_wall_wood", nullable = false, length = 100)
+    private String externalWallWood;
+    @Basic
+    @Column(name = "internal_wall_wood", nullable = false, length = 100)
+    private String internalWallWood;
+    @Basic
+    @Column(name = "overlap_wood", nullable = false, length = 100)
+    private String overlapWood;
 
-    public FloorFrame(Integer id, Integer floorNumber, Integer floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, String osbExternalWall, String steamWaterproofingExternalWall, String windscreenExternalWall, String insulationExternalWall, String overlapThickness, String osbThickness, String steamWaterproofingThickness, String windscreenThickness, String insulationThickness, String osbInternalWall, StructuralElementFrame structuralElementFrameId) {
+
+
+    public FloorFrame(Integer id, Integer floorNumber, Float floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, String osbExternalWall, String steamWaterproofingExternalWall, String windscreenExternalWall, String insulationExternalWall, String overlapThickness, String osbThickness, String steamWaterproofingThickness, String windscreenThickness, String insulationThickness, String osbInternalWall, StructuralElementFrame structuralElementFrameId, String externalWallWood, String internalWallWood, String overlapWood) {
         this.id = id;
         this.floorNumber = floorNumber;
         this.floorHeight = floorHeight;
@@ -88,9 +99,12 @@ public class FloorFrame {
         this.insulationThickness = insulationThickness;
         this.osbInternalWall = osbInternalWall;
         this.structuralElementFrameId = structuralElementFrameId;
+        this.externalWallWood = externalWallWood;
+        this.internalWallWood = internalWallWood;
+        this.overlapWood = overlapWood;
     }
 
-    public FloorFrame(Integer floorNumber, Integer floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, String osbExternalWall, String steamWaterproofingExternalWall, String windscreenExternalWall, String insulationExternalWall, String overlapThickness, String osbThickness, String steamWaterproofingThickness, String windscreenThickness, String insulationThickness, String osbInternalWall, StructuralElementFrame structuralElementFrameId) {
+    public FloorFrame(Integer floorNumber, Float floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, String osbExternalWall, String steamWaterproofingExternalWall, String windscreenExternalWall, String insulationExternalWall, String overlapThickness, String osbThickness, String steamWaterproofingThickness, String windscreenThickness, String insulationThickness, String osbInternalWall, StructuralElementFrame structuralElementFrameId, String externalWallWood, String internalWallWood, String overlapWood) {
         this.floorNumber = floorNumber;
         this.floorHeight = floorHeight;
         this.perimeterOfExternalWalls = perimeterOfExternalWalls;
@@ -109,6 +123,9 @@ public class FloorFrame {
         this.insulationThickness = insulationThickness;
         this.osbInternalWall = osbInternalWall;
         this.structuralElementFrameId = structuralElementFrameId;
+        this.externalWallWood = externalWallWood;
+        this.internalWallWood = internalWallWood;
+        this.overlapWood = overlapWood;
     }
 
     public FloorFrame() {
@@ -154,6 +171,12 @@ public class FloorFrame {
             return false;
         if (structuralElementFrameId != null ? !structuralElementFrameId.equals(that.structuralElementFrameId) : that.structuralElementFrameId != null)
             return false;
+        if (externalWallWood != null ? !externalWallWood.equals(that.externalWallWood) : that.externalWallWood != null)
+            return false;
+        if (internalWallWood != null ? !internalWallWood.equals(that.internalWallWood) : that.internalWallWood != null)
+            return false;
+        if (overlapWood != null ? !overlapWood.equals(that.overlapWood) : that.overlapWood != null)
+            return false;
         return true;
     }
 
@@ -178,6 +201,9 @@ public class FloorFrame {
         result = 31 * result + (insulationThickness != null ? insulationThickness.hashCode() : 0);
         result = 31 * result + (osbInternalWall != null ? osbInternalWall.hashCode() : 0);
         result = 31 * result + (structuralElementFrameId != null ? structuralElementFrameId.hashCode() : 0);
+        result = 31 * result + (externalWallWood != null ? externalWallWood.hashCode() : 0);
+        result = 31 * result + (internalWallWood != null ? internalWallWood.hashCode() : 0);
+        result = 31 * result + (overlapWood != null ? overlapWood.hashCode() : 0);
         return result;
     }
 }
