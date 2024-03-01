@@ -1,5 +1,5 @@
 <template>
-  <div class="popup" @click="closeModal">
+  <div class="popup">
     <div class="popup-content" >
       <span class="close" @click="closeModal">&times;</span>
       <h2>Выбор конструктивного элемента</h2>
@@ -24,21 +24,19 @@
 <script>
 export default {
   props: {
-    id: String
+    id: String,
+    createMode: String
+  },
+  mounted() {
+    console.log("popup " + this.createMode);
   },
   methods: {
-    closeModal(event) {
-      if (!event.target.closest('.popup-content')) {
-        this.$emit('close');
-      }
-      else if (event.target.classList.contains('close')){
-        this.$emit('close');
-      }
-      
+    closeModal() {
+      this.$emit('close');
     },
     redirectToCarcasPage() {
       // Используем маршрутизатор для перенаправления
-      this.$router.push({ name: 'carcasPage', props: { id: this.id }});
+      this.$router.push({ name: 'carcasPage', params: { id: this.id, createMode: this.createMode }});
     },
     redirectToFoundationPage() {
       // Используем маршрутизатор для перенаправления

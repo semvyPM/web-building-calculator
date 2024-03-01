@@ -4,7 +4,7 @@
     <router-link :to="'/client/' + idclient"><div class="back"></div></router-link>
     <div class="carcass">
       <p>
-        Расчет <input type="button" :value="calculation && calculation.сalculationStateId ? calculation.сalculationStateId.stateName : ''">
+        Расчет <input type="button" :value="calculation && calculation.сalculationStateId ? calculation.сalculationStateId.stateName : 'не установлен'">
       </p>
 
     </div>
@@ -14,7 +14,7 @@
       <h3>Дата: {{ calculation.createdDate}}</h3>
       <h3>Адрес объекта: {{ calculation.addressObjectConstractions }}</h3>
       <div class="result-buttons">
-        <div class="add-result">
+        <div>
           <input class="hide" id="hd-3" type="checkbox" >
           <label for="hd-3">
             <div class="plus">
@@ -22,15 +22,14 @@
               <div class="plus_text">Результат расчета каркаса</div>
             </div>
           </label>
-          <div class="result">
+          <div>
 
           </div>
         </div>
         <div class="edit">
           <img src="@/assets/img/edit.png" alt="">
         </div>
-        <input type="button" style="cursor: pointer;" value="Добавить конструктивный элемент" @click="togglePopup">
-        <ConstructionElementPopup v-if="showPopup" :id="this.id" @close="showPopup = false"/>
+        <input type="button" value="Добавить конструктивный элемент">
       </div>
       <div class="report">
 
@@ -39,12 +38,12 @@
   </main>
 </template>
 <script>
-import ConstructionElementPopup from "@/components/ConstructionElementPopup.vue";
 import Header from "@/components/Header.vue";
 import axios from "axios";
+import {getCalculation} from "@/api.js";
 
 export default {
-  components: {Header, ConstructionElementPopup},
+  components: {Header},
   props: {
     idcalculation: "",
     idclient: ""
@@ -52,19 +51,19 @@ export default {
   data() {
     return {
       clientData: true,
-      calculation: {},
-      showPopup: false
+      calculation: {}
     }
   },
   async mounted() {
-    await axios.get('http://localhost:8080/api/calculations/' + this.idcalculation)
-        .then(response => { this.calculation = response.data; console.log(this.calculation);})
-        .catch(error => { alert('Ошибка при получении данных расчетов', error); });
+    getCalculation(this.idcalculation)
+        .then(data => {
+          this.calculation = data;
+        })
+        .catch(error => {
+          console.error("Произошла ошибка: ", error);
+        });
   },
   methods: {
-    togglePopup() {
-      this.showPopup = !this.showPopup
-    },
     backToClient() {
       this.$router.push({ name: "clientPage" });
     }

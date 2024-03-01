@@ -55,7 +55,7 @@ export default {
           phone: this.customer_phone,
           email: this.customer_email,
           adress: this.customer_address,
-          usersId: {id: this.$store.state.user[0].usersId.id}
+          usersId: {id: this.$store.state.user.id}
         });
 
         if (response.data) {

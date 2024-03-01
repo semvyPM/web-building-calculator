@@ -25,8 +25,8 @@ import ClientInfoPopup from "@/components/ClientInfoPopup.vue";
         Сотрудник<br>
       </p>
       <p>
-        <span  style="font-family: Roboto-Bold">{{ user[0].usersId.lastName }} {{ user[0].usersId.firstName }} {{ user[0].usersId.secondName }} </span><br>
-        <span> {{ groups }} </span>
+        <span  style="font-family: Roboto-Bold">{{ user.lastname }} {{ user.firstname }} {{ user.secondname }} </span><br>
+        <span> {{ user.states }} </span>
       </p>
     </div>
     <div class="exit"></div>
@@ -34,7 +34,7 @@ import ClientInfoPopup from "@/components/ClientInfoPopup.vue";
 </template>
 <script>
 import axios from "axios";
-
+import { signOut, getClient } from "@/api.js";
 export default {
   props: {
     client: String,
@@ -54,28 +54,24 @@ export default {
       if (this.$store.state.user != null) {
         return this.$store.state.user;
       } else {
-        alert("Ошибка авторизации!");
         window.location.href = "/";
       }
     },
-    groups() {
-      return this.user.map(item => item.usersgroupId.title).join(', ');
-    }
   },
   async mounted() {
     this.$store.dispatch('loadUser');
+    this.$store.dispatch('loadToken');
     if (this.clientData === true) {
-      await axios.get('http://localhost:8080/api/clients/' + this.client).then(response => {
-        this.clientObject = response.data;
-      }).catch(error => {
-        alert('Ошибка при получении данных клиента', error);
-      });
+      getClient(this.client)
+          .then(data => {
+            this.clientObject = data;
+          })
+          .catch(error => {
+            console.error("Произошла ошибка: ", error);
+          });
     }
   },
   methods: {
-    signOut() {
-      this.$router.push({name: "signIn"});
-    },
     openClientInfoPopup() {
       this.showPopup = !this.showPopup
     }

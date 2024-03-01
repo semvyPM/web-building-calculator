@@ -4,7 +4,7 @@
     <div class="back" @click="goToSignIn"></div>
     <div class="carcass">
       <p>
-        Клиенты 
+        Клиенты
       </p>
     </div>
   </div>
@@ -28,6 +28,7 @@
 import CreateUserPopup from "@/components/CreateUserPopup.vue";
 import Header from "@/components/Header.vue";
 import axios from "axios";
+import {getClient, getClients} from "@/api.js";
 
 export default {
   components: {
@@ -40,8 +41,14 @@ export default {
       clients: []
     };
   },
-  mounted() {
-    this.getClients()
+  async mounted() {
+    getClients()
+        .then(data => {
+          this.clients = data;
+        })
+        .catch(error => {
+          console.error("Произошла ошибка: ", error);
+        });
   },
   methods: {
     togglePopup() {
@@ -55,17 +62,6 @@ export default {
     },
     goToSignIn() {
       this.$router.push({ name: 'signIn' });
-    },
-    async getClients() {
-      await axios.get('http://localhost:8080/api/clients/by-user/' + this.$store.state.user[0].usersId.id)
-          .then(response => {
-            this.clients = response.data;
-            console.log(response.data);
-          })
-          .catch(error => {
-            console.error('Ошибка при получении списка клиентов', error);
-          });
-
     }
   }
 }

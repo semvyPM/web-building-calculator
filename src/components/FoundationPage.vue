@@ -1,6 +1,8 @@
 <script setup>
-import Header from "@/components/Header.vue";
+import Logo from './icons/Logo.vue';
 import Floor from "@/components/Floor.vue";
+import LogoTest from "@/components/icons/Logo.vue";
+import Header from "@/components/Header.vue";
 </script>
 
 <template>

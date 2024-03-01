@@ -12,7 +12,7 @@
     <form action="">
       <div class="create-calculation-button">
         <input type="button" style="cursor: pointer;" value="Создать расчет" @click="togglePopup">
-        <ConstructionElementPopup v-if="showPopup" :id="this.id" @close="showPopup = false"/>
+        <ConstructionElementPopup v-if="showPopup" :id="id" :createMode="createMode" @close="showPopup = false"/>
       </div>
     </form>
     <div class="client-bg">
@@ -46,6 +46,7 @@
 import ConstructionElementPopup from "@/components/ConstructionElementPopup.vue";
 import Header from "@/components/Header.vue";
 import axios from "axios";
+import {getClient, getCalculations, getClients, getCalculation} from "@/api.js";
 
 export default {
   components: {Header, ConstructionElementPopup},
@@ -55,16 +56,30 @@ export default {
   data() {
     return {
       clientData: true,
-      client: Object,
+      client: {},
       calculations: [{}],
-      showPopup: false
+      showPopup: false,
+      createMode: "false"
     }
   },
   async mounted() {
-    await axios.get('http://localhost:8080/api/clients/' + this.id).then(response => { this.client = response.data; }).catch(error => { alert('Ошибка при получении данных клиента', error); });
-    await axios.get('http://localhost:8080/api/calculations/by-customer/' + this.id)
-        .then(response => { this.calculations = response.data; console.log(this.calculations);})
-        .catch(error => { alert('Ошибка при получении данных расчетов', error); });
+    getClient(this.id)
+        .then(data => {
+          this.client = data;
+        })
+        .catch(error => {
+          console.error("Произошла ошибка: ", error);
+        });
+    getCalculations(this.id)
+        .then(data => {
+          this.calculations = data;
+        })
+        .catch(error => {
+          console.error("Произошла ошибка: ", error);
+        });
+
+    console.log("client " + this.client);
+    console.log("calculations " + this.calculations);
   },
   methods: {
     backToSignIn() {
