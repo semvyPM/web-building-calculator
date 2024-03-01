@@ -1,7 +1,8 @@
 package org.example.sbv.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.example.sbv.entity.Customers;
-import org.example.sbv.response.CustomersRequest;
+import org.example.sbv.request.CustomersRequest;
 import org.example.sbv.service.CustomersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,50 +19,26 @@ public class CustomersController {
         this.customersService = customersService;
     }
 
-    @GetMapping("/all")
-    @ResponseBody
-    public ResponseEntity<List<Customers>> getAllCustomers() {
-        List<Customers> customers = customersService.getAllCustomers();
-        if (customers != null) {
-            return ResponseEntity.ok(customers);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
 
     @GetMapping("/by-user/{id}")
     @ResponseBody
-    public ResponseEntity<List<Customers>> getAllCustomersByUser(@PathVariable Integer id) {
-        List<Customers> customers = customersService.getAllCustomersByUsers(id);
-        if (customers != null) {
-            return ResponseEntity.ok(customers);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public List<Customers> getAllCustomersByUser(HttpServletRequest request, @PathVariable Integer id) {
+        List<Customers> customers = customersService.getAllCustomersByUsers(request);
+        return customers;
     }
 
     @GetMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<Customers> getCustomerById(@PathVariable Integer id) {
-        Customers customers = customersService.getCustomerById(id);
-        if (customers != null) {
-            System.out.println(customers.getLastName());
-            return ResponseEntity.ok(customers);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public Customers getCustomerById(HttpServletRequest request, @PathVariable Integer id) {
+        Customers customers = customersService.getCustomerById(request, id);
+        System.out.println("CUSTOMERS BY USER --- " + customers.getFirstName());
+        return customers;
     }
 
     @PostMapping("/create")
     @ResponseBody
-    public ResponseEntity<Customers> addNewCustomer(@RequestBody CustomersRequest customersRequest) {
-        System.out.println(customersRequest.toString());
-        Customers customers = customersService.addNewCustomers(customersRequest);
-        if (customers != null) {
-            System.out.println(customers.getLastName());
-            return ResponseEntity.ok(customers);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public Customers addNewCustomer(HttpServletRequest request, @RequestBody CustomersRequest customersRequest) {
+        Customers customers = customersService.addNewCustomers(request, customersRequest);
+        return customers;
     }
 }

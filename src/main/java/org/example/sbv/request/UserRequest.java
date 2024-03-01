@@ -1,4 +1,4 @@
-package org.example.sbv.response;
+package org.example.sbv.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
