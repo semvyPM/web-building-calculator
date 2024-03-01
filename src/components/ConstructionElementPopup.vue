@@ -1,5 +1,5 @@
 <template>
-  <div class="popup">
+  <div class="popup" @click="closeModal">
     <div class="popup-content" >
       <span class="close" @click="closeModal">&times;</span>
       <h2>Выбор конструктивного элемента</h2>
@@ -27,8 +27,14 @@ export default {
     id: String
   },
   methods: {
-    closeModal() {
-      this.$emit('close');
+    closeModal(event) {
+      if (!event.target.closest('.popup-content')) {
+        this.$emit('close');
+      }
+      else if (event.target.classList.contains('close')){
+        this.$emit('close');
+      }
+      
     },
     redirectToCarcasPage() {
       // Используем маршрутизатор для перенаправления
