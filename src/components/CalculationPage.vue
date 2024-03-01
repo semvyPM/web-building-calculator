@@ -14,7 +14,7 @@
       <h3>Дата: {{ calculation.createdDate}}</h3>
       <h3>Адрес объекта: {{ calculation.addressObjectConstractions }}</h3>
       <div class="result-buttons">
-        <div>
+        <div class="add-result">
           <input class="hide" id="hd-3" type="checkbox" >
           <label for="hd-3">
             <div class="plus">
@@ -22,14 +22,15 @@
               <div class="plus_text">Результат расчета каркаса</div>
             </div>
           </label>
-          <div>
+          <div class="result">
 
           </div>
         </div>
         <div class="edit">
           <img src="@/assets/img/edit.png" alt="">
         </div>
-        <input type="button" value="Добавить конструктивный элемент">
+        <input type="button" style="cursor: pointer;" value="Добавить конструктивный элемент" @click="togglePopup">
+        <ConstructionElementPopup v-if="showPopup" :id="this.id" @close="showPopup = false"/>
       </div>
       <div class="report">
 
@@ -41,9 +42,9 @@
 import Header from "@/components/Header.vue";
 import axios from "axios";
 import {getCalculation} from "@/api.js";
-
+import ConstructionElementPopup from "@/components/ConstructionElementPopup.vue";
 export default {
-  components: {Header},
+  components: {Header, ConstructionElementPopup},
   props: {
     idcalculation: "",
     idclient: ""
@@ -51,7 +52,8 @@ export default {
   data() {
     return {
       clientData: true,
-      calculation: {}
+      calculation: {},
+      showPopup: false
     }
   },
   async mounted() {
@@ -64,6 +66,9 @@ export default {
         });
   },
   methods: {
+    togglePopup() {
+      this.showPopup = !this.showPopup
+    },
     backToClient() {
       this.$router.push({ name: "clientPage" });
     }

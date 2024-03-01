@@ -31,8 +31,13 @@ export default {
     console.log("popup " + this.createMode);
   },
   methods: {
-    closeModal() {
-      this.$emit('close');
+    closeModal(event) {
+      if (!event.target.closest('.popup-content')) {
+        this.$emit('close');
+      }
+      else if (event.target.classList.contains('close')){
+        this.$emit('close');
+      }
     },
     redirectToCarcasPage() {
       // Используем маршрутизатор для перенаправления

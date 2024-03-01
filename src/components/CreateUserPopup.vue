@@ -44,8 +44,13 @@ export default {
     };
   },
   methods: {
-    closeModal() {
-      this.$emit('close');
+    closeModal(event) {
+      if (!event.target.closest('.popup-content')) {
+        this.$emit('close');
+      }
+      else if (event.target.classList.contains('close')){
+        this.$emit('close');
+      }
     },
     async createCustomer() {
       const customer = {
