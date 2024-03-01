@@ -84,7 +84,26 @@
         display: flex;
         flex-direction: column;
     }
-
+    .result-buttons{
+       
+        display: flex;
+        flex-direction: column-reverse;
+        font-family: Roboto-Regular;
+    
+    }
+    .edit img{
+        margin-top: 10px;
+        margin-left: 0;
+        margin-right: 20px;
+        width: 35px;
+        height: 40px;
+    }
+    .plus{
+        margin-top: 10px;
+        height: 35px;
+        display: flex;
+        
+    }
     /* Блок кнопок */
     .buttons{
         /*display: grid;*/

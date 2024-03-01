@@ -8,7 +8,7 @@ import Header from "@/components/Header.vue";
     <div class="back" @click="backToClient"></div>
     <div class="carcass">
       <p>
-        Каркас
+        Крыша
       </p>
     </div>
   </div>
@@ -21,9 +21,11 @@ import Header from "@/components/Header.vue";
         <input type="reset" value="Очистить расчет">
       </div>
       <h3>Исходные данные</h3>
-
-
-      <input type="submit" value="Рассчитать">
+      <div class="table floorsInput">Количество этажей <input type="number" placeholder=""> </div>
+      <div class="table floorsInput">Длина внутренних стен <input type="number" placeholder=""> </div>
+      <div class="submit">
+        <input type="submit" value="Рассчитать">
+      </div>
     </form>
   </main>
 </template>
