@@ -1,5 +1,5 @@
 <template>
-  <div class="popup">
+  <div class="popup" @click="closeModal">
     <div class="popup-content" >
       <span class="close" @click="closeModal">&times;</span>
       <h2>Выбор конструктивного элемента</h2>
