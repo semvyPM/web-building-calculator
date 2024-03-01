@@ -4,7 +4,7 @@
       <span class="close" @click="closeModal">&times;</span>
       <h2>Введите данные:</h2>
       <form action="" class="create-customer-form" @submit.prevent="createCustomer">
-        <label for="lastname">Фамилия: </label>
+        <label for="lastname">Фамилия:</label>
         <input type="text" id="lastname" v-model="customer_lastname">
 
         <label for="firstname">Имя:</label>
@@ -30,6 +30,7 @@
 
 <script>
 import axios from "axios";
+import {createCustomer} from "@/api.js";
 
 export default {
   data() {
@@ -52,28 +53,16 @@ export default {
       }
     },
     async createCustomer() {
-      try {
-        const response = await axios.post("http://localhost:8080/api/clients/create", {
-          lastName: this.customer_lastname,
-          firstName: this.customer_firstname,
-          secondName: this.customer_patronymic,
-          phone: this.customer_phone,
-          email: this.customer_email,
-          adress: this.customer_address,
-          usersId: {id: this.$store.state.user[0].usersId.id}
-        });
-
-        if (response.data) {
-          console.log(response.data);
-          console.log(response.data.id);
-          this.$router.push({path: "/client/" + response.data.id});
-        } else {
-          alert(response.data.message);
-        }
-      } catch (error) {
-        this.error = error.response.data.message;
-        console.log(error)
+      const customer = {
+        lastName: this.customer_lastname,
+        firstName: this.customer_firstname,
+        secondName: this.customer_patronymic,
+        phone: this.customer_phone,
+        email: this.customer_email,
+        adress: this.customer_address,
+        usersId: {id: this.$store.state.user.id}
       }
+      await createCustomer(customer);
     }
   }
 }

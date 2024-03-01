@@ -1,10 +1,12 @@
 <script setup>
-import Header from "@/components/Header.vue";
+import Logo from './icons/Logo.vue';
 import Floor from "@/components/Floor.vue";
+import LogoTest from "@/components/icons/Logo.vue";
+import Header from "@/components/Header.vue";
 </script>
 
 <template>
-<Header  :client="this.id" :clientData="true"/>
+<Header  :client="id" :clientData="true"/>
 <div class="nav">
   <div class="back" @click="backToClient"></div>
   <div class="carcass">
@@ -16,8 +18,8 @@ import Floor from "@/components/Floor.vue";
 <main>
   <form action="">
     <div class="adress">
-      <input type="text" placeholder="Введите адрес объекта строительства">
-      <input type="button" value="Сохранить">
+      <input type="text" placeholder="Введите адрес объекта строительства" :readonly="isReadOnly">
+      <input type="button" value="Сохранить" v-if="!isReadOnly">
 
       <input type="reset" value="Очистить расчет">
     </div>
@@ -41,13 +43,25 @@ export default {
     Floor
   },
   props: {
-    id: String
+    id: String,
+    createMode: String
   },
   data() {
     return {
       floorsCount: 1, // Начальное количество этажей
-      floors: [{}] // Массив с данными для каждого этажа, начинаем с одного пустого объекта
+      floors: [{}], // Массив с данными для каждого этажа, начинаем с одного пустого объекта
+      isReadOnly: false
     };
+  },
+  mounted() {
+    if (this.createMode === "true") {
+      this.isReadOnly = false
+    }
+    else {
+      // добавить инфо об адресе
+      this.isReadOnly = true
+    }
+    console.log("carcas " + this.createMode);
   },
   methods: {
     duplicateFloors() {

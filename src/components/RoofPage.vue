@@ -1,4 +1,7 @@
 <script setup>
+import Logo from './icons/Logo.vue';
+import Floor from "@/components/Floor.vue";
+import LogoTest from "@/components/icons/Logo.vue";
 import Header from "@/components/Header.vue";
 </script>
 
@@ -8,7 +11,7 @@ import Header from "@/components/Header.vue";
     <div class="back" @click="backToClient"></div>
     <div class="carcass">
       <p>
-        Крыша
+        Каркас
       </p>
     </div>
   </div>
@@ -21,11 +24,9 @@ import Header from "@/components/Header.vue";
         <input type="reset" value="Очистить расчет">
       </div>
       <h3>Исходные данные</h3>
-      <div class="table floorsInput">Количество этажей <input type="number" placeholder=""> </div>
-      <div class="table floorsInput">Длина внутренних стен <input type="number" placeholder=""> </div>
-      <div class="submit">
-        <input type="submit" value="Рассчитать">
-      </div>
+
+
+      <input type="submit" value="Рассчитать">
     </form>
   </main>
 </template>

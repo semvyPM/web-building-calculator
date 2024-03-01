@@ -24,7 +24,11 @@
 <script>
 export default {
   props: {
-    id: String
+    id: String,
+    createMode: String
+  },
+  mounted() {
+    console.log("popup " + this.createMode);
   },
   methods: {
     closeModal(event) {
@@ -34,11 +38,10 @@ export default {
       else if (event.target.classList.contains('close')){
         this.$emit('close');
       }
-      
     },
     redirectToCarcasPage() {
       // Используем маршрутизатор для перенаправления
-      this.$router.push({ name: 'carcasPage', props: { id: this.id }});
+      this.$router.push({ name: 'carcasPage', params: { id: this.id, createMode: this.createMode }});
     },
     redirectToFoundationPage() {
       // Используем маршрутизатор для перенаправления

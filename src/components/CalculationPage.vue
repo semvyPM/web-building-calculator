@@ -4,7 +4,7 @@
     <router-link :to="'/client/' + idclient"><div class="back"></div></router-link>
     <div class="carcass">
       <p>
-        Расчет <input type="button" :value="calculation && calculation.сalculationStateId ? calculation.сalculationStateId.stateName : ''">
+        Расчет <input type="button" :value="calculation && calculation.сalculationStateId ? calculation.сalculationStateId.stateName : 'не установлен'">
       </p>
 
     </div>
@@ -39,10 +39,10 @@
   </main>
 </template>
 <script>
-import ConstructionElementPopup from "@/components/ConstructionElementPopup.vue";
 import Header from "@/components/Header.vue";
 import axios from "axios";
-
+import {getCalculation} from "@/api.js";
+import ConstructionElementPopup from "@/components/ConstructionElementPopup.vue";
 export default {
   components: {Header, ConstructionElementPopup},
   props: {
@@ -57,9 +57,13 @@ export default {
     }
   },
   async mounted() {
-    await axios.get('http://localhost:8080/api/calculations/' + this.idcalculation)
-        .then(response => { this.calculation = response.data; console.log(this.calculation);})
-        .catch(error => { alert('Ошибка при получении данных расчетов', error); });
+    getCalculation(this.idcalculation)
+        .then(data => {
+          this.calculation = data;
+        })
+        .catch(error => {
+          console.error("Произошла ошибка: ", error);
+        });
   },
   methods: {
     togglePopup() {
