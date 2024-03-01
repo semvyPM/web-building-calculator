@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserService {
+public class UsersService {
     private final UsersRepository usersRepository;
     private final UsersUsersGroupRepository usersUsersGroupRepository;
 
     @Autowired
-    public UserService(UsersRepository usersRepository, UsersUsersGroupRepository usersUsersGroupRepository) {
+    public UsersService(UsersRepository usersRepository, UsersUsersGroupRepository usersUsersGroupRepository) {
         this.usersRepository = usersRepository;
         this.usersUsersGroupRepository = usersUsersGroupRepository;
     }
