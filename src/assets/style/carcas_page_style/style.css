@@ -441,10 +441,10 @@ input[type='submit']{
     background-color: #8a8f89;
 }
 .add-result{
-    width: 300px;
+    
 }
 .result-buttons{
-    width: 100%;
+    
     display: inline-flex;
     font-family: Roboto-Regular;
 
