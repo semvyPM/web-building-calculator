@@ -17,9 +17,9 @@
     </form>
     <div class="client-bg">
       <hr>
-
-      <div class="client">
       <div v-for="calculation in calculations" :key="calculation.id">
+      <div class="client">
+      
           <div class="calculation" v-if="calculation && calculation.сalculationStateId">
             <div class="container" @click="goToCalculation(calculation.id, client.id)"> <div> Расчет №{{ calculation.number }} </div></div>
             <div class="container"> <div> {{ calculation.createdDate }} </div> </div>
@@ -35,10 +35,12 @@
             </div>
           </div>
       </div>
-
+      <hr>
       </div>
     </div>
-    <hr>
+
+    
+    
   </main>
 </template>
 
