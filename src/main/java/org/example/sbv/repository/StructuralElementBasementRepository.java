@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StructuralElementBasementRepository extends JpaRepository<StructuralElementBasement, Integer> {
+    StructuralElementBasement findStructuralElementBasementById(Integer idbasement);
 }

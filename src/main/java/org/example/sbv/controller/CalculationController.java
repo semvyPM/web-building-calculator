@@ -5,7 +5,6 @@ import org.example.sbv.entity.Calculation;
 import org.example.sbv.request.CalculationRequest;
 import org.example.sbv.service.CalculationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,17 +16,6 @@ public class CalculationController {
     @Autowired
     public CalculationController(CalculationService calculationService) {
         this.calculationService = calculationService;
-    }
-
-    @GetMapping("/all")
-    @ResponseBody
-    public ResponseEntity<List<Calculation>> getAllCustomers() {
-        List<Calculation> calculations = calculationService.getAllCalculation();
-        if (calculations != null) {
-            return ResponseEntity.ok(calculations);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
     }
 
     @GetMapping("/by-customer/{id}")

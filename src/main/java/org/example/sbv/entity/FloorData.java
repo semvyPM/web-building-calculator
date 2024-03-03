@@ -7,8 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "floor_frame", schema = "public", catalog = "building_calculator") // catalog = "db"
-public class FloorFrame {
+@Table(name = "floor_data", schema = "public", catalog = "building_calculator") // catalog = "db"
+public class FloorData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -79,7 +79,7 @@ public class FloorFrame {
 
 
 
-    public FloorFrame(Integer id, Integer floorNumber, Float floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, String osbExternalWall, String steamWaterproofingExternalWall, String windscreenExternalWall, String insulationExternalWall, String overlapThickness, String osbThickness, String steamWaterproofingThickness, String windscreenThickness, String insulationThickness, String osbInternalWall, StructuralElementFrame structuralElementFrameId, String externalWallWood, String internalWallWood, String overlapWood) {
+    public FloorData(Integer id, Integer floorNumber, Float floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, String osbExternalWall, String steamWaterproofingExternalWall, String windscreenExternalWall, String insulationExternalWall, String overlapThickness, String osbThickness, String steamWaterproofingThickness, String windscreenThickness, String insulationThickness, String osbInternalWall, StructuralElementFrame structuralElementFrameId, String externalWallWood, String internalWallWood, String overlapWood) {
         this.id = id;
         this.floorNumber = floorNumber;
         this.floorHeight = floorHeight;
@@ -104,7 +104,7 @@ public class FloorFrame {
         this.overlapWood = overlapWood;
     }
 
-    public FloorFrame(Integer floorNumber, Float floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, String osbExternalWall, String steamWaterproofingExternalWall, String windscreenExternalWall, String insulationExternalWall, String overlapThickness, String osbThickness, String steamWaterproofingThickness, String windscreenThickness, String insulationThickness, String osbInternalWall, StructuralElementFrame structuralElementFrameId, String externalWallWood, String internalWallWood, String overlapWood) {
+    public FloorData(Integer floorNumber, Float floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, String osbExternalWall, String steamWaterproofingExternalWall, String windscreenExternalWall, String insulationExternalWall, String overlapThickness, String osbThickness, String steamWaterproofingThickness, String windscreenThickness, String insulationThickness, String osbInternalWall, StructuralElementFrame structuralElementFrameId, String externalWallWood, String internalWallWood, String overlapWood) {
         this.floorNumber = floorNumber;
         this.floorHeight = floorHeight;
         this.perimeterOfExternalWalls = perimeterOfExternalWalls;
@@ -128,7 +128,7 @@ public class FloorFrame {
         this.overlapWood = overlapWood;
     }
 
-    public FloorFrame() {
+    public FloorData() {
     }
 
     @Override
@@ -136,7 +136,7 @@ public class FloorFrame {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        FloorFrame that = (FloorFrame) o;
+        FloorData that = (FloorData) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (floorNumber != null ? !floorNumber.equals(that.floorNumber) : that.floorNumber != null) return false;
