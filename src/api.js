@@ -61,6 +61,36 @@ export const getCalculations = async (id) => {
     }
 }
 
+export const copyCalculation = async (id) => {
+    const token = getToken();
+    try {
+        let response = await instance.post('/calculations/copy/' + id, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        });
+        console.log("ok or huyok: " + response.status);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const deleteCalculation = async (id) => {
+    const token = getToken();
+    try {
+        let response = await instance.post('/calculations/delete/' + id, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        });
+        console.log("ok or huyok: " + response.status);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 export const getCalculation = async (idcalculation) => {
     const token = getToken();
     try {
