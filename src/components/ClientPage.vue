@@ -12,7 +12,7 @@
     <form action="">
       <div class="create-calculation-button">
         <input type="button" style="cursor: pointer;" value="Создать расчет" @click="togglePopup">
-        <ConstructionElementPopup v-if="showPopup" :id="id" :createMode="createMode" @close="showPopup = false"/>
+        <ConstructionElementPopup v-if="showPopup" :idclient="id" :createMode="createMode" @close="showPopup = false"/>
       </div>
     </form>
     <div class="client-bg">
@@ -61,7 +61,7 @@ export default {
       client: {},
       calculations: [{}],
       showPopup: false,
-      createMode: "false"
+      createMode: "true"
     }
   },
   async mounted() {
