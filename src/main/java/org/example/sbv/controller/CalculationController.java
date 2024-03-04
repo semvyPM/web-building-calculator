@@ -2,7 +2,11 @@ package org.example.sbv.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.example.sbv.entity.Calculation;
+import org.example.sbv.entity.FloorData;
+import org.example.sbv.entity.ResultsBasement;
+import org.example.sbv.entity.ResultsFrame;
 import org.example.sbv.request.CalculationRequest;
+import org.example.sbv.response.FloorResponse;
 import org.example.sbv.service.CalculationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,10 +37,21 @@ public class CalculationController {
         return calculation;
     }
 
+    @GetMapping("/floors/{idcalculation}")
+    @ResponseBody
+    public List<FloorResponse> getFloorDataByCalculation(HttpServletRequest request, @PathVariable Integer idcalculation) {
+        return calculationService.getFloorData(request, idcalculation);
+    }
+
+    @GetMapping("/basements/{idcalculation}")
+    @ResponseBody
+    public List<ResultsBasement> getBasementsDataByCalculation(HttpServletRequest request, @PathVariable Integer idcalculation) {
+        return calculationService.getResultsBasements(request, idcalculation);
+    }
+
     @PostMapping("/create")
     @ResponseBody
     public Calculation addNewCalculation(@RequestBody CalculationRequest calculationRequest) {
-        Calculation calculation = calculationService.addNewCalculation(calculationRequest);
-        return calculation;
+        return calculationService.addNewCalculation(calculationRequest);
     }
 }
