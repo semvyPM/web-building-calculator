@@ -25,20 +25,26 @@ public class StructuralElementBasement {
     @Basic
     @Column(name = "concrete", nullable = false, length = 100)
     private String concrete;
+    @ManyToOne
+    @JoinColumn(name = "calculation_id", nullable = false)
+    private Calculation calculationId;
 
-    public StructuralElementBasement(Integer id, Float perimeterOfExternalWalls, Float internalWallLength, String concretePiles, String concrete) {
+
+    public StructuralElementBasement(Integer id, Float perimeterOfExternalWalls, Float internalWallLength, String concretePiles, String concrete, Calculation calculationId) {
         this.id = id;
         this.perimeterOfExternalWalls = perimeterOfExternalWalls;
         this.internalWallLength = internalWallLength;
         this.concretePiles = concretePiles;
         this.concrete = concrete;
+        this.calculationId = calculationId;
     }
 
-    public StructuralElementBasement(Float perimeterOfExternalWalls, Float internalWallLength, String concretePiles, String concrete) {
+    public StructuralElementBasement(Float perimeterOfExternalWalls, Float internalWallLength, String concretePiles, String concrete, Calculation calculationId) {
         this.perimeterOfExternalWalls = perimeterOfExternalWalls;
         this.internalWallLength = internalWallLength;
         this.concretePiles = concretePiles;
         this.concrete = concrete;
+        this.calculationId = calculationId;
     }
 
     public StructuralElementBasement() {
