@@ -28,26 +28,26 @@ public class Calculation {
     private Date createdDate;
     @ManyToOne
     @JoinColumn(name = "сalculation_state_id", nullable = false)
-    private CalculationState сalculationStateId;
+    private CalculationState calculationStateId;
 
     public Calculation() {
     }
 
-    public Calculation(Customers customerId, String addressObjectConstractions, Integer number, Date createdDate, CalculationState сalculationStateId) {
+    public Calculation(Customers customerId, String addressObjectConstractions, Integer number, Date createdDate, CalculationState calculationStateId) {
         this.customerId = customerId;
         this.addressObjectConstractions = addressObjectConstractions;
         this.number = number;
         this.createdDate = createdDate;
-        this.сalculationStateId = сalculationStateId;
+        this.calculationStateId = calculationStateId;
     }
 
-    public Calculation(Integer id, Customers customerId, String addressObjectConstractions, Integer number, Date createdDate, CalculationState сalculationStateId) {
+    public Calculation(Integer id, Customers customerId, String addressObjectConstractions, Integer number, Date createdDate, CalculationState calculationStateId) {
         this.id = id;
         this.customerId = customerId;
         this.addressObjectConstractions = addressObjectConstractions;
         this.number = number;
         this.createdDate = createdDate;
-        this.сalculationStateId = сalculationStateId;
+        this.calculationStateId = calculationStateId;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class Calculation {
             return false;
         if (number != null ? !number.equals(that.number) : that.number != null) return false;
         if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (сalculationStateId != null ? !сalculationStateId.equals(that.сalculationStateId) : that.сalculationStateId != null)
+        if (calculationStateId != null ? !calculationStateId.equals(that.calculationStateId) : that.calculationStateId != null)
             return false;
 
         return true;
@@ -76,7 +76,7 @@ public class Calculation {
         result = 31 * result + (addressObjectConstractions != null ? addressObjectConstractions.hashCode() : 0);
         result = 31 * result + (number != null ? number.hashCode() : 0);
         result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (сalculationStateId != null ? сalculationStateId.hashCode() : 0);
+        result = 31 * result + (calculationStateId != null ? calculationStateId.hashCode() : 0);
         return result;
     }
 }

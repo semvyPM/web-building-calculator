@@ -8,6 +8,7 @@ public class SbvApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SbvApplication.class, args);
+		System.out.println("IM STARTED!");
 	}
 
 }

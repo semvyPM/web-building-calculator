@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.sbv.entity.FloorData;
+import org.example.sbv.entity.FloorDataAdd;
 import org.example.sbv.entity.ResultsFrame;
 
 import java.util.List;
@@ -16,5 +17,12 @@ import java.util.List;
 public class FloorResponse {
     private Integer id;
     private FloorData floorData;
-    private List<ResultFrameResponse> resultFrameResponses;
+    private List<FloorAddResponse> floorDataAdd;
+    private List<ResultFrameResponse> resultForInnerWalls;
+    private Float resultForInnerWallsSum;
+    private List<ResultFrameResponse> resultForOuterWalls;
+    private Float resultForOuterWallsSum;
+    private List<ResultFrameResponse> resultForOverlaps;
+    private Float resultForOverlapsSum;
+    private Float resultSum;
 }

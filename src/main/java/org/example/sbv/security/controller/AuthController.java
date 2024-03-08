@@ -4,15 +4,13 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.example.sbv.security.domain.dto.JwtAuthenticationResponse;
 import org.example.sbv.security.domain.dto.SignInRequest;
 import org.example.sbv.security.domain.dto.SignUpRequest;
 import org.example.sbv.security.service.AuthenticationService;
 
+@CrossOrigin(origins = "http://kalck.ru")
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
