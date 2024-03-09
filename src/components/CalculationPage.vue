@@ -4,7 +4,7 @@
     <router-link :to="'/client/' + idclient"><div class="back"></div></router-link>
     <div class="carcass">
       <p>
-        Расчет <input type="button" :value="calculation && calculation.сalculationStateId ? calculation.сalculationStateId.stateName : 'не установлен'">
+        Расчет <br> <input type="button" :value="calculation && calculation.calculationStateId ? calculation.calculationStateId.stateName : 'не установлен'" >
       </p>
 
     </div>
@@ -14,37 +14,68 @@
       <h3>Дата: {{ calculation.createdDate}}</h3>
       <h3>Адрес объекта: {{ calculation.addressObjectConstractions }}</h3>
       <div class="result-buttons">
-        <div class="add-result">
-          <input class="hide" id="hd-3" type="checkbox" >
-          <label for="hd-3">
-            <div class="plus">
-              <div class="circle">+</div>
-              <div class="plus_text">Результат расчета каркаса</div>
-            </div>
-          </label>
-          <div class="result">
-
+        <input type="button" value="Редактировать" @click="togglePopup">
+        <input type="button" value="Добавить конструктивный элемент" @click="togglePopup">
+        <ConstructionElementPopup v-if="showPopup" :idclient="idclient" :createMode="createMode" @close="showPopup = false"/>
+      </div>
+      <div class="result-buttons-add">
+        <label for="hd-3">
+          <div class="plus" @click="frameInfo=!frameInfo">
+            <div class="circle">+</div>
+            <div class="plus_text">Результат расчета каркаса</div>
           </div>
-        </div>
-        <div class="edit">
-          <img src="@/assets/img/edit.png" alt="">
-        </div>
-        <input type="button" style="cursor: pointer;" value="Добавить конструктивный элемент" @click="togglePopup">
-        <ConstructionElementPopup v-if="showPopup" :id="this.id" @close="showPopup = false"/>
+        </label>
       </div>
-      <div class="report">
+      <div class="report" v-if="frameInfo">
+        <div>
+          <keep-alive>
+            <component v-for="floor in floors" :key="floor.id" :is="currentComponent" :floor="floor"></component>
+          </keep-alive>
+        </div>
+
 
       </div>
+      <div class="result-buttons-add">
+        <label for="hd-3">
+          <div class="plus" @click="basementInfo=!basementInfo">
+            <div class="circle">+</div>
+            <div class="plus_text">Результат расчета фундамента</div>
+          </div>
+        </label>
+      </div>
+      <div class="report" v-if="basementInfo">
+        <div>
+          <keep-alive>
+            <component v-for="floor in floors" :key="floor.id" :is="currentComponent" :floor="floor"></component>
+          </keep-alive>
+        </div>
+
+      </div>
+
+      <div class="result-buttons-add">
+        <label for="hd-3">
+          <div class="plus">
+            <div class="circle">+</div>
+            <div class="plus_text">Результат расчета крыши</div>
+          </div>
+        </label>
+      </div>
+
+      <input @click="exportToExcel" class="export-to-excel-btn" type="button" value="Экспорт в Excel">
     </form>
   </main>
 </template>
 <script>
 import Header from "@/components/Header.vue";
+import BlockResult from "@/components/BlockResult.vue";
+import TableResult from "@/components/TableResult.vue";
 import axios from "axios";
-import {getCalculation} from "@/api.js";
-import ConstructionElementPopup from "@/components/ConstructionElementPopup.vue";
+import { getCalculation, getFloors, getBasementData } from "@/api.js";
+import { saveAs } from 'file-saver';
+import * as ExcelJS from "exceljs";
+
 export default {
-  components: {Header, ConstructionElementPopup},
+  components: {Header, BlockResult, TableResult },
   props: {
     idcalculation: "",
     idclient: ""
@@ -53,10 +84,17 @@ export default {
     return {
       clientData: true,
       calculation: {},
-      showPopup: false
+      floors: {},
+      basement: {},
+      createMode: "false",
+      showPopup: false,
+      currentComponent: window.innerWidth < 768 ? 'BlockResult' : 'TableResult', floorsData: this.floors,
+      basementInfo: false,
+      frameInfo: false
     }
   },
   async mounted() {
+    window.addEventListener('resize', this.handleResize);
     getCalculation(this.idcalculation)
         .then(data => {
           this.calculation = data;
@@ -64,14 +102,49 @@ export default {
         .catch(error => {
           console.error("Произошла ошибка: ", error);
         });
+    getFloors(this.idcalculation)
+        .then(data => {
+          this.floors = data;
+          console.log(this.floors);
+        })
+        .catch(error => {
+          console.error("Произошла ошибка: ", error);
+        });
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
   },
   methods: {
-    togglePopup() {
-      this.showPopup = !this.showPopup
+    handleResize() {
+      this.currentComponent = window.innerWidth < 768 ? 'BlockResult' : 'TableResult';
     },
     backToClient() {
       this.$router.push({ name: "clientPage" });
+    },
+    togglePopup() {
+      this.showPopup = !this.showPopup
+    },
+    async exportToExcel() {
+      const workbook = new ExcelJS.Workbook();
+      const worksheet = workbook.addWorksheet('Каркас');
+
+      // Добавление данных в таблицу
+      let row = worksheet.addRow(['Результаты для этажа №: ', '1']);
+      let k = 1;
+      worksheet.mergeCells('A'+k+':B'+k)
+      worksheet.addRow(['Внешние стены']);
+      worksheet.addRow(['Материал', 'Наименование', 'Единица измерения', 'Количество', 'Стоимость', 'Сумма']);
+
+      // Генерация и сохранение Excel файла
+      const buffer = await workbook.xlsx.writeBuffer();
+      const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      saveAs(blob, 'exported_data.xlsx');
+    },
+
+    getSumByType(arr, field) {
+      return arr.reduce((accumulator, currentValue) => accumulator + currentValue[field], 0);
     }
+
   }
 }
 </script>
@@ -84,4 +157,6 @@ export default {
 </style>
 <script setup>
 import Header from "@/components/Header.vue";
+import ConstructionElementPopup from "@/components/ConstructionElementPopup.vue";
+import TableResult from "@/components/TableResult.vue";
 </script>
