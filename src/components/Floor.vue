@@ -3,7 +3,7 @@
 </script>
 
 <template>
-<!--  Компонент этажа-->
+  <!--  Компонент этажа-->
   <div class="floor">
     <div class="table">Высота этажа (м) <input type="number" pattern="\d+" class="outBlock"  placeholder="Не более 3 метров" v-model="floorData.floorMainData.heightFloor" required min="1" max="3"> </div>
     <div class="table">Периметр внешних стен (м) <input min="1" required type="number" class="outBlock" placeholder="" v-model="floorData.floorMainData.perimetrOuterWalls"></div>
@@ -27,9 +27,13 @@
         <option value="250">250 мм</option>
       </select>
     </div>
-
-
-
+    <div>
+      <div class="plus" @click="openOuterWallsInputs">
+        <div class="circle">+</div>
+        <div class="plus_text">Добавить расчет обшивки внешних стен</div>
+      </div>
+      <div v-if="floorData.openOuterWallsShow">
+        <br>
     <h3>Обшивки внешних стен</h3>
     <div class="table">
       <span>ОСБ</span>
@@ -65,10 +69,10 @@
     </div>
     <br>
     <div>
-        <div class="plus" @click="openWallsInputs">
-          <div class="circle">+</div>
-          <div class="plus_text">Добавить расчет обшивки внутренних стен</div>
-        </div>
+      <div class="plus" @click="openWallsInputs">
+        <div class="circle">+</div>
+        <div class="plus_text">Добавить расчет обшивки внутренних стен</div>
+      </div>
       <div v-if="floorData.showTable">
         <br>
         <div class="table">
@@ -85,10 +89,10 @@
     </div>
     <br>
     <div>
-        <div class="plus" @click="openWindowInputs">
-          <div class="circle" >+</div>
-          <div class="plus_text">Учесть двери и окна</div>
-        </div>
+      <div class="plus" @click="openWindowInputs">
+        <div class="circle" >+</div>
+        <div class="plus_text">Учесть двери и окна</div>
+      </div>
       <div class="proemi" v-if="floorData.windowsTableShow">
         <br>
         <span class="formItemHeader">Оконные проемы</span>
@@ -142,10 +146,10 @@
     </div>
     <br>
     <div>
-        <div class="plus" @click="openOverlapInputs">
-          <div class="circle">+</div>
-          <div class="plus_text">Добавить расчет перекрытий</div>
-        </div>
+      <div class="plus" @click="openOverlapInputs">
+        <div class="circle">+</div>
+        <div class="plus_text">Добавить расчет перекрытий</div>
+      </div>
       <div v-if="floorData.overlapInputsShow">
         <br>
         <div class="table">
@@ -193,21 +197,25 @@
 </template>
 
 <script>
+
 export default {
   props: ['currentFloor'],
   data() {
     return {
+      selectedOption: null,
+      availableOptions: ['A', 'B', 'C'],
       floorData: {
         showTable: false,
         overlapInputsShow: false,
         windowsTableShow: false,
+        openOuterWallsShow: false,
         currentFloor: this.currentFloor,
         floorMainData: {heightFloor: null, perimetrOuterWalls: null, baseArea: null, thicknessOuterWalls: null, lengthInnerWalls: null, thicknessInnerWalls: null},
-        itemsWindow: { heightWindow: '', widthWindow: '', quantityWindow: '' },
-        itemsDoorsOut: { heightDoorsOut: '', widthDoorsOut: '', quantityDoorsOut: '' },
-        itemsDoorsInner: { heightDoorsInner: '', widthDoorsInner: '', quantityDoorsInner: '' },
-        osbInnerOvarlap: "",
-        dataOuterOverlap: {OSB: '', steamAndWaterproofing: '', windProtection: '', insulation: '', slabThickness: '' , insulation2: '' }
+        itemsWindow: { heightWindow: null, widthWindow: null, quantityWindow: null },
+        itemsDoorsOut: { heightDoorsOut: null, widthDoorsOut: null, quantityDoorsOut: null },
+        itemsDoorsInner: { heightDoorsInner: null, widthDoorsInner: null, quantityDoorsInner: null },
+        osbInnerOvarlap: null,
+        dataOuterOverlap: {OSB: null, steamAndWaterproofing: null, windProtection: null, insulation: null, slabThickness: null , insulation2: null }
       },
       maxHeightFloor: 3,
       selectedOption1: null,
@@ -242,13 +250,13 @@ export default {
       console.log(this.floorData.dataOuterOverlap.slabThickness);
     },
     duplicateBlockWindow() {
-      this.floorData.itemsWindow.push({ heightWindow: '', widthWindow: '', quantityWindow: '' });
+      this.floorData.itemsWindow.push({ heightWindow: null, widthWindow: null, quantityWindow: null });
     },
     duplicateBlockDoorsOut() {
-      this.floorData.itemsDoorsOut.push({ heightDoorsOut: '', widthDoorsOut: '', quantityDoorsOut: '' });
+      this.floorData.itemsDoorsOut.push({ heightDoorsOut: null, widthDoorsOut: null, quantityDoorsOut: null });
     },
     duplicateBlockDoorsInner() {
-      this.floorData.itemsDoorsInner.push({ heightDoorsInner: '', widthDoorsInner: '', quantityDoorsInner: '' });
+      this.floorData.itemsDoorsInner.push({ heightDoorsInner: null, widthDoorsInner: null, quantityDoorsInner: null });
     },
     openWallsInputs() {
       this.floorData.showTable = !this.floorData.showTable;
@@ -259,13 +267,31 @@ export default {
     },
     openWindowInputs() {
       this.floorData.windowsTableShow = !this.floorData.windowsTableShow;
+    },
+    openOuterWallsInputs() {
+      this.floorData.openOuterWallsShow = !this.floorData.openOuterWallsShow;
+    },
+    getFloorData() {
+      console.log("check " + JSON.stringify(this.floorData));
+      return this.floorData;
+    },
+    handleChangeSelect1() {
+      if (this.floorData.dataOuterOverlap.OSB === '1') {
+        this.availableOptions = ['A', 'B', 'C'];
+      } else if (this.floorData.dataOuterOverlap.OSB === '2') {
+        this.availableOptions = ['X', 'Y', 'Z'];
+      }
+      console.log(this.floorData.dataOuterOverlap.OSB)
     }
+
   }
 };
 </script>
 
 <style scoped>
+
 @import '../assets/style/carcas_page_style/style.css';
 @import '../assets/style/carcas_page_style/slide.css';
 @import '../assets/style/carcas_page_style/responsive.css';
+
 </style>

@@ -13,13 +13,13 @@
     <div class="adress">
       <input type="button" value="Создать клиента" @click="togglePopup">
     </div>
-      <CreateUserPopup v-if="showPopup" @close="showPopup = false"/>
+    <CreateUserPopup v-if="showPopup" @close="showPopup = false"/>
 
-      <div class="card-container">
-        <div v-for="client in clients" :key="client.id">
-          <div class="card" v-if="client" @click="goToClient(client.id)">{{ client.lastName }} {{ client.firstName }} {{ client.secondName }}</div>
-        </div>
+    <div class="card-container">
+      <div v-for="client in clients" :key="client.id">
+        <div class="card" v-if="client" @click="goToClient(client.id)">{{ client.lastName }} {{ client.firstName }} {{ client.secondName }}</div>
       </div>
+    </div>
 
   </main>
 </template>
