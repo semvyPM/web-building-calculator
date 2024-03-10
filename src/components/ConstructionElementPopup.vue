@@ -1,18 +1,18 @@
 <template>
-  <div class="popup" @click="closeModal">
+  <div class="popup">
     <div class="popup-content" >
       <span class="close" @click="closeModal">&times;</span>
       <h2>Выбор конструктивного элемента</h2>
       <div class="popup-elements">
-        <div @click="redirectToCarcasPage" style="cursor: pointer;" class="element">
+        <div @click="redirectToCarcasPage" class="element">
           <img src="@/assets/img/house.png" alt="">
           <h3>Каркас</h3>
         </div>
-        <div @click="redirectToFoundationPage" style="cursor: pointer;" class="element">
+        <div @click="redirectToFoundationPage" class="element">
           <img src="@/assets/img/foundation.png" alt="">
           <h3>Фундамент</h3>
         </div>
-        <div @click="redirectToRoofPage" style="cursor: pointer;" class="element">
+        <div class="element">
           <img src="@/assets/img/roof.png" alt="">
           <h3>Крыша</h3>
         </div>
@@ -24,33 +24,36 @@
 <script>
 export default {
   props: {
-    id: String,
-    createMode: String
+    idclient: String,
+    createMode: String,
+    numbers: Number
   },
   mounted() {
-    console.log("popup " + this.createMode);
+    console.log("popup " + this.numbers);
   },
   methods: {
-    closeModal(event) {
-      if (!event.target.closest('.popup-content')) {
-        this.$emit('close');
-      }
-      else if (event.target.classList.contains('close')){
-        this.$emit('close');
-      }
+    closeModal() {
+      this.$emit('close');
     },
     redirectToCarcasPage() {
       // Используем маршрутизатор для перенаправления
-      this.$router.push({ name: 'carcasPage', params: { id: this.id, createMode: this.createMode }});
+      this.$router.push({
+        name: 'carcasPage', params: {
+          id: this.idclient,
+          createMode: this.createMode,
+          numbers: this.numbers
+        }
+      });
     },
     redirectToFoundationPage() {
       // Используем маршрутизатор для перенаправления
-      this.$router.push({ name: 'foundationPage', props: { id: this.id }});
-    },
-    redirectToRoofPage() {
-      // Используем маршрутизатор для перенаправления
-      this.$router.push({ name: 'roofPage', props: { id: this.id }});
-    },
+      this.$router.push({
+        name: 'foundationPage', params: {
+          id: this.idclient,
+          createMode: this.createMode
+        }
+      });
+    }
   }
 }
 
