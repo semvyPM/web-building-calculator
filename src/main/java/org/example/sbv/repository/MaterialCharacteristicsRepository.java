@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MaterialCharacteristicsRepository extends JpaRepository<MaterialCharacteristics, Integer> {
+    MaterialCharacteristics findMaterialCharacteristicsById(Integer id);
 }
