@@ -6,31 +6,31 @@ import Header from "@/components/Header.vue";
 </script>
 
 <template>
-  <Header  :client="id" :clientData="true"/>
-  <div class="nav">
-    <div class="back" @click="backToClient"></div>
-    <div class="carcass">
-      <p>
-        Каркас
-      </p>
-    </div>
+<Header  :client="id" :clientData="true"/>
+<div class="nav">
+  <div class="back" @click="backToClient"></div>
+  <div class="carcass">
+    <p>
+      Каркас
+    </p>
   </div>
-  <main>
-    <form @submit.prevent="saveCalculation">
-      <div class="adress">
-        <input type="text" placeholder="Введите адрес объекта строительства" v-model="addres" :readonly="isReadOnly">
-        <input type="button" value="Сохранить" @click="saveAddress" v-if="!isReadOnly">
-        <input type="reset" value="Очистить расчет">
-      </div>
-      <h3>Исходные данные</h3>
-      <div class="table floorsInput">Количество этажей <input type="number" placeholder="Введите число этажей" v-model="floorsCount" @change="duplicateFloors"> </div>
-      <div v-for="(currentFloor, index) in floors" :key="index">
-        <h3>Этаж: {{ index + 1 }}</h3>
-        <Floor ref="allFloors" :currentFloor="index" />
-      </div>
-      <input type="submit" value="Рассчитать">
-    </form>
-  </main>
+</div>
+<main>
+  <form @submit.prevent="saveCalculation">
+    <div class="adress">
+      <input  type="text" placeholder="Введите адрес объекта строительства" :readonly="isReadOnly">
+      <input type="button" value="Сохранить" @click="saveAddress" v-if="!isReadOnly">
+      <input type="reset" value="Очистить расчет">
+    </div>
+    <h3>Исходные данные</h3>
+    <div class="table floorsInput">Количество этажей <input required min="1" type="number" placeholder="Введите число этажей" v-model="floorsCount" @change="duplicateFloors"> </div>
+    <div v-for="(currentFloor, index) in floors" :key="index">
+      <h3>Этаж: {{ index + 1 }}</h3>
+      <Floor ref="allFloors" :currentFloor="index" />
+    </div>
+    <input type="submit" value="Рассчитать">
+  </form>
+</main>
 </template>
 
 <script>
