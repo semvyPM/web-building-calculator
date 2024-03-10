@@ -491,6 +491,7 @@ input:invalid:not(:placeholder-shown) {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 .calc-info-block .info-adress {
     flex-direction: row;
@@ -505,6 +506,7 @@ input:invalid:not(:placeholder-shown) {
     display: flex;
     flex-direction: row-reverse;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 .copy-button, .delete-button, .view-button {
@@ -555,13 +557,13 @@ input:invalid:not(:placeholder-shown) {
 }
 @font-face {
     font-family: Roboto-Regular;
-    src: url("@/assets/fonts/Roboto/Roboto-Regular.ttf");
+    src: url("../../assets/fonts/Roboto/Roboto-Regular.ttf");
 }
 @font-face {
     font-family: Roboto-Bold;
-    src: url("@/assets/fonts/Roboto/Roboto-Bold.ttf");
+    src: url("../../assets/fonts/Roboto/Roboto-Bold.ttf");
 }
 @font-face {
     font-family: Roboto-Medium;
-    src: url("@/assets/fonts/Roboto/Roboto-Medium.ttf");
+    src: url("../../assets/fonts/Roboto/Roboto-Medium.ttf");
 }
