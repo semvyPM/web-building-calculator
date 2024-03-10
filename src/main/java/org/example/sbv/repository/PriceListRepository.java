@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PriceListRepository extends JpaRepository<PriceLists, Integer> {
+    PriceLists findPriceListsById(Integer id);
 }
