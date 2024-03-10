@@ -51,7 +51,7 @@ public class CalculationController {
 
     @PostMapping("/create")
     @ResponseBody
-    public Calculation addNewCalculation(@RequestBody CalculationRequest calculationRequest) {
-        return calculationService.addNewCalculation(calculationRequest);
+    public Calculation addNewCalculation(HttpServletRequest request, @RequestBody CalculationRequest calculationRequest) {
+        return calculationService.addNewCalculation(request, calculationRequest);
     }
 }

@@ -18,7 +18,7 @@ public class CalculationRequest {
     private String addressObjectConstractions;
     private Integer number;
     private Date createdDate;
-    private CalculationState сalculationStateId;
+    private CalculationState calculationStateId;
 
     @Override
     public String toString() {
@@ -27,7 +27,7 @@ public class CalculationRequest {
                 ", addressObjectConstractions='" + addressObjectConstractions + '\'' +
                 ", number='" + number + '\'' +
                 ", createdDate='" + createdDate + '\'' +
-                ", сalculationStateId=" + сalculationStateId +
+                ", сalculationStateId=" + calculationStateId +
                 '}';
     }
 }
