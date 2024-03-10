@@ -1,12 +1,15 @@
-/* * {
-    all: unset; 
-    display: revert;
-   }
-   
-   *, *::before, *::after{ 
-      box-sizing: border-box;
-   }
-*/
+@font-face {
+    font-family: Roboto-Regular;
+    src: url("@/assets/fonts/Roboto/Roboto-Regular.ttf");
+}
+@font-face {
+    font-family: Roboto-Bold;
+    src: url("@/assets/fonts/Roboto/Roboto-Bold.ttf");
+}
+@font-face {
+    font-family: Roboto-Medium;
+    src: url("@/assets/fonts/Roboto/Roboto-Medium.ttf");
+}
 main{
     font-family: Roboto-Regular;
 }
@@ -65,7 +68,7 @@ h3 {
 .nav{
     display: grid;
     grid-template-columns: 10% 80% 10%;
-    font-size: 2em;
+    font-size: 20px;
     font-family: Roboto-Medium, serif;
 }
 .back{
@@ -90,6 +93,15 @@ main{
 }
 .adress > input[type='button']{
     height: 30px;
+}
+.result-buttons input[type='button'] {
+    margin: 5px;
+    min-width: 200px;
+    padding: 5px 25px;
+}
+.carcass input[type='button'] {
+    margin: 5px;
+    min-width: 200px;
 }
 .adress > input[type='text']{
     padding-left: 20px;
@@ -181,28 +193,34 @@ select{
 .plus{
     height: 35px;
     display: flex;
-    
+
 }
+.result-buttons-add {
+    margin-top: 5px;
+}
+.circle:hover {
+    cursor: pointer;
+    background-color: #efb836;
+}
+
 .plus_text{
     margin-left: 20px;
-    padding-top: 5px;
     font-weight: bold;
+    font-size: 15px;
     color: #135213;
-
+    margin-top: 3px;
 }
 .circle {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 22px;
     background-color: #ffc945;
     text-align: center;
-    font-size: 25px;
+    font-size: 18px;
+    /*padding: 3px 5px;*/
+    margin-left: 5px;
     color: #597359;
-    border: 1.5px solid #ffc945;
-    box-shadow: rgb(19, 82, 19) 0 1px 1px 0px, rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
-    border-radius: 50%;
-    padding-bottom: 2px;
-
-
+    border: 2px solid #efb836;
+    border-radius: 5px;
 }
 .table2 {
     margin-top: 10px;
@@ -240,27 +258,24 @@ input[type='submit']{
 
 /* Главный блок расчетов */
 .client{
-
     width: 100%;
     height: 100px;
     display: grid;
     grid-template-columns: 50% 50%;
-
-
 }
 .client-bg{
     background-color: #edf1ec;
 }
 
 /* Блок вывода расчетов */
-.calculation{
+.calculation {
     display: flex;
 }
 
 /* Блок кнопок */
-.buttons{
-    display: grid;
-    grid-template-columns: 15% 20%;
+.buttons {
+    /*display: grid;*/
+    /*grid-template-columns: 15% 20%;*/
 }
 
 .copy img{
@@ -278,24 +293,36 @@ input[type='submit']{
 }
 
 /* Контейнеры */
-.container{
-    width: 25%;
-    height: 55px;
+.container {
+    box-shadow: 0 1px 2px #597359;
+    /*background-color: #6c856c;*/
+    border: 2px solid #597359;
+    margin: 2px;
+    text-align: center;
+    padding: 10px 5px;
+    font-family: Roboto-Medium;
+    font-size: 16px;
+    /*display: table;*/
+}
 
-    box-shadow: 0 1px 2px #5e5e5e;
+.container div {
+    min-width: 150px;
+}
+
+.hover-container {
     background-color: #597359;
     color: #f0f0f0;
-    margin-top: 10px;
-    margin-right: 10px;
-    text-align: center;
-    font-family: Roboto-Medium;
-    font-size: 18px;
-    display: table;
 }
-.container div{
-    display: table-cell;
-    vertical-align: middle;
+
+.calculation:hover .container {
+    background-color: #415b41;
+    cursor: pointer;
 }
+
+/*.container div {*/
+/*    display: table-cell;*/
+/*    vertical-align: middle;*/
+/*}*/
 
 /* Для страницы Клиенты */
 
@@ -373,6 +400,10 @@ input[type='submit']{
     margin-top: 8px;
     margin-bottom: 8px;
 }
+#heightError {
+    padding-top: 15px;
+    color: red;
+}
 .element h3{
     margin: 0;
     margin-top: 7%;
@@ -431,10 +462,10 @@ input[type='submit']{
 /* Страница клиента */
 /* Кнопка "Создать расчет" */
 .create-calculation-button input{
-    width: 12%;
+    width: 200px;
+    margin-left: 10px;
     background-color: #ffc945;
-    color: #000000;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    color: #485043;
 }
 .result{
     width: 1000px;
@@ -442,10 +473,10 @@ input[type='submit']{
     background-color: #8a8f89;
 }
 .add-result{
-    
+
 }
 .result-buttons{
-    
+
     display: inline-flex;
     font-family: Roboto-Regular;
 
@@ -456,9 +487,11 @@ input[type='submit']{
     width: 35px;
     height: 40px;
 }
-input:invalid:not(:placeholder-shown) {
-    border: 2px solid red;
+
+.export-to-excel-btn {
+
 }
+
 .calculation-data {
     padding: 10px;
     border: 1px solid green;
@@ -467,12 +500,17 @@ input:invalid:not(:placeholder-shown) {
     background-color: #edf1ec;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
 }
+
+
+
 .calc-title {
     background-color: #597359;
     color: white;
     padding: 10px;
     border-radius: 4px;
 }
+
+
 .calc-info {
     background-color: white;
     border: 1px solid darkgreen;
@@ -481,6 +519,7 @@ input:invalid:not(:placeholder-shown) {
     display: flex;
     flex-direction: column;
 }
+
 .calc-info-block {
     margin-right: 25px;
     display: flex;
@@ -510,7 +549,7 @@ input:invalid:not(:placeholder-shown) {
 }
 
 .copy-button, .delete-button, .view-button {
-    width: 100px;
+    width: 90px;
     margin-top: 10px;
     margin-left: 10px;
     padding: 5px 5px;
@@ -528,6 +567,7 @@ input:invalid:not(:placeholder-shown) {
 .view-button:hover, .create-calculation-button input:hover {
     background-color: #eeb423;
 }
+
 .copy-button {
     color: #f1f1f1;
     background-color: #597359;
@@ -554,16 +594,4 @@ input:invalid:not(:placeholder-shown) {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-}
-@font-face {
-    font-family: Roboto-Regular;
-    src: url("../../assets/fonts/Roboto/Roboto-Regular.ttf");
-}
-@font-face {
-    font-family: Roboto-Bold;
-    src: url("../../assets/fonts/Roboto/Roboto-Bold.ttf");
-}
-@font-face {
-    font-family: Roboto-Medium;
-    src: url("../../assets/fonts/Roboto/Roboto-Medium.ttf");
 }
