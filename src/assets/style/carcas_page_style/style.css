@@ -368,9 +368,10 @@ input[type='submit']{
 }
 .element img{
     width: 70%;
-    height: 70%;
+    /*height: 70%;*/
     margin-left: 10px;
     margin-top: 8px;
+    margin-bottom: 8px;
 }
 .element h3{
     margin: 0;
@@ -454,6 +455,103 @@ input[type='submit']{
     margin-right: 20px;
     width: 35px;
     height: 40px;
+}
+input:invalid:not(:placeholder-shown) {
+    border: 2px solid red;
+}
+.calculation-data {
+    padding: 10px;
+    border: 1px solid green;
+    border-radius: 4px;
+    margin: 10px;
+    background-color: #edf1ec;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+}
+.calc-title {
+    background-color: #597359;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+}
+.calc-info {
+    background-color: white;
+    border: 1px solid darkgreen;
+    margin-top: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.calc-info-block {
+    margin-right: 25px;
+    display: flex;
+    flex-direction: column;
+}
+.calc-info-inner {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.calc-info-block .info-adress {
+    flex-direction: row;
+}
+
+.calc-info-title {
+    color: #597359;
+    margin-bottom: 5px;
+}
+
+.calc-buttons {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+}
+
+.copy-button, .delete-button, .view-button {
+    width: 100px;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 5px 5px;
+    text-align: center;
+}
+.copy-button:hover, .delete-button:hover, .view-button:hover {
+    cursor: pointer;
+}
+.copy-button:hover {
+    background-color: #3e543e;
+}
+.delete-button:hover {
+    background-color: #b1c0b1;
+}
+.view-button:hover, .create-calculation-button input:hover {
+    background-color: #eeb423;
+}
+.copy-button {
+    color: #f1f1f1;
+    background-color: #597359;
+    border-radius: 3px;
+    font-size: 14px;
+    border: 2px solid #597359;
+}
+
+.delete-button {
+    border-radius: 3px;
+    font-size: 14px;
+    border: 1px solid #304130;
+}
+
+.view-button {
+    border-radius: 3px;
+    font-size: 14px;
+    color: #455e45;
+    background-color: #ffc945;
+    border: 1px solid #e7b12d;
+}
+
+.calc-block {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
 @font-face {
     font-family: Roboto-Regular;
