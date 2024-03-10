@@ -63,7 +63,7 @@ public class AuthenticationService {
         var user = userService
                 .userDetailsService()
                 .loadUserByUsername(request.getUsername());
-
+        System.out.println(user);
         var jwt = jwtService.generateToken(user);
         return new JwtAuthenticationResponse(jwt);
     }

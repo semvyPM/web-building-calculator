@@ -38,37 +38,16 @@ public class FloorData {
     @JoinColumn(name = "osb_external_wall", nullable = false)
     private MaterialCharacteristics osbExternalWall;
     @ManyToOne
-    @JoinColumn(name = "steam_waterproofing_external _wall", nullable = false)
-    private MaterialCharacteristics steamWaterproofingExternalWall;
-    @ManyToOne
     @JoinColumn(name = "windscreen_external_wall", nullable = false)
     private MaterialCharacteristics windscreenExternalWall;
     @ManyToOne
     @JoinColumn(name = "insulation_external_wall", nullable = false)
     private MaterialCharacteristics insulationExternalWall;
-    @Basic
-    @Column(name = "overlap_thickness", nullable = false)
-    private Integer overlapThickness;
-    @ManyToOne
-    @JoinColumn(name = "osb_thickness", nullable = false)
-    private MaterialCharacteristics osbThickness;
-    @ManyToOne
-    @JoinColumn(name = "steam_waterproofing_thickness", nullable = false)
-    private MaterialCharacteristics steamWaterproofingThickness;
-    @ManyToOne
-    @JoinColumn(name = "windscreen_thickness", nullable = false)
-    private MaterialCharacteristics windscreenThickness;
-    @ManyToOne
-    @JoinColumn(name = "insulation_thickness", nullable = false)
-    private MaterialCharacteristics insulationThickness;
-    @ManyToOne
-    @JoinColumn(name = "osb_internal_wall", nullable = false)
-    private MaterialCharacteristics osbInternalWall;
     @ManyToOne
     @JoinColumn(name = "structural_element_frame_id", nullable = false)
     private StructuralElementFrame structuralElementFrameId;
 
-    public FloorData(Integer floorNumber, Float floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, MaterialCharacteristics osbExternalWall, MaterialCharacteristics steamWaterproofingExternalWall, MaterialCharacteristics windscreenExternalWall, MaterialCharacteristics insulationExternalWall, Integer overlapThickness, MaterialCharacteristics osbThickness, MaterialCharacteristics steamWaterproofingThickness, MaterialCharacteristics windscreenThickness, MaterialCharacteristics insulationThickness, MaterialCharacteristics osbInternalWall, StructuralElementFrame structuralElementFrameId) {
+    public FloorData(Integer floorNumber, Float floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, MaterialCharacteristics osbExternalWall, MaterialCharacteristics windscreenExternalWall, MaterialCharacteristics insulationExternalWall, StructuralElementFrame structuralElementFrameId) {
         this.floorNumber = floorNumber;
         this.floorHeight = floorHeight;
         this.perimeterOfExternalWalls = perimeterOfExternalWalls;
@@ -77,19 +56,12 @@ public class FloorData {
         this.internalWallLength = internalWallLength;
         this.internalWallThickness = internalWallThickness;
         this.osbExternalWall = osbExternalWall;
-        this.steamWaterproofingExternalWall = steamWaterproofingExternalWall;
         this.windscreenExternalWall = windscreenExternalWall;
         this.insulationExternalWall = insulationExternalWall;
-        this.overlapThickness = overlapThickness;
-        this.osbThickness = osbThickness;
-        this.steamWaterproofingThickness = steamWaterproofingThickness;
-        this.windscreenThickness = windscreenThickness;
-        this.insulationThickness = insulationThickness;
-        this.osbInternalWall = osbInternalWall;
         this.structuralElementFrameId = structuralElementFrameId;
     }
 
-    public FloorData(Integer id, Integer floorNumber, Float floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, MaterialCharacteristics osbExternalWall, MaterialCharacteristics steamWaterproofingExternalWall, MaterialCharacteristics windscreenExternalWall, MaterialCharacteristics insulationExternalWall, Integer overlapThickness, MaterialCharacteristics osbThickness, MaterialCharacteristics steamWaterproofingThickness, MaterialCharacteristics windscreenThickness, MaterialCharacteristics insulationThickness, MaterialCharacteristics osbInternalWall, StructuralElementFrame structuralElementFrameId) {
+    public FloorData(Integer id, Integer floorNumber, Float floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, MaterialCharacteristics osbExternalWall, MaterialCharacteristics windscreenExternalWall, MaterialCharacteristics insulationExternalWall, StructuralElementFrame structuralElementFrameId) {
         this.id = id;
         this.floorNumber = floorNumber;
         this.floorHeight = floorHeight;
@@ -99,15 +71,8 @@ public class FloorData {
         this.internalWallLength = internalWallLength;
         this.internalWallThickness = internalWallThickness;
         this.osbExternalWall = osbExternalWall;
-        this.steamWaterproofingExternalWall = steamWaterproofingExternalWall;
         this.windscreenExternalWall = windscreenExternalWall;
         this.insulationExternalWall = insulationExternalWall;
-        this.overlapThickness = overlapThickness;
-        this.osbThickness = osbThickness;
-        this.steamWaterproofingThickness = steamWaterproofingThickness;
-        this.windscreenThickness = windscreenThickness;
-        this.insulationThickness = insulationThickness;
-        this.osbInternalWall = osbInternalWall;
         this.structuralElementFrameId = structuralElementFrameId;
     }
 

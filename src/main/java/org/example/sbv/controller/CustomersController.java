@@ -3,6 +3,7 @@ package org.example.sbv.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import org.example.sbv.entity.Customers;
 import org.example.sbv.request.CustomersRequest;
+import org.example.sbv.response.CustomerResponse;
 import org.example.sbv.service.CustomersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,23 +23,19 @@ public class CustomersController {
 
     @GetMapping("/by-user/{id}")
     @ResponseBody
-    public List<Customers> getAllCustomersByUser(HttpServletRequest request, @PathVariable Integer id) {
-        List<Customers> customers = customersService.getAllCustomersByUsers(request);
-        return customers;
+    public List<CustomerResponse> getAllCustomersByUser(HttpServletRequest request, @PathVariable Integer id) {
+        return customersService.getAllCustomersByUsers(request);
     }
 
     @GetMapping("/{id}")
     @ResponseBody
-    public Customers getCustomerById(HttpServletRequest request, @PathVariable Integer id) {
-        Customers customers = customersService.getCustomerById(request, id);
-        System.out.println("CUSTOMERS BY USER --- " + customers.getFirstName());
-        return customers;
+    public CustomerResponse getCustomerById(HttpServletRequest request, @PathVariable Integer id) {
+        return customersService.getCustomerById(request, id);
     }
 
     @PostMapping("/create")
     @ResponseBody
-    public Customers addNewCustomer(HttpServletRequest request, @RequestBody CustomersRequest customersRequest) {
-        Customers customers = customersService.addNewCustomers(request, customersRequest);
-        return customers;
+    public CustomerResponse addNewCustomer(HttpServletRequest request, @RequestBody CustomersRequest customersRequest) {
+        return customersService.addNewCustomers(request, customersRequest);
     }
 }
