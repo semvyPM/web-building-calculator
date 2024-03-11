@@ -35,19 +35,10 @@ public class FloorData {
     @Column(name = "internal_wall_thickness", nullable = false, precision = 0)
     private Float internalWallThickness;
     @ManyToOne
-    @JoinColumn(name = "osb_external_wall", nullable = false)
-    private MaterialCharacteristics osbExternalWall;
-    @ManyToOne
-    @JoinColumn(name = "windscreen_external_wall", nullable = false)
-    private MaterialCharacteristics windscreenExternalWall;
-    @ManyToOne
-    @JoinColumn(name = "insulation_external_wall", nullable = false)
-    private MaterialCharacteristics insulationExternalWall;
-    @ManyToOne
     @JoinColumn(name = "structural_element_frame_id", nullable = false)
     private StructuralElementFrame structuralElementFrameId;
 
-    public FloorData(Integer floorNumber, Float floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, MaterialCharacteristics osbExternalWall, MaterialCharacteristics windscreenExternalWall, MaterialCharacteristics insulationExternalWall, StructuralElementFrame structuralElementFrameId) {
+    public FloorData(Integer floorNumber, Float floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, StructuralElementFrame structuralElementFrameId) {
         this.floorNumber = floorNumber;
         this.floorHeight = floorHeight;
         this.perimeterOfExternalWalls = perimeterOfExternalWalls;
@@ -55,13 +46,10 @@ public class FloorData {
         this.externalWallThickness = externalWallThickness;
         this.internalWallLength = internalWallLength;
         this.internalWallThickness = internalWallThickness;
-        this.osbExternalWall = osbExternalWall;
-        this.windscreenExternalWall = windscreenExternalWall;
-        this.insulationExternalWall = insulationExternalWall;
         this.structuralElementFrameId = structuralElementFrameId;
     }
 
-    public FloorData(Integer id, Integer floorNumber, Float floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, MaterialCharacteristics osbExternalWall, MaterialCharacteristics windscreenExternalWall, MaterialCharacteristics insulationExternalWall, StructuralElementFrame structuralElementFrameId) {
+    public FloorData(Integer id, Integer floorNumber, Float floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, StructuralElementFrame structuralElementFrameId) {
         this.id = id;
         this.floorNumber = floorNumber;
         this.floorHeight = floorHeight;
@@ -70,9 +58,6 @@ public class FloorData {
         this.externalWallThickness = externalWallThickness;
         this.internalWallLength = internalWallLength;
         this.internalWallThickness = internalWallThickness;
-        this.osbExternalWall = osbExternalWall;
-        this.windscreenExternalWall = windscreenExternalWall;
-        this.insulationExternalWall = insulationExternalWall;
         this.structuralElementFrameId = structuralElementFrameId;
     }
 
