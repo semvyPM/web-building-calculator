@@ -20,6 +20,7 @@ h3 {
 .logo{
     width: 100%;
     height: 130px;
+    cursor: pointer;
 }
 .logo > p{
     width: 100%;
@@ -47,6 +48,7 @@ h3 {
     padding-left: 50px;
     /*color: #3d4b58;*/
     font-family: Roboto-Medium, serif;
+    cursor: pointer;
 }
 .employee{
     color: #004600;
@@ -61,7 +63,9 @@ h3 {
     height: 20px;
     background-image: url("@/assets/img/x.png");
     background-size: 100%;
+    cursor: pointer;
 }
+
 .nav{
     display: grid;
     grid-template-columns: 10% 80% 10%;
@@ -75,6 +79,7 @@ h3 {
     height: 40px;
     background-image: url("@/assets/img/back.png");
     background-size: 100%;
+    cursor: pointer;
 }
 .carcass{
     color: #004600;
@@ -90,6 +95,7 @@ main{
 }
 .adress > input[type='button']{
     height: 30px;
+    cursor: pointer;
 }
 .adress > input[type='text']{
     padding-left: 20px;
@@ -316,7 +322,7 @@ input[type='submit']{
     border-radius: 5px;
     text-align: center;
     border:1px solid skyblue;
-
+    cursor: pointer;
     /* изменить на адаптацию под экран */
     min-width: 350px;
 }
@@ -379,12 +385,19 @@ input[type='submit']{
 }
 
 /*   */
+label {
+    font-weight: bold;
+}
+
 .save {
     width: 140px;
     cursor: pointer;
     float:right;
     padding: 5px;
     border-radius: 6px;
+    font-family: Roboto-Bold;
+    font-weight: bold;
+    font-size: 12pt;
 }
 .close {
     float: right;
@@ -392,6 +405,14 @@ input[type='submit']{
     color: black;
     font-size: 32px;
     font-weight: bold;
+}
+
+.error-message {
+    color: #cc0000;
+    padding: 9px;
+    border-radius: 5px;
+    font-size: 12pt;
+    justify-content: center;
 }
 
 .create-customer-form {
