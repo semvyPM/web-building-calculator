@@ -14,6 +14,7 @@ import java.util.List;
 public class PriceListsController {
     private final PriceListsService priceListsService;
 
+
     @Autowired
     public PriceListsController(PriceListsService priceListsService){
         this.priceListsService = priceListsService;
@@ -25,9 +26,4 @@ public class PriceListsController {
         return priceListsService.getAllPriceLists(request);
     }
 
-    @GetMapping("/{id}")
-    @ResponseBody
-    public PriceLists getPriceListsById(HttpServletRequest request, @PathVariable Integer id){
-        return priceListsService.getPriceListsById(request, id);
-    }
 }

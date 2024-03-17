@@ -48,6 +48,17 @@ public class PriceLists {
     }
 
     @Override
+    public String toString() {
+        return "PriceLists{" +
+                "id=" + id +
+                ", materialCharacteristicsId=" + materialCharacteristicsId +
+                ", date=" + date +
+                ", purchasePrice=" + purchasePrice +
+                ", sellingPrice=" + sellingPrice +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
