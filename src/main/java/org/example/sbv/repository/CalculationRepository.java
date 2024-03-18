@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface CalculationRepository extends JpaRepository<Calculation, Integer> {
-    List<Calculation> findCalculationByCustomerId_IdAndCustomerId_UsersId_Id(Integer id, Integer userid);
+    List<Calculation> findCalculationByCustomerId_IdAndCustomerId_UsersId_IdOrderByNumberDesc(Integer id, Integer userid);
     Calculation findCalculationByIdAndCustomerId_UsersId_Id(Integer id, Integer userid);
+    List<Calculation> findCalculationsByCustomerId_IdOrderByNumberDesc(Integer id);
 }

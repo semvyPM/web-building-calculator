@@ -38,4 +38,10 @@ public class CustomersController {
     public CustomerResponse addNewCustomer(HttpServletRequest request, @RequestBody CustomersRequest customersRequest) {
         return customersService.addNewCustomers(request, customersRequest);
     }
+
+    @PutMapping("/update")
+    @ResponseBody
+    public CustomerResponse updateCustomer(HttpServletRequest request, @RequestBody Customers customers) {
+        return customersService.updateCustomer(request, customers);
+    }
 }

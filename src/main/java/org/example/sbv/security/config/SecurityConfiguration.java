@@ -54,7 +54,7 @@ public class SecurityConfiguration {
     public CorsConfiguration corsConfiguration() {
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.setAllowedOrigins(Arrays.asList("http://kalck.ru"));
-//        corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:5173/"));
+//        corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:5173/", "http://localhost:8080/"));
         corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
         corsConfig.setAllowCredentials(true);

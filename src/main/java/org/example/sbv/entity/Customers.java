@@ -24,10 +24,10 @@ public class Customers {
     @Column(name = "second_name", nullable = false, length = 30)
     private String secondName;
     @Basic
-    @Column(name = "phone", nullable = false, length = 16)
+    @Column(name = "phone", nullable = false, length = 50)
     private String phone;
     @Basic
-    @Column(name = "e-mail", nullable = false, length = 30)
+    @Column(name = "e-mail", nullable = false, length = 50)
     private String email;
     @Basic
     @Column(name = "adress", nullable = false, length = 100)

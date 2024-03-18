@@ -35,5 +35,11 @@ public class StructuralElementFrame {
     public StructuralElementFrame() {
     }
 
-
+    @Override
+    public String toString() {
+        return "StructuralElementFrame{" +
+                "amountFloor=" + amountFloor +
+                ", calculationId=" + calculationId +
+                '}';
+    }
 }

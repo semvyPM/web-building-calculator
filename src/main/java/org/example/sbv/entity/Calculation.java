@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -78,5 +80,16 @@ public class Calculation {
         result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
         result = 31 * result + (calculationStateId != null ? calculationStateId.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Calculation{" +
+                "customerId=" + customerId +
+                ", addressObjectConstractions='" + addressObjectConstractions + '\'' +
+                ", number=" + number +
+                ", createdDate=" + createdDate +
+                ", calculationStateId=" + calculationStateId +
+                '}';
     }
 }

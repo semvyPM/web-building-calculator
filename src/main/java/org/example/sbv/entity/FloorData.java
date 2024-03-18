@@ -34,11 +34,14 @@ public class FloorData {
     @Basic
     @Column(name = "internal_wall_thickness", nullable = false, precision = 0)
     private Float internalWallThickness;
+    @Basic
+    @Column(name = "slab_thickness", precision = 0)
+    private Integer slabThickness;
     @ManyToOne
     @JoinColumn(name = "structural_element_frame_id", nullable = false)
     private StructuralElementFrame structuralElementFrameId;
 
-    public FloorData(Integer floorNumber, Float floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, StructuralElementFrame structuralElementFrameId) {
+    public FloorData(Integer floorNumber, Float floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, Integer slabThickness, StructuralElementFrame structuralElementFrameId) {
         this.floorNumber = floorNumber;
         this.floorHeight = floorHeight;
         this.perimeterOfExternalWalls = perimeterOfExternalWalls;
@@ -46,10 +49,11 @@ public class FloorData {
         this.externalWallThickness = externalWallThickness;
         this.internalWallLength = internalWallLength;
         this.internalWallThickness = internalWallThickness;
+        this.slabThickness = slabThickness;
         this.structuralElementFrameId = structuralElementFrameId;
     }
 
-    public FloorData(Integer id, Integer floorNumber, Float floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, StructuralElementFrame structuralElementFrameId) {
+    public FloorData(Integer id, Integer floorNumber, Float floorHeight, Float perimeterOfExternalWalls, Float baseArea, Float externalWallThickness, Float internalWallLength, Float internalWallThickness, Integer slabThickness, StructuralElementFrame structuralElementFrameId) {
         this.id = id;
         this.floorNumber = floorNumber;
         this.floorHeight = floorHeight;
@@ -58,6 +62,7 @@ public class FloorData {
         this.externalWallThickness = externalWallThickness;
         this.internalWallLength = internalWallLength;
         this.internalWallThickness = internalWallThickness;
+        this.slabThickness = slabThickness;
         this.structuralElementFrameId = structuralElementFrameId;
     }
 

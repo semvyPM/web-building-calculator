@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface FloorDataRepository extends JpaRepository<FloorData, Integer> {
     List<FloorData> findFloorDataByStructuralElementFrameId_CalculationId_Id(Integer idcalculation);
+    List<FloorData> findFloorDataByStructuralElementFrameId_Id(Integer id);
+
 }

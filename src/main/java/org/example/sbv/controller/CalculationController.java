@@ -1,11 +1,9 @@
 package org.example.sbv.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
-import org.example.sbv.entity.Calculation;
-import org.example.sbv.entity.FloorData;
-import org.example.sbv.entity.ResultsBasement;
-import org.example.sbv.entity.ResultsFrame;
+import org.example.sbv.entity.*;
 import org.example.sbv.request.CalculationRequest;
+import org.example.sbv.request.FloorDataRequest;
 import org.example.sbv.response.FloorResponse;
 import org.example.sbv.service.CalculationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,17 +22,14 @@ public class CalculationController {
 
     @GetMapping("/by-customer/{id}")
     @ResponseBody
-    public List<Calculation> getAllCustomersByCustomer(HttpServletRequest request, @PathVariable Integer id) {
-        List<Calculation> calculations = calculationService.getAllCalculationByUsers(request, id);
-        System.out.println("CALCULAT " + calculations);
-        return calculations;
+    public List<Calculation> getAllCalculationsByCustomer(HttpServletRequest request, @PathVariable Integer id) {
+        return calculationService.getAllCalculationByUsers(request, id);
     }
 
     @GetMapping("/{id}")
     @ResponseBody
-    public Calculation getCustomerById(HttpServletRequest request, @PathVariable Integer id) {
-        Calculation calculation = calculationService.getCalculationById(request, id);
-        return calculation;
+    public Calculation getCalculationById(HttpServletRequest request, @PathVariable Integer id) {
+        return calculationService.getCalculationById(request, id);
     }
 
     @GetMapping("/floors/{idcalculation}")
@@ -51,7 +46,35 @@ public class CalculationController {
 
     @PostMapping("/create")
     @ResponseBody
-    public Calculation addNewCalculation(HttpServletRequest request, @RequestBody CalculationRequest calculationRequest) {
-        return calculationService.addNewCalculation(request, calculationRequest);
+    public Calculation addNewCalculation(HttpServletRequest request, @RequestBody Calculation calculation) {
+        return calculationService.addNewCalculation(request, calculation);
     }
+    @PostMapping("/frame/create")
+    @ResponseBody
+    public StructuralElementFrame addNewFrame(HttpServletRequest request, @RequestBody StructuralElementFrame structuralElementFrame) {
+        return calculationService.addNewFrame(request, structuralElementFrame);
+    }
+
+    @PutMapping("/status")
+    @ResponseBody
+    public Calculation changeStatus(HttpServletRequest request, @RequestBody Calculation calculation) {
+        return calculationService.changeStatus(request, calculation);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteCalculation(HttpServletRequest request, @PathVariable Integer id) {
+        calculationService.deleteCalculation(request, id);
+    }
+
+    @GetMapping("/copy/{id}")
+    public Calculation copyCalculationById(HttpServletRequest request, @PathVariable Integer id){
+        return calculationService.copyCalculationById(request, id);
+    }
+
+    @PostMapping("/floordata/create")
+    @ResponseBody
+    public void floorDataPost(HttpServletRequest request, @RequestBody FloorDataRequest floorDataRequest) {
+        calculationService.floorDataPost(request, floorDataRequest);
+    }
+
 }

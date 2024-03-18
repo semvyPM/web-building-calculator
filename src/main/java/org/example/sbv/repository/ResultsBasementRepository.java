@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface ResultsBasementRepository extends JpaRepository<ResultsBasement, Integer> {
     List<ResultsBasement> findResultsBasementsByStructuralElementBasement_CalculationId_Id(Integer idcalcultation);
+    List<ResultsBasement> findResultsBasementsByStructuralElementBasementId_Id(Integer id);
 }

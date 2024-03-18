@@ -25,15 +25,19 @@ public class Openings {
     @Basic
     @Column(name = "amount", nullable = false)
     private Integer amount;
+    @ManyToOne
+    @JoinColumn(name = "floor_data_id", nullable = false)
+    private FloorData floorData;
 
     public Openings() {
     }
 
-    public Openings(String type, Float height, Float width, Integer amount) {
+    public Openings(String type, Float height, Float width, Integer amount, FloorData floorData) {
         this.type = type;
         this.height = height;
         this.width = width;
         this.amount = amount;
+        this.floorData = floorData;
     }
 
     public Openings(Integer id, String type, Float height, Float width, Integer amount) {

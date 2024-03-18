@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface StructuralElementBasementRepository extends JpaRepository<StructuralElementBasement, Integer> {
-    StructuralElementBasement findStructuralElementBasementsByCalculationId_Id(Integer idcalculation);
+    StructuralElementBasement findStructuralElementBasementByCalculationId_Id(Integer id);
+
 }

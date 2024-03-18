@@ -39,7 +39,7 @@ public class CustomersService {
         Integer userId = usersService.getUserIdByJWT(request);
         if (userId != null) {
             Customers customer = customersRepository.findCustomersByIdAndUsersId_Id(id, userId);
-            return new CustomerResponse(customer.getId(), customer.getFirstName(), customer.getLastName(), customer.getSecondName(), customer.getPhone(), customer.getEmail(), customer.getAdress(), customer.getUsersId().getId());
+            return new CustomerResponse(customer.getId(), customer.getLastName(), customer.getFirstName(),  customer.getSecondName(), customer.getPhone(), customer.getEmail(), customer.getAdress(), customer.getUsersId().getId());
         }
         else return null;
     }
@@ -47,6 +47,14 @@ public class CustomersService {
         Integer userId = usersService.getUserIdByJWT(request);
         if (userId != null) {
             Customers customers = customersRepository.save(new Customers(customersRequest.getLastName(), customersRequest.getFirstName(), customersRequest.getSecondName(), customersRequest.getPhone(), customersRequest.getEmail(), customersRequest.getAdress(), usersRepository.findUsersById(userId)));
+            return new CustomerResponse(customers.getId(), customers.getFirstName(), customers.getLastName(), customers.getSecondName(), customers.getPhone(), customers.getEmail(), customers.getAdress(),  customers.getUsersId().getId());
+        }
+        else return null;
+    }
+
+    public CustomerResponse updateCustomer(HttpServletRequest request, Customers customers) {
+        if (usersService.getUserIdByJWT(request) != null) {
+            Customers updatedCustomers = customersRepository.save(customers);
             return new CustomerResponse(customers.getId(), customers.getFirstName(), customers.getLastName(), customers.getSecondName(), customers.getPhone(), customers.getEmail(), customers.getAdress(),  customers.getUsersId().getId());
         }
         else return null;
