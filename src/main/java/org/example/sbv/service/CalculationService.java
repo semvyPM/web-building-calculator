@@ -1,17 +1,14 @@
 package org.example.sbv.service;
 
 import jakarta.servlet.http.HttpServletRequest;
-import org.example.sbv.entity.Calculation;
-import org.example.sbv.entity.FloorData;
-import org.example.sbv.entity.FloorDataAdd;
-import org.example.sbv.entity.ResultsBasement;
-import org.example.sbv.entity.ResultsFrame;
+import org.example.sbv.entity.*;
 import org.example.sbv.repository.*;
 import org.example.sbv.request.CalculationRequest;
 import org.example.sbv.response.FloorAddResponse;
 import org.example.sbv.response.FloorResponse;
 import org.example.sbv.response.ResultFrameResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,15 +22,20 @@ public class CalculationService {
     private final ResultsFrameRepository resultsFrameRepository;
     private final FloorDataRepository floorDataRepository;
     private final FloorDataAddRepository floorDataAddRepository;
+    private final StructuralElementBasementRepository structuralElementBasementRepository;
+    private final StructuralElementFrameRepository structuralElementFrameRepository;
+
 
     @Autowired
-    public CalculationService(CalculationRepository calculationRepository, UsersService usersService, ResultsBasementRepository resultsBasementRepository, ResultsFrameRepository resultsFrameRepository, FloorDataRepository floorDataRepository, FloorDataAddRepository floorDataAddRepository) {
+    public CalculationService(CalculationRepository calculationRepository, UsersService usersService, ResultsBasementRepository resultsBasementRepository, ResultsFrameRepository resultsFrameRepository, FloorDataRepository floorDataRepository, FloorDataAddRepository floorDataAddRepository, StructuralElementBasementRepository structuralElementBasementRepository, StructuralElementFrameRepository structuralElementFrameRepository) {
         this.calculationRepository = calculationRepository;
         this.usersService = usersService;
         this.resultsBasementRepository = resultsBasementRepository;
         this.resultsFrameRepository = resultsFrameRepository;
         this.floorDataRepository = floorDataRepository;
         this.floorDataAddRepository = floorDataAddRepository;
+        this.structuralElementBasementRepository = structuralElementBasementRepository;
+        this.structuralElementFrameRepository = structuralElementFrameRepository;
     }
     public List<Calculation> getAllCalculation() {
         return calculationRepository.findAll();
@@ -53,6 +55,15 @@ public class CalculationService {
         else {
             return null;
         }
+    }
+    public Calculation deleteCalculation(HttpServletRequest request, Integer id){
+        if (usersService.getUserIdByJWT(request) != null) {
+            calculationRepository.deleteById(id);
+        }
+        else{
+            return null;
+        }
+        return null;
     }
     public List<FloorResponse> getFloorData(HttpServletRequest request, Integer idcalculation) {
         if (usersService.getUserIdByJWT(request) != null) {
@@ -129,4 +140,5 @@ public class CalculationService {
         }
         else return null;
     }
+
 }

@@ -2,13 +2,12 @@ package org.example.sbv.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.example.sbv.entity.Calculation;
-import org.example.sbv.entity.FloorData;
 import org.example.sbv.entity.ResultsBasement;
-import org.example.sbv.entity.ResultsFrame;
 import org.example.sbv.request.CalculationRequest;
 import org.example.sbv.response.FloorResponse;
 import org.example.sbv.service.CalculationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,4 +53,11 @@ public class CalculationController {
     public Calculation addNewCalculation(HttpServletRequest request, @RequestBody CalculationRequest calculationRequest) {
         return calculationService.addNewCalculation(request, calculationRequest);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseBody
+    public void deleteCalculationById(HttpServletRequest request, @PathVariable  Integer id){
+        calculationService.deleteCalculation(request, id);
+    }
+
 }
